@@ -2,572 +2,846 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PCM Tracker</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
- margin:0;
- font-family:Arial,"Noto Sans Bengali",sans-serif;
- background:#f4f5f7;
- color:#101114
+    margin:0;
+    font-family:Arial,"Noto Sans Bengali",sans-serif;
+    background:#f4f5f7;
+    color:#111;
 }
-button,input,select{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
+
+button,input,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* ================= AUTH ================= */
 
 .auth{
- min-height:100vh;
- display:grid;
- place-items:center;
- padding:20px;
- background:#101114;
- color:white
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:#101114;
 }
-.authbox{
- width:min(440px,100%);
- background:#181a1f;
- border:1px solid #2c2f36;
- border-radius:24px;
- padding:28px;
- box-shadow:0 25px 70px #0007
+
+.auth-box{
+    width:100%;
+    max-width:430px;
+    background:#191b20;
+    color:white;
+    padding:28px;
+    border-radius:22px;
 }
-.logo{font-size:24px;font-weight:900;letter-spacing:-1px}
-.logo span{color:#8bff65}
-.authbox h1{font-size:34px;margin:35px 0 8px}
-.muted{color:#8e939d}
-.field{margin:15px 0}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+}
+
+.logo span{
+    color:#8bff65;
+}
+
+.auth-box h1{
+    font-size:34px;
+    margin:35px 0 8px;
+}
+
+.muted{
+    color:#858a94;
+}
+
+.field{
+    margin-top:16px;
+}
+
 .field label{
- display:block;
- font-size:12px;
- color:#aeb2bb;
- margin-bottom:7px
+    display:block;
+    font-size:12px;
+    color:#aaa;
+    margin-bottom:7px;
 }
-.field input,.field select{
- width:100%;
- padding:13px 14px;
- border-radius:11px;
- border:1px solid #343841;
- background:#101216;
- color:white;
- outline:none
+
+.field input,
+.field select{
+    width:100%;
+    padding:13px;
+    border:1px solid #363941;
+    border-radius:10px;
+    background:#101216;
+    color:white;
+    outline:none;
 }
+
 .primary{
- width:100%;
- border:0;
- background:#8bff65;
- color:#101114;
- padding:14px;
- border-radius:11px;
- font-weight:900;
- margin-top:10px
+    width:100%;
+    border:0;
+    background:#8bff65;
+    padding:14px;
+    border-radius:10px;
+    font-weight:900;
+    margin-top:18px;
 }
-.switch{margin-top:18px;text-align:center;font-size:13px}
+
+.switch{
+    text-align:center;
+    margin-top:18px;
+    font-size:13px;
+}
+
 .switch button{
- border:0;
- background:none;
- color:#8bff65
+    border:0;
+    background:none;
+    color:#8bff65;
 }
-.error{color:#ff7474;font-size:12px;margin-top:10px}
 
-.app{min-height:100vh}
-.top{
- height:70px;
- background:#fff;
- border-bottom:1px solid #e2e4e8;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 5%;
- position:sticky;
- top:0;
- z-index:20
+.error{
+    color:#ff7373;
+    font-size:13px;
+    margin-top:10px;
 }
-.top .logo{color:#101114}
-.userpill{display:flex;align-items:center;gap:10px}
+
+/* ================= APP ================= */
+
+.app{
+    min-height:100vh;
+}
+
+.navbar{
+    height:70px;
+    background:white;
+    border-bottom:1px solid #ddd;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 5%;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.nav-logo{
+    font-size:23px;
+    font-weight:900;
+}
+
+.nav-logo span{
+    color:#70d84e;
+}
+
+.user{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
 .avatar{
- width:34px;height:34px;border-radius:50%;
- background:#101114;color:#8bff65;
- display:grid;place-items:center;font-weight:900
-}
-.logout{
- border:1px solid #ddd;
- background:white;
- padding:8px 11px;
- border-radius:9px;
- font-size:12px
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#111;
+    color:#8bff65;
+    display:grid;
+    place-items:center;
+    font-weight:900;
 }
 
-.wrap{
- max-width:1180px;
- margin:auto;
- padding:35px 20px 70px
+.logout{
+    border:1px solid #ddd;
+    background:white;
+    padding:8px 12px;
+    border-radius:8px;
 }
-.welcome{
- display:flex;
- justify-content:space-between;
- gap:20px;
- align-items:end
+
+.container{
+    width:min(1150px,100%);
+    margin:auto;
+    padding:30px 18px 70px;
 }
-.welcome h1{
- font-size:clamp(35px,6vw,62px);
- line-height:.98;
- letter-spacing:-.055em;
- margin:8px 0
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:20px;
 }
-.welcome h1 span{color:#8a8f98}
-.batchbadge{
- background:#101114;color:white;
- padding:10px 14px;
- border-radius:12px;
- font-weight:800
+
+.hero h1{
+    font-size:clamp(36px,6vw,60px);
+    line-height:.95;
+    margin:8px 0;
+    letter-spacing:-3px;
 }
+
+.hero h1 span{
+    color:#999;
+}
+
+.batch{
+    background:#111;
+    color:white;
+    padding:10px 14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+/* ================= OVERALL ================= */
 
 .overall{
- margin:30px 0;
- background:#101114;
- color:white;
- border-radius:22px;
- padding:25px
+    margin-top:28px;
+    background:#111;
+    color:white;
+    border-radius:20px;
+    padding:24px;
 }
-.overalltop{
- display:flex;
- justify-content:space-between;
- align-items:end
+
+.overall-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
 }
-.overalltop b{font-size:42px}
+
+.percent{
+    font-size:42px;
+    font-weight:900;
+}
+
 .bar{
- height:12px;
- background:#2d3036;
- border-radius:20px;
- overflow:hidden;
- margin-top:18px
+    height:11px;
+    background:#303238;
+    border-radius:20px;
+    margin-top:18px;
+    overflow:hidden;
 }
-.fill{
- height:100%;
- background:#8bff65;
- width:0;
- transition:.3s
+
+.bar-fill{
+    height:100%;
+    width:0;
+    background:#8bff65;
+    transition:.3s;
 }
+
+/* ================= CARDS ================= */
 
 .cards{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:12px
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:14px;
 }
+
 .card{
- background:white;
- border:1px solid #e1e3e7;
- border-radius:17px;
- padding:18px
+    background:white;
+    border:1px solid #ddd;
+    border-radius:16px;
+    padding:18px;
 }
-.card h3{margin:0 0 10px}
-.card .big{font-size:27px;font-weight:900}
-.mini{
- height:7px;
- background:#eceef1;
- border-radius:10px;
- overflow:hidden;
- margin-top:12px
+
+.card h3{
+    margin:0 0 8px;
 }
-.mini div{height:100%;background:#111;width:0}
+
+.big{
+    font-size:30px;
+    font-weight:900;
+}
+
+.mini-bar{
+    height:7px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.mini-fill{
+    height:100%;
+    background:#111;
+}
+
+/* ================= DASHBOARD ================= */
 
 .dashboard{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:12px;
- margin-top:15px
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:14px;
 }
+
 .panel{
- background:white;
- border:1px solid #e1e3e7;
- border-radius:17px;
- padding:20px
+    background:white;
+    border:1px solid #ddd;
+    border-radius:16px;
+    padding:20px;
 }
-.panel h2{margin:0 0 5px;font-size:21px}
-.stat{
- font-size:38px;
- font-weight:900;
- margin-top:8px
+
+.panel.dark{
+    background:#111;
+    color:white;
 }
-.points{
- background:#101114;
- color:white
+
+.points-number{
+    font-size:40px;
+    font-weight:900;
+    margin-top:7px;
 }
-.points .muted{color:#aeb2bb}
-.reward{
- margin-top:12px;
- font-size:15px
+
+.green{
+    color:#8bff65;
 }
-.reward b{color:#8bff65}
+
+/* ================= TABS ================= */
 
 .tabs{
- display:flex;
- gap:7px;
- margin:28px 0 14px;
- flex-wrap:wrap
-}
-.tabs button,.subjectnav button,.paper button,.filter button{
- border:1px solid #ddd;
- background:white;
- padding:10px 14px;
- border-radius:10px;
- font-weight:800
-}
-.tabs button.active,.subjectnav button.active,
-.paper button.active,.filter button.active{
- background:#101114;
- color:white;
- border-color:#101114
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:28px;
 }
 
-.subjectnav{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin:10px 0 12px
-}
-.paper{display:flex;gap:7px;margin-bottom:22px}
-
-.sectionhead{
- display:flex;
- justify-content:space-between;
- align-items:end;
- gap:15px
-}
-.sectionhead h2{
- font-size:30px;
- margin:0 0 5px
-}
-.filter{
- display:flex;
- gap:6px;
- flex-wrap:wrap
+.tabs button,
+.subject-btn,
+.paper-btn,
+.filter-btn{
+    border:1px solid #ddd;
+    background:white;
+    padding:10px 14px;
+    border-radius:9px;
+    font-weight:bold;
 }
 
-.units{
- margin-top:15px;
- display:grid;
- gap:9px
+.tabs button.active,
+.subject-btn.active,
+.paper-btn.active,
+.filter-btn.active{
+    background:#111;
+    color:white;
+    border-color:#111;
 }
-.unit{
- background:white;
- border:1px solid #e0e2e6;
- border-radius:14px;
- padding:16px;
- display:flex;
- align-items:center;
- gap:15px
+
+/* ================= SYLLABUS ================= */
+
+.subjects{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-top:15px;
 }
-.unit.done{
- background:#effcef;
- border-color:#a9dba9
+
+.papers{
+    display:flex;
+    gap:7px;
+    margin-top:12px;
 }
-.unit.progress{
- background:#fff9e6;
- border-color:#e4cf78
+
+.chapter-head{
+    margin-top:25px;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:end;
 }
-.num{
- width:40px;height:40px;
- border-radius:10px;
- background:#f0f1f3;
- display:grid;
- place-items:center;
- font-weight:900;
- color:#777;
- flex-shrink:0
+
+.chapter-head h2{
+    margin:4px 0;
 }
-.utext{flex:1}
-.utext b{
- display:block;
- font-family:"Noto Sans Bengali",Arial;
- font-size:16px
+
+.filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
 }
-.utext small{color:#8b9098}
-.actions{display:flex;gap:5px}
-.actions button{
- width:34px;height:34px;
- border:1px solid #ddd;
- background:#f7f7f8;
- border-radius:8px
+
+.chapter-list{
+    display:grid;
+    gap:8px;
+    margin-top:14px;
 }
-.actions .on{
- background:#101114;
- color:white;
- border-color:#101114
+
+.chapter{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:13px;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
+
+.chapter.done{
+    background:#effced;
+    border-color:#a6d99e;
+}
+
+.chapter.running{
+    background:#fff9e5;
+    border-color:#dfcc78;
+}
+
+.chapter-number{
+    width:40px;
+    height:40px;
+    background:#f0f1f3;
+    border-radius:9px;
+    display:grid;
+    place-items:center;
+    font-weight:900;
+    flex-shrink:0;
+}
+
+.chapter-info{
+    flex:1;
+}
+
+.chapter-info b{
+    display:block;
+}
+
+.chapter-info small{
+    color:#888;
+}
+
+.chapter-actions{
+    display:flex;
+    gap:5px;
+}
+
+.chapter-actions button{
+    width:34px;
+    height:34px;
+    border:1px solid #ddd;
+    background:#f7f7f7;
+    border-radius:8px;
+}
+
+.chapter-actions button.active{
+    background:#111;
+    color:white;
+}
+
+/* ================= GPA ================= */
 
 .gpa-grid{
- display:grid;
- grid-template-columns:1fr 120px;
- gap:9px;
- margin-top:15px
+    display:grid;
+    grid-template-columns:1fr 130px;
+    gap:8px;
+    margin-top:18px;
 }
-.gpa-grid label{
- background:#f5f6f7;
- padding:13px;
- border-radius:10px;
- font-weight:700
+
+.gpa-label{
+    background:#f5f6f7;
+    padding:13px;
+    border-radius:9px;
+    font-weight:bold;
 }
-.gpa-grid input{
- width:100%;
- padding:12px;
- border:1px solid #ddd;
- border-radius:10px;
- background:white
+
+.gpa-input{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:9px;
+    padding:11px;
 }
+
 .gpa-result{
- margin-top:15px;
- background:#101114;
- color:white;
- border-radius:14px;
- padding:18px;
- text-align:center
+    margin-top:15px;
+    padding:20px;
+    border-radius:14px;
+    background:#111;
+    color:white;
+    text-align:center;
 }
-.gpa-number{
- font-size:44px;
- font-weight:900;
- color:#8bff65
+
+.gpa-value{
+    font-size:48px;
+    font-weight:900;
+    color:#8bff65;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.progress-number{
+    font-size:42px;
+    font-weight:900;
+    margin-top:7px;
 }
 
 .history{
- margin-top:15px;
- display:grid;
- gap:7px
-}
-.history-row{
- display:flex;
- justify-content:space-between;
- padding:11px 13px;
- background:#f5f6f7;
- border-radius:9px;
- font-size:13px
+    margin-top:15px;
+    display:grid;
+    gap:7px;
 }
 
-.rewardbox{
- margin-top:15px;
- padding:18px;
- background:#f5f6f7;
- border-radius:13px
+.history-item{
+    padding:12px;
+    background:#f5f6f7;
+    border-radius:9px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    font-size:13px;
 }
-.rewardbox input{
- width:100%;
- padding:12px;
- border:1px solid #ddd;
- border-radius:9px;
- margin:8px 0
+
+/* ================= REWARD ================= */
+
+.reward-box{
+    margin-top:12px;
+    background:#f5f6f7;
+    padding:15px;
+    border-radius:12px;
 }
-.claim{
- border:0;
- background:#101114;
- color:white;
- padding:12px 16px;
- border-radius:9px;
- font-weight:800
+
+.reward-box input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:9px;
+    margin:8px 0;
 }
-.claim:disabled{opacity:.4;cursor:not-allowed}
+
+.claim-btn{
+    background:#111;
+    color:white;
+    border:0;
+    padding:11px 15px;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+.claim-btn:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+
+/* ================= PROFILE ================= */
 
 .profile{
- margin-top:30px;
- background:white;
- border:1px solid #e1e3e7;
- border-radius:17px;
- padding:20px
-}
-.profilegrid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:12px;
- margin-top:15px
-}
-.profileitem{
- background:#f5f6f7;
- padding:14px;
- border-radius:11px
-}
-.profileitem small{
- display:block;
- color:#777;
- font-size:11px
-}
-.profileitem b{display:block;margin-top:4px}
-.danger{
- margin-top:15px;
- border:1px solid #e5b2b2;
- background:#fff5f5;
- color:#a52222;
- padding:10px 13px;
- border-radius:9px
+    margin-top:25px;
 }
 
+.profile-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:12px;
+}
+
+.profile-item{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:14px;
+}
+
+.profile-item small{
+    color:#777;
+    display:block;
+}
+
+.profile-item b{
+    display:block;
+    margin-top:5px;
+}
+
+.reset{
+    margin-top:12px;
+    background:#fff3f3;
+    color:#a11;
+    border:1px solid #e4b5b5;
+    padding:10px 13px;
+    border-radius:8px;
+}
+
+/* ================= MOBILE ================= */
+
 @media(max-width:700px){
- .top{padding:0 15px}
- .wrap{padding:25px 14px 55px}
- .welcome{display:block}
- .batchbadge{display:inline-block;margin-top:10px}
- .cards{grid-template-columns:1fr}
- .dashboard{grid-template-columns:1fr}
- .sectionhead{display:block}
- .filter{margin-top:14px}
- .unit{display:grid;grid-template-columns:40px 1fr}
- .actions{grid-column:2}
- .profilegrid{grid-template-columns:1fr 1fr}
- .userpill .email{display:none}
+
+    .navbar{
+        padding:0 14px;
+    }
+
+    .email{
+        display:none;
+    }
+
+    .hero{
+        display:block;
+    }
+
+    .batch{
+        display:inline-block;
+        margin-top:10px;
+    }
+
+    .cards,
+    .dashboard,
+    .progress-grid{
+        grid-template-columns:1fr;
+    }
+
+    .chapter-head{
+        display:block;
+    }
+
+    .filters{
+        margin-top:12px;
+    }
+
+    .chapter{
+        display:grid;
+        grid-template-columns:40px 1fr;
+    }
+
+    .chapter-actions{
+        grid-column:2;
+    }
+
+    .profile-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .gpa-grid{
+        grid-template-columns:1fr 100px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div id="auth" class="auth">
-<div class="authbox">
+<!-- =====================================================
+                    AUTH
+===================================================== -->
 
-<div class="logo">PCM <span>TRACKER</span></div>
+<div id="authScreen" class="auth">
 
-<div id="loginForm">
+<div class="auth-box">
+
+<div class="logo">
+PCM <span>TRACKER</span>
+</div>
+
+
+<!-- LOGIN -->
+
+<div id="loginBox">
 
 <h1>Welcome back.</h1>
-<p class="muted">Login to continue your PCM journey.</p>
+
+<p class="muted">
+Login to continue your HSC journey.
+</p>
 
 <div class="field">
 <label>Email</label>
-<input id="lemail" type="email" placeholder="you@example.com">
+<input id="loginEmail" type="email" placeholder="you@example.com">
 </div>
 
 <div class="field">
 <label>Password</label>
-<input id="lpass" type="password" placeholder="••••••••">
+<input id="loginPassword" type="password" placeholder="Password">
 </div>
 
-<button class="primary" onclick="login()">Login</button>
-<div id="lerr" class="error"></div>
+<button id="loginButton" class="primary">
+Login
+</button>
+
+<div id="loginError" class="error"></div>
 
 <div class="switch">
 New here?
-<button onclick="showSignup()">Create account</button>
+<button id="showSignupButton">Create account</button>
 </div>
 
 </div>
 
-<div id="signupForm" class="hidden">
+
+<!-- SIGNUP -->
+
+<div id="signupBox" class="hidden">
 
 <h1>Create account.</h1>
-<p class="muted">Set up your HSC profile.</p>
+
+<p class="muted">
+Create your PCM Tracker account.
+</p>
 
 <div class="field">
 <label>Email</label>
-<input id="semail" type="email" placeholder="you@example.com">
+<input id="signupEmail" type="email" placeholder="you@example.com">
 </div>
 
 <div class="field">
 <label>Password</label>
-<input id="spass" type="password" placeholder="Minimum 6 characters">
+<input id="signupPassword" type="password" placeholder="Minimum 6 characters">
 </div>
 
 <div class="field">
 <label>HSC Batch</label>
-<select id="sbatch">
+
+<select id="signupBatch">
 <option>HSC 26</option>
 <option>HSC 27</option>
 <option>HSC 28</option>
 <option>HSC 29</option>
 <option>HSC 30</option>
 </select>
+
 </div>
 
 <div class="field">
 <label>College Name</label>
-<input id="college" placeholder="Your college">
+<input id="signupCollege" placeholder="Your college">
 </div>
 
 <div class="field">
 <label>Zilla</label>
-<select id="zilla"></select>
+
+<select id="signupZilla"></select>
+
 </div>
 
-<button class="primary" onclick="signup()">Create Account</button>
-<div id="serr" class="error"></div>
+<button id="signupButton" class="primary">
+Create Account
+</button>
+
+<div id="signupError" class="error"></div>
 
 <div class="switch">
 Already have an account?
-<button onclick="showLogin()">Login</button>
+<button id="showLoginButton">Login</button>
 </div>
 
 </div>
+
 </div>
 </div>
 
 
-<div id="app" class="app hidden">
+<!-- =====================================================
+                     APP
+===================================================== -->
 
-<header class="top">
+<div id="appScreen" class="app hidden">
 
-<div class="logo">PCM <span>TRACKER</span></div>
+<header class="navbar">
 
-<div class="userpill">
-<div class="avatar" id="avatar">P</div>
-<span class="email" id="userEmail"></span>
-<button class="logout" onclick="logout()">Logout</button>
+<div class="nav-logo">
+PCM <span>TRACKER</span>
+</div>
+
+<div class="user">
+
+<div id="avatar" class="avatar">P</div>
+
+<span id="navEmail" class="email"></span>
+
+<button id="logoutButton" class="logout">
+Logout
+</button>
+
 </div>
 
 </header>
 
-<main class="wrap">
 
-<section class="welcome">
+<main class="container">
+
+
+<!-- HERO -->
+
+<section class="hero">
 
 <div>
-<div class="muted">YOUR HSC JOURNEY</div>
+
+<div class="muted">
+YOUR HSC JOURNEY
+</div>
 
 <h1>
 Study. Track.<br>
 <span>Finish PCM.</span>
 </h1>
+
 </div>
 
-<div class="batchbadge" id="batchBadge"></div>
+<div id="batchBadge" class="batch"></div>
 
 </section>
 
 
+<!-- OVERALL -->
+
 <section class="overall">
 
-<div class="overalltop">
+<div class="overall-top">
 
 <div>
-<div class="muted">OVERALL PCM PROGRESS</div>
 
-<div style="margin-top:8px" id="totalText">
+<div class="muted">
+OVERALL SYLLABUS PROGRESS
+</div>
+
+<div id="overallText">
 0 / 0 chapters
 </div>
+
 </div>
 
-<b id="overallPct">0%</b>
+<div id="overallPercent" class="percent">
+0%
+</div>
 
 </div>
 
 <div class="bar">
-<div class="fill" id="overallFill"></div>
+<div id="overallFill" class="bar-fill"></div>
 </div>
 
 </section>
 
 
-<section class="cards" id="subjectCards"></section>
+<!-- SUBJECT CARDS -->
 
+<section id="subjectCards" class="cards"></section>
+
+
+<!-- POINTS + REWARD -->
 
 <section class="dashboard">
 
-<div class="panel points">
+<div class="panel dark">
 
-<div class="muted">MY POINTS</div>
+<div class="muted">
+MY POINTS
+</div>
 
-<div class="stat" id="pointsTotal">0</div>
+<div id="points" class="points-number">
+0
+</div>
 
-<div class="reward">
+<div>
 Reward balance:
-<strong id="rewardMoney">৳0</strong>
+<span id="rewardAmount" class="green">৳0</span>
 </div>
 
 </div>
@@ -575,44 +849,31 @@ Reward balance:
 
 <div class="panel">
 
-<h2>🏆 Reward System</h2>
+<h3>🎁 Reward System</h3>
 
-<div class="muted">
-Complete every chapter/unit and earn points.
-</div>
+<p class="muted">
+Complete a chapter to earn points.
+</p>
 
 <p>
-<strong>1 completed unit = 10 points</strong>
+<strong>1 chapter = 10 points</strong>
 </p>
 
 <p>
 <strong>200 points = ৳20</strong>
 </p>
 
-<div class="rewardbox">
+<div class="reward-box">
 
 <label>bKash Number</label>
 
-<input
-id="bkash"
-type="tel"
-placeholder="01XXXXXXXXX">
+<input id="bkashNumber" type="tel" placeholder="01XXXXXXXXX">
 
-<button
-id="claimBtn"
-class="claim"
-onclick="claimReward()">
-
+<button id="claimButton" class="claim-btn">
 Claim Reward
-
 </button>
 
-<div
-id="claimMsg"
-class="muted"
-style="margin-top:8px">
-Minimum 200 points required.
-</div>
+<div id="claimMessage" class="muted"></div>
 
 </div>
 
@@ -621,74 +882,78 @@ Minimum 200 points required.
 </section>
 
 
+<!-- MAIN TABS -->
+
 <div class="tabs">
 
-<button
-class="active"
-onclick="showTab('syllabus',this)">
+<button class="active" data-tab="syllabus">
 📚 Syllabus
 </button>
 
-<button onclick="showTab('gpa',this)">
+<button data-tab="gpa">
 🧮 GPA Calculator
 </button>
 
-<button onclick="showTab('progress',this)">
-📈 7 / 30 Day Progress
+<button data-tab="progress">
+📈 7 / 30 Days
 </button>
 
 </div>
 
 
+<!-- =====================================================
+                    SYLLABUS TAB
+===================================================== -->
+
 <div id="syllabusTab">
 
-<div class="subjectnav">
+<div class="subjects">
 
-<button class="active"
-onclick="setSubject('Physics',this)">
+<button class="subject-btn active" data-subject="Physics">
 ⚡ Physics
 </button>
 
-<button onclick="setSubject('Chemistry',this)">
+<button class="subject-btn" data-subject="Chemistry">
 🧪 Chemistry
 </button>
 
-<button onclick="setSubject('Higher Math',this)">
+<button class="subject-btn" data-subject="Higher Math">
 📐 Higher Math
 </button>
 
 </div>
 
-<div class="paper" id="paperNav"></div>
 
-<section class="sectionhead">
+<div id="paperButtons" class="papers"></div>
+
+
+<section class="chapter-head">
 
 <div>
 
-<div class="muted" id="crumb">
+<div id="chapterCrumb" class="muted">
 PHYSICS · 1ST PAPER
 </div>
 
-<h2 id="sectionTitle">Syllabus</h2>
+<h2>Syllabus</h2>
 
 </div>
 
-<div class="filter">
+<div class="filters">
 
-<button class="active"
-onclick="setFilter('all',this)">
+<button class="filter-btn active" data-filter="all">
 All
 </button>
 
-<button onclick="setFilter('none',this)">
+<button class="filter-btn" data-filter="none">
 Remaining
 </button>
 
-<button onclick="setFilter('progress',this)">
+<button class="filter-btn" data-filter="running">
 Running
 </button>
 
-<button onclick="setFilter('done',this)">
+<button class="filter-btn" data-filter="done">
 Done
 </button>
 
@@ -696,10 +961,15 @@ Done
 
 </section>
 
-<section class="units" id="units"></section>
+
+<div id="chapterList" class="chapter-list"></div>
 
 </div>
 
+
+<!-- =====================================================
+                    GPA TAB
+===================================================== -->
 
 <div id="gpaTab" class="hidden">
 
@@ -707,53 +977,49 @@ Done
 
 <h2>🧮 GPA Calculator</h2>
 
-<div class="muted">
-Enter your GPA for each subject. GPA must be between 0.00 and 5.00.
-</div>
+<p class="muted">
+Enter GPA directly. GPA must be between 0.00 and 5.00.
+</p>
+
 
 <div class="gpa-grid">
 
-<label>Bangla</label>
-<input class="gpaInput" data-name="Bangla"
-type="number" min="0" max="5" step=".01" placeholder="5.00">
+<div class="gpa-label">Bangla</div>
+<input class="gpa-input" data-subject="Bangla" type="number" min="0" max="5" step=".01">
 
-<label>English</label>
-<input class="gpaInput" data-name="English"
-type="number" min="0" max="5" step=".01" placeholder="5.00">
+<div class="gpa-label">English</div>
+<input class="gpa-input" data-subject="English" type="number" min="0" max="5" step=".01">
 
-<label>ICT</label>
-<input class="gpaInput" data-name="ICT"
-type="number" min="0" max="5" step=".01" placeholder="5.00">
+<div class="gpa-label">ICT</div>
+<input class="gpa-input" data-subject="ICT" type="number" min="0" max="5" step=".01">
 
-<label>Physics</label>
-<input class="gpaInput" data-name="Physics"
-type="number" min="0" max="5" step=".01" placeholder="5.00">
+<div class="gpa-label">Physics</div>
+<input class="gpa-input" data-subject="Physics" type="number" min="0" max="5" step=".01">
 
-<label>Chemistry</label>
-<input class="gpaInput" data-name="Chemistry"
-type="number" min="0" max="5" step=".01" placeholder="5.00">
+<div class="gpa-label">Chemistry</div>
+<input class="gpa-input" data-subject="Chemistry" type="number" min="0" max="5" step=".01">
 
-<label>Higher Math</label>
-<input class="gpaInput" data-name="Higher Math"
-type="number" min="0" max="5" step=".01" placeholder="5.00">
+<div class="gpa-label">Higher Math</div>
+<input class="gpa-input" data-subject="Higher Math" type="number" min="0" max="5" step=".01">
 
-<label>Biology — Optional</label>
-<input class="gpaInput optional"
-data-name="Biology"
-type="number" min="0" max="5" step=".01" placeholder="Optional">
+<div class="gpa-label">Biology — Optional</div>
+<input class="gpa-input" data-subject="Biology" type="number" min="0" max="5" step=".01">
 
 </div>
+
 
 <div class="gpa-result">
 
-<div class="muted">OVERALL GPA</div>
+<div class="muted">
+OVERALL GPA
+</div>
 
-<div class="gpa-number" id="gpaResult">
+<div id="gpaResult" class="gpa-value">
 0.00
 </div>
 
-<div id="gpaText">
-Enter your subject GPAs
+<div id="gpaStatus">
+Enter your GPA
 </div>
 
 </div>
@@ -762,85 +1028,96 @@ Enter your subject GPAs
 
 </div>
 
+
+<!-- =====================================================
+                    PROGRESS TAB
+===================================================== -->
 
 <div id="progressTab" class="hidden">
 
-<div class="dashboard">
+<div class="progress-grid">
 
 <div class="panel">
 
-<h2>📅 Last 7 Days</h2>
+<h3>📅 Last 7 Days</h3>
 
-<div class="stat" id="sevenDays">
+<div id="sevenDayCount" class="progress-number">
 0
 </div>
 
 <div class="muted">
-units completed
+chapters completed
 </div>
 
 </div>
+
 
 <div class="panel">
 
-<h2>📆 Last 30 Days</h2>
+<h3>📆 Last 30 Days</h3>
 
-<div class="stat" id="thirtyDays">
+<div id="thirtyDayCount" class="progress-number">
 0
 </div>
 
 <div class="muted">
-units completed
+chapters completed
 </div>
 
 </div>
 
 </div>
+
 
 <div class="panel" style="margin-top:12px">
 
-<h2>Recent Activity</h2>
+<h3>Recent Activity</h3>
 
-<div id="history" class="history"></div>
-
-</div>
+<div id="historyList" class="history"></div>
 
 </div>
 
+</div>
+
+
+<!-- PROFILE -->
 
 <section class="profile">
 
-<div class="muted">PROFILE</div>
+<div class="muted">
+PROFILE
+</div>
 
-<div class="profilegrid">
+<div class="profile-grid">
 
-<div class="profileitem">
+<div class="profile-item">
 <small>Email</small>
-<b id="pEmail"></b>
+<b id="profileEmail"></b>
 </div>
 
-<div class="profileitem">
+<div class="profile-item">
 <small>HSC Batch</small>
-<b id="pBatch"></b>
+<b id="profileBatch"></b>
 </div>
 
-<div class="profileitem">
+<div class="profile-item">
 <small>College</small>
-<b id="pCollege"></b>
+<b id="profileCollege"></b>
 </div>
 
-<div class="profileitem">
+<div class="profile-item">
 <small>Zilla</small>
-<b id="pZilla"></b>
+<b id="profileZilla"></b>
 </div>
 
 </div>
 
-<button class="danger" onclick="resetAll()">
-Reset my PCM progress
+<button id="resetButton" class="reset">
+Reset my progress
 </button>
 
 </section>
+
 
 </main>
 </div>
@@ -848,9 +1125,11 @@ Reset my PCM progress
 
 <script>
 
-/* ================= DISTRICTS ================= */
+/* =====================================================
+                    DATA
+===================================================== */
 
-const districts=[
+const districts = [
 "Bagerhat","Bandarban","Barguna","Barishal","Bhola",
 "Bogura","Brahmanbaria","Chandpur","Chattogram",
 "Chuadanga","Cox's Bazar","Cumilla","Dhaka","Dinajpur",
@@ -867,16 +1146,8 @@ const districts=[
 "Thakurgaon"
 ];
 
-districts.forEach(x=>{
- let o=document.createElement("option");
- o.textContent=x;
- zilla.appendChild(o);
-});
 
-
-/* ================= FULL SYLLABUS ================= */
-
-const syllabus={
+const syllabus = {
 
 Physics:{
 
@@ -962,572 +1233,1393 @@ Chemistry:{
 };
 
 
-/* ================= STATE ================= */
+/* =====================================================
+                    DOM
+===================================================== */
 
-let currentUser=null;
-let currentSubject="Physics";
-let currentPaper="1st Paper";
-let currentFilter="all";
+const $ = id => document.getElementById(id);
+
+const authScreen = $("authScreen");
+const appScreen = $("appScreen");
+
+const loginBox = $("loginBox");
+const signupBox = $("signupBox");
+
+const loginEmail = $("loginEmail");
+const loginPassword = $("loginPassword");
+const loginError = $("loginError");
+
+const signupEmail = $("signupEmail");
+const signupPassword = $("signupPassword");
+const signupBatch = $("signupBatch");
+const signupCollege = $("signupCollege");
+const signupZilla = $("signupZilla");
+const signupError = $("signupError");
+
+const navEmail = $("navEmail");
+const avatar = $("avatar");
+const batchBadge = $("batchBadge");
+
+const overallText = $("overallText");
+const overallPercent = $("overallPercent");
+const overallFill = $("overallFill");
+
+const subjectCards = $("subjectCards");
+const paperButtons = $("paperButtons");
+const chapterList = $("chapterList");
+const chapterCrumb = $("chapterCrumb");
+
+const points = $("points");
+const rewardAmount = $("rewardAmount");
+
+const bkashNumber = $("bkashNumber");
+const claimButton = $("claimButton");
+const claimMessage = $("claimMessage");
+
+const gpaResult = $("gpaResult");
+const gpaStatus = $("gpaStatus");
+
+const sevenDayCount = $("sevenDayCount");
+const thirtyDayCount = $("thirtyDayCount");
+const historyList = $("historyList");
 
 
-/* ================= AUTH ================= */
+/* =====================================================
+                    STATE
+===================================================== */
 
-function users(){
- return JSON.parse(localStorage.getItem("pcm-users")||"{}");
+let currentUser = null;
+
+let currentSubject = "Physics";
+let currentPaper = "1st Paper";
+let currentFilter = "all";
+
+
+/* =====================================================
+                    DISTRICTS
+===================================================== */
+
+districts.forEach(district => {
+
+    const option = document.createElement("option");
+
+    option.value = district;
+    option.textContent = district;
+
+    signupZilla.appendChild(option);
+
+});
+
+
+/* =====================================================
+                    STORAGE
+===================================================== */
+
+function getUsers(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem("pcm_users") || "{}"
+        );
+
+    }catch(error){
+
+        return {};
+
+    }
+
 }
 
-function showSignup(){
- loginForm.classList.add("hidden");
- signupForm.classList.remove("hidden");
+
+function saveUsers(users){
+
+    localStorage.setItem(
+        "pcm_users",
+        JSON.stringify(users)
+    );
+
 }
 
-function showLogin(){
- signupForm.classList.add("hidden");
- loginForm.classList.remove("hidden");
+
+function saveCurrentUser(){
+
+    const users = getUsers();
+
+    users[currentUser.email] = currentUser;
+
+    saveUsers(users);
+
 }
+
+
+/* =====================================================
+                    AUTH
+===================================================== */
+
+$("showSignupButton").addEventListener("click",()=>{
+
+    loginBox.classList.add("hidden");
+    signupBox.classList.remove("hidden");
+
+    loginError.textContent="";
+
+});
+
+
+$("showLoginButton").addEventListener("click",()=>{
+
+    signupBox.classList.add("hidden");
+    loginBox.classList.remove("hidden");
+
+    signupError.textContent="";
+
+});
+
+
+$("signupButton").addEventListener("click",signup);
+
+$("loginButton").addEventListener("click",login);
+
+$("logoutButton").addEventListener("click",logout);
+
 
 function signup(){
 
- const email=semail.value.trim().toLowerCase();
- const pass=spass.value;
- const collegeName=college.value.trim();
- const batch=sbatch.value;
- const z=zilla.value;
+    signupError.textContent="";
 
- if(!email||!pass||!collegeName){
-  serr.textContent="Please fill all required fields.";
-  return;
- }
+    const email =
+        signupEmail.value.trim().toLowerCase();
 
- if(pass.length<6){
-  serr.textContent="Password must be at least 6 characters.";
-  return;
- }
+    const password =
+        signupPassword.value;
 
- const u=users();
+    const batch =
+        signupBatch.value;
 
- if(u[email]){
-  serr.textContent="Account already exists.";
-  return;
- }
+    const college =
+        signupCollege.value.trim();
 
- u[email]={
-  password:pass,
-  email,
-  batch,
-  college:collegeName,
-  zilla:z,
-  progress:{},
-  history:[],
-  points:0,
-  bkash:"",
-  claims:[],
-  gpa:{}
- };
+    const zilla =
+        signupZilla.value;
 
- localStorage.setItem("pcm-users",JSON.stringify(u));
- currentUser=u[email];
- localStorage.setItem("pcm-current",email);
- openApp();
+
+    if(!email || !password || !college){
+
+        signupError.textContent =
+            "Please fill all required fields.";
+
+        return;
+
+    }
+
+
+    if(password.length < 6){
+
+        signupError.textContent =
+            "Password must be at least 6 characters.";
+
+        return;
+
+    }
+
+
+    const users = getUsers();
+
+
+    if(users[email]){
+
+        signupError.textContent =
+            "This account already exists.";
+
+        return;
+
+    }
+
+
+    currentUser = {
+
+        email:email,
+
+        password:password,
+
+        batch:batch,
+
+        college:college,
+
+        zilla:zilla,
+
+        progress:{},
+
+        history:[],
+
+        points:0,
+
+        claims:[],
+
+        gpa:{}
+
+    };
+
+
+    users[email] = currentUser;
+
+    saveUsers(users);
+
+
+    localStorage.setItem(
+        "pcm_current_user",
+        email
+    );
+
+
+    openApp();
+
 }
 
 
 function login(){
 
- const email=lemail.value.trim().toLowerCase();
- const pass=lpass.value;
- const u=users();
+    loginError.textContent="";
 
- if(!u[email]||u[email].password!==pass){
-  lerr.textContent="Wrong email or password.";
-  return;
- }
+    const email =
+        loginEmail.value.trim().toLowerCase();
 
- currentUser=u[email];
+    const password =
+        loginPassword.value;
 
- if(!currentUser.history)currentUser.history=[];
- if(!currentUser.points)currentUser.points=0;
- if(!currentUser.claims)currentUser.claims=[];
- if(!currentUser.gpa)currentUser.gpa={};
 
- localStorage.setItem("pcm-current",email);
+    if(!email || !password){
 
- openApp();
+        loginError.textContent =
+            "Enter your email and password.";
+
+        return;
+
+    }
+
+
+    const users = getUsers();
+
+    const user = users[email];
+
+
+    if(!user){
+
+        loginError.textContent =
+            "Account not found. Please create an account.";
+
+        return;
+
+    }
+
+
+    if(user.password !== password){
+
+        loginError.textContent =
+            "Incorrect password.";
+
+        return;
+
+    }
+
+
+    currentUser = user;
+
+    normalizeUser();
+
+
+    localStorage.setItem(
+        "pcm_current_user",
+        email
+    );
+
+
+    openApp();
+
+}
+
+
+function normalizeUser(){
+
+    if(!currentUser.progress)
+        currentUser.progress={};
+
+    if(!currentUser.history)
+        currentUser.history=[];
+
+    if(!currentUser.claims)
+        currentUser.claims=[];
+
+    if(!currentUser.gpa)
+        currentUser.gpa={};
+
+    if(typeof currentUser.points !== "number")
+        currentUser.points=0;
+
+}
+
+
+/* =====================================================
+                    OPEN APP
+===================================================== */
+
+function openApp(){
+
+    normalizeUser();
+
+    authScreen.classList.add("hidden");
+    appScreen.classList.remove("hidden");
+
+
+    navEmail.textContent =
+        currentUser.email;
+
+    avatar.textContent =
+        currentUser.email
+            .charAt(0)
+            .toUpperCase();
+
+    batchBadge.textContent =
+        currentUser.batch;
+
+
+    $("profileEmail").textContent =
+        currentUser.email;
+
+    $("profileBatch").textContent =
+        currentUser.batch;
+
+    $("profileCollege").textContent =
+        currentUser.college;
+
+    $("profileZilla").textContent =
+        currentUser.zilla;
+
+
+    renderAll();
+
 }
 
 
 function logout(){
- localStorage.removeItem("pcm-current");
- location.reload();
+
+    localStorage.removeItem(
+        "pcm_current_user"
+    );
+
+    location.reload();
+
 }
 
 
-function openApp(){
+/* =====================================================
+                    PROGRESS
+===================================================== */
 
- auth.classList.add("hidden");
- app.classList.remove("hidden");
+function key(subject,paper,index){
 
- userEmail.textContent=currentUser.email;
- avatar.textContent=currentUser.email[0].toUpperCase();
+    return `${subject}|${paper}|${index}`;
 
- batchBadge.textContent=currentUser.batch;
-
- pEmail.textContent=currentUser.email;
- pBatch.textContent=currentUser.batch;
- pCollege.textContent=currentUser.college;
- pZilla.textContent=currentUser.zilla;
-
- loadGPA();
- render();
- updateReward();
 }
 
 
-/* ================= SAVE ================= */
+function allChapters(){
 
-function saveUser(){
+    const result=[];
 
- let u=users();
- u[currentUser.email]=currentUser;
+    for(const subject in syllabus){
 
- localStorage.setItem(
-  "pcm-users",
-  JSON.stringify(u)
- );
+        for(const paper in syllabus[subject]){
+
+            syllabus[subject][paper]
+                .forEach((name,index)=>{
+
+                    result.push({
+                        subject,
+                        paper,
+                        index,
+                        name
+                    });
+
+                });
+
+        }
+
+    }
+
+    return result;
+
 }
 
 
-/* ================= TRACKING ================= */
+function getSubjectProgress(subject){
 
-function pkey(subject,paper,index){
- return subject+"|"+paper+"|"+index;
+    let total=0;
+    let done=0;
+
+    for(const paper in syllabus[subject]){
+
+        syllabus[subject][paper]
+            .forEach((_,index)=>{
+
+                total++;
+
+                if(
+                    currentUser.progress[
+                        key(subject,paper,index)
+                    ] === "done"
+                ){
+
+                    done++;
+
+                }
+
+            });
+
+    }
+
+    return {total,done};
+
 }
 
 
-function allUnits(){
+function setChapterStatus(index,status){
 
- let arr=[];
+    const k =
+        key(
+            currentSubject,
+            currentPaper,
+            index
+        );
 
- for(const subject in syllabus){
-  for(const paper in syllabus[subject]){
-   syllabus[subject][paper].forEach((name,index)=>{
-    arr.push([subject,paper,index,name]);
-   });
-  }
- }
 
- return arr;
+    const old =
+        currentUser.progress[k] || "none";
+
+
+    /* Give points only once */
+
+    if(old !== "done" && status === "done"){
+
+        currentUser.points += 10;
+
+
+        currentUser.history.push({
+
+            time:Date.now(),
+
+            subject:currentSubject,
+
+            paper:currentPaper,
+
+            index:index
+
+        });
+
+    }
+
+
+    currentUser.progress[k]=status;
+
+
+    saveCurrentUser();
+
+    renderAll();
+
 }
 
 
-function progressFor(subject){
+/* =====================================================
+                    RENDER
+===================================================== */
 
- let total=0;
- let done=0;
+function renderAll(){
 
- for(const paper in syllabus[subject]){
+    renderOverall();
 
-  syllabus[subject][paper].forEach((_,index)=>{
+    renderSubjectCards();
 
-   total++;
+    renderPapers();
 
-   if(
-    currentUser.progress[
-     pkey(subject,paper,index)
-    ]==="done"
-   )done++;
+    renderChapters();
 
-  });
- }
+    renderPoints();
 
- return [done,total];
+    renderGPA();
+
+    renderProgress();
+
 }
 
 
-/* ================= POINTS ================= */
+/* ================= OVERALL ================= */
 
-function addCompletionPoint(subject,paper,index){
+function renderOverall(){
 
- const key=pkey(subject,paper,index);
+    const all =
+        allChapters();
 
- if(currentUser.progress[key]==="done"){
-  return;
- }
+    const done =
+        all.filter(chapter =>
+            currentUser.progress[
+                key(
+                    chapter.subject,
+                    chapter.paper,
+                    chapter.index
+                )
+            ] === "done"
+        ).length;
 
- currentUser.points+=10;
 
- if(!currentUser.history)
-  currentUser.history=[];
+    const percent =
+        all.length
+        ? Math.round(done/all.length*100)
+        : 0;
 
- currentUser.history.push({
-  date:Date.now(),
-  subject,
-  paper,
-  index
- });
+
+    overallText.textContent =
+        `${done} / ${all.length} chapters`;
+
+    overallPercent.textContent =
+        percent+"%";
+
+    overallFill.style.width =
+        percent+"%";
+
 }
 
 
-/* ================= RENDER ================= */
+/* ================= SUBJECT CARDS ================= */
 
-function render(){
+function renderSubjectCards(){
 
- const all=allUnits();
-
- let done=all.filter(x=>
-  currentUser.progress[
-   pkey(x[0],x[1],x[2])
-  ]==="done"
- ).length;
-
- const overall=all.length
-  ?Math.round(done/all.length*100)
-  :0;
-
- overallPct.textContent=overall+"%";
- overallFill.style.width=overall+"%";
-
- totalText.textContent=
- done+" / "+all.length+" chapters";
+    const subjects=[
+        ["Physics","⚡"],
+        ["Chemistry","🧪"],
+        ["Higher Math","📐"]
+    ];
 
 
- subjectCards.innerHTML=[
- "Physics",
- "Chemistry",
- "Higher Math"
- ].map(subject=>{
+    subjectCards.innerHTML =
+        subjects.map(([subject,icon])=>{
 
-  let [d,t]=progressFor(subject);
-  let percent=t?Math.round(d/t*100):0;
+            const p =
+                getSubjectProgress(subject);
 
-  let icon=
-   subject==="Physics"?"⚡":
-   subject==="Chemistry"?"🧪":"📐";
-
-  return `
-  <div class="card">
-
-   <h3>${icon} ${subject}</h3>
-
-   <div class="big">${d}/${t}</div>
-
-   <div class="muted">${percent}% completed</div>
-
-   <div class="mini">
-    <div style="width:${percent}%"></div>
-   </div>
-
-  </div>
-  `;
-
- }).join("");
+            const percent =
+                p.total
+                ? Math.round(p.done/p.total*100)
+                : 0;
 
 
- paperNav.innerHTML=
- Object.keys(syllabus[currentSubject])
- .map(p=>`
-  <button
-   class="${p===currentPaper?"active":""}"
-   onclick="setPaper('${p}',this)">
-   ${p}
-  </button>
- `).join("");
+            return `
 
+            <div class="card">
 
- crumb.textContent=
- (
-  currentSubject+" · "+currentPaper
- ).toUpperCase();
+                <h3>${icon} ${subject}</h3>
 
+                <div class="big">
+                    ${p.done}/${p.total}
+                </div>
 
- let list=
- syllabus[currentSubject][currentPaper];
+                <div class="muted">
+                    ${percent}% completed
+                </div>
 
+                <div class="mini-bar">
+                    <div
+                        class="mini-fill"
+                        style="width:${percent}%">
+                    </div>
+                </div>
 
- units.innerHTML=
- list.map((name,index)=>{
+            </div>
 
-  let status=
-   currentUser.progress[
-    pkey(currentSubject,currentPaper,index)
-   ]||"none";
+            `;
 
-  if(
-   currentFilter!=="all" &&
-   status!==currentFilter
-  )return "";
+        }).join("");
 
-
-  return `
-
-  <div class="unit
-   ${status==="done"?"done":
-   status==="progress"?"progress":""}">
-
-   <div class="num">
-    ${String(index+1).padStart(2,"0")}
-   </div>
-
-   <div class="utext">
-
-    <b>${name}</b>
-
-    <small>
-     ${
-      status==="done"
-      ?"✓ Completed +10 points"
-      :
-      status==="progress"
-      ?"◐ In Progress"
-      :
-      "○ Not Started"
-     }
-    </small>
-
-   </div>
-
-   <div class="actions">
-
-    <button
-     class="${status==="none"?"on":""}"
-     onclick="setStatus(${index},'none')">
-     ○
-    </button>
-
-    <button
-     class="${status==="progress"?"on":""}"
-     onclick="setStatus(${index},'progress')">
-     ◐
-    </button>
-
-    <button
-     class="${status==="done"?"on":""}"
-     onclick="setStatus(${index},'done')">
-     ✓
-    </button>
-
-   </div>
-
-  </div>
-
-  `;
-
- }).join("");
-
- updateReward();
 }
 
 
-/* ================= STATUS ================= */
+/* ================= PAPERS ================= */
 
-function setStatus(index,status){
+function renderPapers(){
 
- const key=
- pkey(currentSubject,currentPaper,index);
+    paperButtons.innerHTML =
+        Object.keys(
+            syllabus[currentSubject]
+        ).map(paper=>`
 
- const old=
- currentUser.progress[key]||"none";
+            <button
+                class="paper-btn ${
+                    paper===currentPaper
+                    ?"active":""
+                }"
+                data-paper="${paper}">
+                ${paper}
+            </button>
 
- if(old!=="done"&&status==="done"){
-  currentUser.points+=10;
+        `).join("");
 
-  if(!currentUser.history)
-   currentUser.history=[];
 
-  currentUser.history.push({
-   date:Date.now(),
-   subject:currentSubject,
-   paper:currentPaper,
-   index
-  });
- }
+    paperButtons
+        .querySelectorAll("button")
+        .forEach(button=>{
 
- currentUser.progress[key]=status;
+            button.addEventListener(
+                "click",
+                ()=>{
 
- saveUser();
- render();
+                    currentPaper =
+                        button.dataset.paper;
+
+                    currentFilter="all";
+
+                    renderAll();
+
+                }
+            );
+
+        });
+
 }
 
 
-function resetAll(){
+/* ================= CHAPTERS ================= */
 
- if(!confirm("Reset all your PCM progress, points and history?"))
-  return;
+function renderChapters(){
 
- currentUser.progress={};
- currentUser.history=[];
- currentUser.points=0;
- currentUser.claims=[];
+    const chapters =
+        syllabus[currentSubject][currentPaper];
 
- saveUser();
- render();
+
+    chapterCrumb.textContent =
+        `${currentSubject} · ${currentPaper}`
+            .toUpperCase();
+
+
+    chapterList.innerHTML="";
+
+
+    chapters.forEach((name,index)=>{
+
+        const status =
+            currentUser.progress[
+                key(
+                    currentSubject,
+                    currentPaper,
+                    index
+                )
+            ] || "none";
+
+
+        if(
+            currentFilter!=="all" &&
+            currentFilter!==status
+        ){
+
+            return;
+
+        }
+
+
+        const item =
+            document.createElement("div");
+
+
+        item.className =
+            "chapter " +
+            (
+                status==="done"
+                ?"done"
+                :
+                status==="running"
+                ?"running"
+                :""
+            );
+
+
+        item.innerHTML = `
+
+            <div class="chapter-number">
+                ${String(index+1).padStart(2,"0")}
+            </div>
+
+            <div class="chapter-info">
+
+                <b>${name}</b>
+
+                <small>
+                    ${
+                        status==="done"
+                        ?"✓ Completed · +10 points"
+                        :
+                        status==="running"
+                        ?"◐ In Progress"
+                        :
+                        "○ Not Started"
+                    }
+                </small>
+
+            </div>
+
+            <div class="chapter-actions">
+
+                <button
+                    class="${status==="none"?"active":""}"
+                    data-status="none">
+                    ○
+                </button>
+
+                <button
+                    class="${status==="running"?"active":""}"
+                    data-status="running">
+                    ◐
+                </button>
+
+                <button
+                    class="${status==="done"?"active":""}"
+                    data-status="done">
+                    ✓
+                </button>
+
+            </div>
+
+        `;
+
+
+        item
+            .querySelectorAll("button")
+            .forEach(button=>{
+
+                button.addEventListener(
+                    "click",
+                    ()=>{
+
+                        setChapterStatus(
+                            index,
+                            button.dataset.status
+                        );
+
+                    }
+                );
+
+            });
+
+
+        chapterList.appendChild(item);
+
+    });
+
 }
 
 
-/* ================= SUBJECT ================= */
+/* ================= SUBJECT BUTTONS ================= */
 
-function setSubject(subject,button){
+document
+    .querySelectorAll(".subject-btn")
+    .forEach(button=>{
 
- currentSubject=subject;
+        button.addEventListener(
+            "click",
+            ()=>{
 
- currentPaper=
- Object.keys(syllabus[subject])[0];
+                document
+                    .querySelectorAll(".subject-btn")
+                    .forEach(b =>
+                        b.classList.remove("active")
+                    );
 
- document.querySelectorAll(".subjectnav button")
- .forEach(x=>x.classList.remove("active"));
 
- button.classList.add("active");
+                button.classList.add("active");
 
- currentFilter="all";
 
- render();
+                currentSubject =
+                    button.dataset.subject;
+
+
+                currentPaper =
+                    Object.keys(
+                        syllabus[currentSubject]
+                    )[0];
+
+
+                currentFilter="all";
+
+
+                renderAll();
+
+            }
+        );
+
+    });
+
+
+/* ================= FILTERS ================= */
+
+document
+    .querySelectorAll(".filter-btn")
+    .forEach(button=>{
+
+        button.addEventListener(
+            "click",
+            ()=>{
+
+                document
+                    .querySelectorAll(".filter-btn")
+                    .forEach(b =>
+                        b.classList.remove("active")
+                    );
+
+
+                button.classList.add("active");
+
+
+                currentFilter =
+                    button.dataset.filter;
+
+
+                renderChapters();
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+                    TABS
+===================================================== */
+
+document
+    .querySelectorAll(".tabs button")
+    .forEach(button=>{
+
+        button.addEventListener(
+            "click",
+            ()=>{
+
+                document
+                    .querySelectorAll(".tabs button")
+                    .forEach(b =>
+                        b.classList.remove("active")
+                    );
+
+
+                button.classList.add("active");
+
+
+                document
+                    .querySelectorAll(
+                        "#syllabusTab,#gpaTab,#progressTab"
+                    )
+                    .forEach(tab =>
+                        tab.classList.add("hidden")
+                    );
+
+
+                const tab =
+                    button.dataset.tab;
+
+
+                if(tab==="syllabus")
+                    $("syllabusTab")
+                        .classList.remove("hidden");
+
+
+                if(tab==="gpa")
+                    $("gpaTab")
+                        .classList.remove("hidden");
+
+
+                if(tab==="progress")
+                    $("progressTab")
+                        .classList.remove("hidden");
+
+
+                renderAll();
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+                    POINTS
+===================================================== */
+
+function renderPoints(){
+
+    const total =
+        currentUser.points || 0;
+
+
+    const reward =
+        Math.floor(total/200)*20;
+
+
+    points.textContent =
+        total;
+
+
+    rewardAmount.textContent =
+        "৳"+reward;
+
+
+    claimButton.disabled =
+        total < 200;
+
 }
 
 
-function setPaper(paper,button){
+/* =====================================================
+                    GPA
+===================================================== */
 
- currentPaper=paper;
+document
+    .querySelectorAll(".gpa-input")
+    .forEach(input=>{
 
- currentFilter="all";
+        input.addEventListener(
+            "input",
+            ()=>{
 
- document.querySelectorAll(".paper button")
- .forEach(x=>x.classList.remove("active"));
-
- button.classList.add("active");
-
- render();
-}
-
-
-function setFilter(filter,button){
-
- currentFilter=filter;
-
- document.querySelectorAll(".filter button")
- .forEach(x=>x.classList.remove("active"));
-
- button.classList.add("active");
-
- render();
-}
+                let value =
+                    parseFloat(input.value);
 
 
-/* ================= TABS ================= */
+                if(isNaN(value)){
 
-function showTab(tab,button){
+                    delete currentUser.gpa[
+                        input.dataset.subject
+                    ];
 
- document.querySelectorAll(".tabs button")
- .forEach(x=>x.classList.remove("active"));
+                }else{
 
- button.classList.add("active");
-
- syllabusTab.classList.add("hidden");
- gpaTab.classList.add("hidden");
- progressTab.classList.add("hidden");
-
- if(tab==="syllabus")
-  syllabusTab.classList.remove("hidden");
-
- if(tab==="gpa")
-  gpaTab.classList.remove("hidden");
-
- if(tab==="progress"){
-  progressTab.classList.remove("hidden");
-  renderProgress();
- }
-}
+                    value =
+                        Math.max(
+                            0,
+                            Math.min(5,value)
+                        );
 
 
-/* ================= GPA ================= */
+                    input.value=value;
+
+
+                    currentUser.gpa[
+                        input.dataset.subject
+                    ]=value;
+
+                }
+
+
+                saveCurrentUser();
+
+                calculateGPA();
+
+            }
+        );
+
+    });
+
 
 function calculateGPA(){
 
- let inputs=
- [...document.querySelectorAll(".gpaInput")];
+    const mainSubjects=[
+        "Bangla",
+        "English",
+        "ICT",
+        "Physics",
+        "Chemistry",
+        "Higher Math"
+    ];
 
- let main=[];
- let optional=0;
 
- inputs.forEach(input=>{
+    let values=[];
 
-  if(input.value==="")return;
 
-  let value=parseFloat(input.value);
+    mainSubjects.forEach(subject=>{
 
-  if(isNaN(value))return;
+        const value =
+            currentUser.gpa[subject];
 
-  value=Math.max(0,Math.min(5,value));
 
-  if(input.classList.contains("optional"))
-   optional=value;
-  else
-   main.push(value);
+        if(
+            typeof value==="number"
+        ){
 
-  currentUser.gpa[input.dataset.name]=value;
+            values.push(value);
 
- });
+        }
 
- if(!main.length){
+    });
 
-  gpaResult.textContent="0.00";
-  gpaText.textContent="Enter your subject GPAs.";
-  saveUser();
-  return;
- }
 
- /*
-  Bangladesh HSC optional rule:
-  Optional subject contributes GP - 2.
-  Overall GPA cannot exceed 5.
- */
+    const optional =
+        currentUser.gpa["Biology"];
 
- let total=
- main.reduce((a,b)=>a+b,0);
 
- if(optional>2)
-  total+=optional-2;
+    if(values.length===0){
 
- let result=total/main.length;
+        gpaResult.textContent="0.00";
+        gpaStatus.textContent=
+            "Enter your subject GPAs.";
 
- result=Math.min(5,result);
+        return;
 
- gpaResult.textContent=result.toFixed(2);
+    }
 
- gpaText.textContent=
- result>=5
- ?"A+ / GPA 5.00"
- :
- result>=4
- ?"Excellent"
- :
- result>=3
- ?"Good"
- :
- result>=2
- ?"Pass range"
- :
- "Needs improvement";
 
- saveUser();
+    let total =
+        values.reduce(
+            (sum,value)=>sum+value,
+            0
+        );
+
+
+    /* Optional subject bonus */
+
+    if(
+        typeof optional==="number" &&
+        optional>2
+    ){
+
+        total += optional-2;
+
+    }
+
+
+    let result =
+        total/values.length;
+
+
+    result =
+        Math.min(5,result);
+
+
+    gpaResult.textContent =
+        result.toFixed(2);
+
+
+    if(result===5){
+
+        gpaStatus.textContent =
+            "A+ · Excellent";
+
+    }else if(result>=4){
+
+        gpaStatus.textContent =
+            "Very Good";
+
+    }else if(result>=3){
+
+        gpaStatus.textContent =
+            "Good";
+
+    }else if(result>=2){
+
+        gpaStatus.textContent =
+            "Pass Range";
+
+    }else{
+
+        gpaStatus.textContent =
+            "Needs Improvement";
+
+    }
+
 }
 
 
-function loadGPA(){
+function renderGPA(){
 
- document.querySelectorAll(".gpaInput")
- .forEach(input=>{
+    document
+        .querySelectorAll(".gpa-input")
+        .forEach(input=>{
 
-  let value=
-   currentUser.gpa?.[input.dataset.name];
+            const value =
+                currentUser.gpa[
+                    input.dataset.subject
+                ];
 
-  if(value!==undefined)
-   input.value=value;
 
-  input.addEventListener(
-   "input",
-   calculateGPA
-  );
+            input.value =
+                typeof value==="number"
+                ?value
+                :"";
 
- });
+        });
 
- calculate
+
+    calculateGPA();
+
+}
+
+
+/* =====================================================
+                    7 / 30 DAYS
+===================================================== */
+
+function renderProgress(){
+
+    const now =
+        Date.now();
+
+
+    const seven =
+        7*24*60*60*1000;
+
+    const thirty =
+        30*24*60*60*1000;
+
+
+    const history =
+        currentUser.history || [];
+
+
+    const sevenCount =
+        history.filter(
+            item =>
+                now-item.time <= seven
+        ).length;
+
+
+    const thirtyCount =
+        history.filter(
+            item =>
+                now-item.time <= thirty
+        ).length;
+
+
+    sevenDayCount.textContent =
+        sevenCount;
+
+
+    thirtyDayCount.textContent =
+        thirtyCount;
+
+
+    const recent =
+        history
+            .slice()
+            .sort(
+                (a,b)=>b.time-a.time
+            )
+            .slice(0,20);
+
+
+    if(!recent.length){
+
+        historyList.innerHTML =
+            `<div class="muted">
+                No completed chapters yet.
+            </div>`;
+
+        return;
+
+    }
+
+
+    historyList.innerHTML =
+        recent.map(item=>{
+
+            const chapter =
+                syllabus[
+                    item.subject
+                ][
+                    item.paper
+                ][
+                    item.index
+                ];
+
+
+            const date =
+                new Date(
+                    item.time
+                ).toLocaleDateString(
+                    "en-GB"
+                );
+
+
+            return `
+
+                <div class="history-item">
+
+                    <span>
+                        ${item.subject}
+                        ·
+                        ${chapter}
+                    </span>
+
+                    <strong>
+                        +10 · ${date}
+                    </strong>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+                    REWARD
+===================================================== */
+
+claimButton.addEventListener(
+    "click",
+    claimReward
+);
+
+
+function claimReward(){
+
+    const total =
+        currentUser.points || 0;
+
+
+    if(total<200){
+
+        claimMessage.textContent =
+            "Minimum 200 points required.";
+
+        return;
+
+    }
+
+
+    const number =
+        bkashNumber.value.trim();
+
+
+    if(
+        !/^01[3-9]\d{8}$/.test(number)
+    ){
+
+        claimMessage.textContent =
+            "Enter a valid bKash number.";
+
+        return;
+
+    }
+
+
+    const claimablePoints =
+        Math.floor(total/200)*200;
+
+
+    const amount =
+        claimablePoints/200*20;
+
+
+    currentUser.claims.push({
+
+        time:Date.now(),
+
+        number:number,
+
+        points:claimablePoints,
+
+        amount:amount,
+
+        status:"Pending"
+
+    });
+
+
+    currentUser.points -=
+        claimablePoints;
+
+
+    saveCurrentUser();
+
+
+    bkashNumber.value="";
+
+
+    claimMessage.textContent =
+        `Reward request submitted: ৳${amount}. Admin verification required.`;
+
+
+    renderPoints();
+
+}
+
+
+/* =====================================================
+                    RESET
+===================================================== */
+
+$("resetButton").addEventListener(
+    "click",
+    ()=>{
+
+        const confirmReset =
+            confirm(
+                "Are you sure? All progress and points will be deleted."
+            );
+
+
+        if(!confirmReset)
+            return;
+
+
+        currentUser.progress={};
+        currentUser.history=[];
+        currentUser.points=0;
+        currentUser.claims=[];
+
+
+        saveCurrentUser();
+
+        renderAll();
+
+    }
+);
+
+
+/* =====================================================
+                    START
+===================================================== */
+
+const savedEmail =
+    localStorage.getItem(
+        "pcm_current_user"
+    );
+
+
+if(savedEmail){
+
+    const users =
+        getUsers();
+
+
+    if(users[savedEmail]){
+
+        currentUser =
+            users[savedEmail];
+
+
+        openApp();
+
+    }else{
+
+        authScreen.classList.remove("hidden");
+
+    }
+
+}else{
+
+    authScreen.classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+ </html>
