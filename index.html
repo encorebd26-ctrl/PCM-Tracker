@@ -2,211 +2,877 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>PCM Tracker</title>
 
 <style>
-*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --blue:#2563eb;
+  --blue2:#1d4ed8;
+  --navy:#0f172a;
+  --bg:#f6f8fc;
+  --white:#fff;
+  --text:#111827;
+  --muted:#64748b;
+  --border:#e5e7eb;
+  --green:#16a34a;
+  --orange:#d97706;
+  --shadow:0 10px 35px rgba(15,23,42,.07);
+}
+
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f7fb;
-  color:#111827;
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-button,input,select{font:inherit}
+button,input,select{
+  font:inherit;
+}
 
 button{
   cursor:pointer;
-  border:0;
-}
-
-.header{
-  background:#111827;
-  color:white;
-  padding:16px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo{
-  font-size:22px;
-  font-weight:800;
-}
-
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
-
-.card{
-  background:white;
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:18px;
-  box-shadow:0 4px 18px rgba(0,0,0,.06);
-}
-
-h1,h2,h3{
-  margin-top:0;
-}
-
-input,select{
-  width:100%;
-  padding:12px;
-  border:1px solid #d1d5db;
-  border-radius:10px;
-  margin:6px 0 12px;
-  outline:none;
-  background:white;
-}
-
-input:focus,select:focus{
-  border-color:#2563eb;
-}
-
-.btn{
-  background:#2563eb;
-  color:white;
-  padding:12px 16px;
-  border-radius:10px;
-  font-weight:700;
-}
-
-.btn:hover{
-  opacity:.9;
-}
-
-.btn-danger{
-  background:#dc2626;
 }
 
 .hidden{
   display:none!important;
 }
 
-.auth{
-  max-width:430px;
-  margin:60px auto;
+/* ================= AUTH ================= */
+
+.auth-page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:
+    radial-gradient(circle at 5% 5%,rgba(37,99,235,.15),transparent 30%),
+    radial-gradient(circle at 95% 95%,rgba(59,130,246,.10),transparent 30%),
+    #f8fafc;
 }
 
-.switch{
-  color:#2563eb;
-  cursor:pointer;
+.auth-wrapper{
+  width:100%;
+  max-width:1050px;
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:0 25px 70px rgba(15,23,42,.11);
+}
+
+/* LEFT */
+
+.auth-brand-panel{
+  position:relative;
+  min-height:620px;
+  padding:55px;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(37,99,235,.35),transparent 25%),
+    linear-gradient(145deg,#0f172a,#172554);
+  color:white;
+  overflow:hidden;
+}
+
+.auth-brand-panel:before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  background:rgba(59,130,246,.12);
+  top:-120px;
+  right:-90px;
+}
+
+.auth-brand-panel:after{
+  content:"";
+  position:absolute;
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  background:rgba(37,99,235,.12);
+  bottom:-110px;
+  left:-80px;
+}
+
+.auth-brand-content{
+  position:relative;
+  z-index:2;
+}
+
+.auth-logo{
+  width:60px;
+  height:60px;
+  border-radius:17px;
+  background:var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  font-weight:800;
+  box-shadow:0 12px 30px rgba(37,99,235,.3);
+  margin-bottom:28px;
+}
+
+.auth-brand-title{
+  margin:0 0 16px;
+  font-size:44px;
+  line-height:1.05;
+  letter-spacing:-1.8px;
+  font-weight:800;
+}
+
+.auth-brand-title span{
+  color:#60a5fa;
+}
+
+.auth-tagline{
+  max-width:440px;
+  margin:0 0 34px;
+  color:#cbd5e1;
+  font-size:15px;
+  line-height:1.75;
+}
+
+.auth-features{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.auth-feature{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  color:#e2e8f0;
+  font-size:13px;
+}
+
+.auth-check{
+  width:23px;
+  height:23px;
+  border-radius:7px;
+  background:rgba(96,165,250,.14);
+  color:#60a5fa;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* RIGHT */
+
+.auth-form-panel{
+  padding:48px;
+  display:flex;
+  align-items:center;
+}
+
+.auth-box{
+  width:100%;
+}
+
+.auth-box h1{
+  margin:0 0 8px;
+  font-size:29px;
+  letter-spacing:-.6px;
+}
+
+.auth-desc{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:25px;
+}
+
+label{
+  display:block;
+  font-size:12px;
   font-weight:700;
+  color:#334155;
+  margin-bottom:7px;
+}
+
+input,select{
+  width:100%;
+  border:1px solid var(--border);
+  background:#f8fafc;
+  color:var(--text);
+  padding:13px 14px;
+  border-radius:11px;
+  outline:none;
+  margin-bottom:15px;
+}
+
+input:focus,select:focus{
+  background:white;
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(37,99,235,.1);
+}
+
+.primary-btn{
+  width:100%;
+  border:0;
+  color:white;
+  background:var(--blue);
+  padding:14px;
+  border-radius:11px;
+  font-weight:700;
+  font-size:13px;
+  transition:.2s;
+  box-shadow:0 8px 20px rgba(37,99,235,.18);
+}
+
+.primary-btn:hover{
+  background:var(--blue2);
+}
+
+.auth-switch{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:21px;
+}
+
+.auth-switch span:last-child{
+  color:var(--blue);
+  font-weight:700;
+  cursor:pointer;
+  margin-left:4px;
 }
 
 .message{
-  padding:11px;
-  border-radius:10px;
-  margin-bottom:12px;
   display:none;
+  padding:11px 13px;
+  border-radius:10px;
+  font-size:12px;
+  margin-bottom:16px;
 }
 
 .message.error{
   display:block;
-  color:#991b1b;
   background:#fef2f2;
+  color:#991b1b;
 }
 
 .message.success{
   display:block;
-  color:#166534;
   background:#f0fdf4;
+  color:#166534;
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+/* ================= TOPBAR ================= */
+
+.topbar{
+  height:70px;
+  background:white;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 30px;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
-.stat{
+.top-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+}
+
+.top-logo{
+  width:37px;
+  height:37px;
+  background:var(--blue);
+  color:white;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:800;
+}
+
+.top-right{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.user-email{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.logout{
+  border:1px solid var(--border);
+  background:white;
+  color:var(--text);
+  padding:9px 14px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.logout:hover{
   background:#f8fafc;
+}
+
+/* ================= LAYOUT ================= */
+
+.layout{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:28px;
+  padding:28px;
+}
+
+.sidebar{
+  position:sticky;
+  top:98px;
+  height:max-content;
+}
+
+.nav{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:8px;
+}
+
+.nav-btn{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  text-align:left;
+  padding:12px 13px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:3px;
+}
+
+.nav-btn.active{
+  background:#eff6ff;
+  color:var(--blue);
+}
+
+.content{
+  min-width:0;
+}
+
+/* ================= PAGE HEADER ================= */
+
+.page-header{
+  margin-bottom:23px;
+}
+
+.page-header h1{
+  margin:0 0 7px;
+  font-size:29px;
+  letter-spacing:-.6px;
+}
+
+.page-header p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ================= OVERVIEW ================= */
+
+.overview{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:13px;
+  margin-bottom:18px;
+}
+
+.overview-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:19px;
+}
+
+.overview-label{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+}
+
+.overview-number{
+  font-size:26px;
+  font-weight:800;
+  margin-top:7px;
+}
+
+.main-progress{
+  display:flex;
+  align-items:center;
+  gap:17px;
+}
+
+.progress-circle{
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  background:conic-gradient(var(--blue) 0deg,#e5e7eb 0deg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  flex-shrink:0;
+}
+
+.progress-circle:after{
+  content:"";
+  position:absolute;
+  width:53px;
+  height:53px;
+  background:white;
+  border-radius:50%;
+}
+
+.progress-circle span{
+  position:relative;
+  z-index:2;
+  font-size:13px;
+  font-weight:800;
+}
+
+/* ================= SUBJECT CARDS ================= */
+
+.subject-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+  margin-bottom:24px;
+}
+
+.subject-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
   padding:18px;
-  border-radius:14px;
-  text-align:center;
 }
 
-.stat b{
-  display:block;
-  font-size:25px;
-  margin-top:5px;
+.subject-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
 }
 
-.progress-wrap{
-  height:13px;
-  background:#e5e7eb;
+.subject-name{
+  font-size:14px;
+  font-weight:700;
+}
+
+.subject-percent{
+  color:var(--blue);
+  font-size:12px;
+  font-weight:700;
+}
+
+.bar{
+  width:100%;
+  height:7px;
+  background:#eef2f7;
   border-radius:20px;
   overflow:hidden;
 }
 
-.progress-bar{
+.bar-fill{
   height:100%;
-  background:#2563eb;
-  width:0%;
+  background:var(--blue);
+  border-radius:20px;
   transition:.3s;
 }
 
-.subject{
+.subject-meta{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:9px;
+}
+
+/* ================= SECTIONS ================= */
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.panel{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:18px;
+}
+
+.panel-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.panel-title h2{
+  margin:0;
+  font-size:17px;
+}
+
+.panel-title span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* ================= SYLLABUS ================= */
+
+.subject-block{
   margin-bottom:25px;
 }
 
+.subject-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:11px;
+}
+
+.subject-heading h2{
+  margin:0;
+  font-size:18px;
+}
+
+.subject-heading .count{
+  color:var(--blue);
+  font-size:11px;
+  font-weight:700;
+}
+
 .paper{
-  margin-bottom:20px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  margin-bottom:11px;
+}
+
+.paper-head{
+  background:#f8fafc;
+  padding:13px 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.paper-title{
+  font-size:12px;
+  font-weight:700;
+}
+
+.paper-progress{
+  color:var(--muted);
+  font-size:10px;
 }
 
 .chapter{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:10px;
-  padding:12px;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  margin:8px 0;
-  background:white;
+  gap:12px;
+  padding:12px 15px;
+  border-top:1px solid var(--border);
+}
+
+.chapter-number{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  background:#f1f5f9;
+  color:#64748b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:800;
+  flex-shrink:0;
+}
+
+.chapter-info{
+  flex:1;
+  min-width:0;
 }
 
 .chapter-name{
-  flex:1;
+  font-size:12px;
+  font-weight:600;
 }
 
-.chapter select{
-  width:160px;
-  margin:0;
+.chapter-status{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
 }
+
+.status-select{
+  width:135px;
+  margin:0;
+  padding:8px 9px;
+  border-radius:9px;
+  font-size:10px;
+  font-weight:600;
+}
+
+/* ================= GPA ================= */
 
 .gpa-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:10px;
+  gap:13px;
 }
 
-.loading{
+.gpa-result{
+  margin-top:20px;
+  padding:20px;
+  background:#eff6ff;
+  border:1px solid #dbeafe;
+  border-radius:14px;
   text-align:center;
-  padding:40px;
 }
 
-@media(max-width:700px){
+.gpa-result small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+}
 
-  .stats{
+.gpa-result strong{
+  display:block;
+  color:var(--blue);
+  font-size:35px;
+  margin-top:5px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+
+.profile-item{
+  padding:15px;
+  background:#f8fafc;
+  border-radius:12px;
+}
+
+.profile-item small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:5px;
+}
+
+.profile-item strong{
+  font-size:13px;
+}
+
+/* ================= MOBILE NAV ================= */
+
+.mobile-nav{
+  display:none;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+  .layout{
+    grid-template-columns:1fr;
+    padding:18px;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .overview{
     grid-template-columns:repeat(2,1fr);
   }
 
+  .subject-grid{
+    grid-template-columns:1fr;
+  }
+
+  .mobile-nav{
+    position:fixed;
+    display:flex;
+    bottom:0;
+    left:0;
+    right:0;
+    height:65px;
+    background:white;
+    border-top:1px solid var(--border);
+    z-index:50;
+    justify-content:space-around;
+    padding:7px;
+  }
+
+  .mobile-nav button{
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    font-size:10px;
+    font-weight:700;
+  }
+
+  .mobile-nav button.active{
+    color:var(--blue);
+  }
+
+  .content{
+    padding-bottom:75px;
+  }
+
+}
+
+@media(max-width:800px){
+
+  .auth-wrapper{
+    display:block;
+    max-width:460px;
+  }
+
+  .auth-brand-panel{
+    min-height:auto;
+    padding:32px 28px;
+  }
+
+  .auth-brand-title{
+    font-size:32px;
+  }
+
+  .auth-logo{
+    width:50px;
+    height:50px;
+    margin-bottom:18px;
+  }
+
+  .auth-tagline{
+    font-size:13px;
+    margin-bottom:0;
+  }
+
+  .auth-features{
+    display:none;
+  }
+
+  .auth-form-panel{
+    padding:30px 28px;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .auth-page{
+    padding:12px;
+  }
+
+  .auth-wrapper{
+    border-radius:22px;
+  }
+
+  .auth-brand-panel{
+    padding:28px 23px;
+  }
+
+  .auth-brand-title{
+    font-size:29px;
+  }
+
+  .auth-form-panel{
+    padding:27px 21px;
+  }
+
+  .topbar{
+    height:62px;
+    padding:0 16px;
+  }
+
+  .user-email{
+    display:none;
+  }
+
+  .layout{
+    padding:16px;
+  }
+
+  .page-header h1{
+    font-size:25px;
+  }
+
+  .overview{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .main-progress{
+    grid-column:span 2;
+  }
+
+  .overview-card{
+    padding:15px;
+  }
+
+  .overview-number{
+    font-size:22px;
+  }
+
+  .panel{
+    padding:16px;
+  }
+
   .chapter{
-    flex-direction:column;
-    align-items:stretch;
+    flex-wrap:wrap;
+    align-items:flex-start;
   }
 
-  .chapter select{
-    width:100%;
+  .status-select{
+    width:calc(100% - 40px);
+    margin-left:40px;
   }
 
-  .gpa-grid{
+  .gpa-grid,
+  .profile-grid{
     grid-template-columns:1fr;
   }
 
@@ -216,306 +882,584 @@ input:focus,select:focus{
 
 <body>
 
-<!-- ================= AUTH ================= -->
+<!-- =====================================================
+     AUTH
+===================================================== -->
 
-<div id="authPage">
+<div id="authPage" class="auth-page">
 
-  <div class="auth card">
+  <div class="auth-wrapper">
 
-    <h1 id="authTitle">Login</h1>
+    <!-- BRANDING -->
 
-    <div id="authMessage" class="message"></div>
+    <div class="auth-brand-panel">
 
-    <!-- SIGNUP FIELDS -->
+      <div class="auth-brand-content">
 
-    <div id="signupFields" class="hidden">
+        <div class="auth-logo">
+          PCM
+        </div>
 
-      <label>HSC Batch</label>
+        <h1 class="auth-brand-title">
+          PCM <span>Tracker</span>
+        </h1>
 
-      <select id="batch">
-        <option value="HSC 26">HSC 26</option>
-        <option value="HSC 27">HSC 27</option>
-        <option value="HSC 28">HSC 28</option>
-      </select>
+        <p class="auth-tagline">
+          A study companion for HSC & university admission aspirants.
+          Track your syllabus, monitor your progress and prepare with confidence.
+        </p>
 
-      <label>College Name</label>
+        <div class="auth-features">
 
-      <input
-        id="college"
-        type="text"
-        placeholder="Your college name"
-      >
+          <div class="auth-feature">
+            <div class="auth-check">✓</div>
+            Track your HSC syllabus
+          </div>
 
-      <label>Zilla</label>
+          <div class="auth-feature">
+            <div class="auth-check">✓</div>
+            Monitor your study progress
+          </div>
 
-      <input
-        id="zilla"
-        type="text"
-        placeholder="Your district"
-      >
+          <div class="auth-feature">
+            <div class="auth-check">✓</div>
+            Calculate your GPA
+          </div>
+
+          <div class="auth-feature">
+            <div class="auth-check">✓</div>
+            Stay focused on your admission journey
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
-    <label>Email</label>
 
-    <input
-      id="email"
-      type="email"
-      placeholder="Enter email"
-      autocomplete="email"
-    >
+    <!-- LOGIN / SIGNUP -->
 
-    <label>Password</label>
+    <div class="auth-form-panel">
 
-    <input
-      id="password"
-      type="password"
-      placeholder="Enter password"
-      autocomplete="current-password"
-    >
+      <div class="auth-box">
 
-    <button
-      class="btn"
-      id="authBtn"
-      onclick="authAction()"
-      style="width:100%"
-    >
-      Login
-    </button>
+        <h1 id="authTitle">
+          Welcome back
+        </h1>
 
-    <p style="text-align:center;margin-top:18px">
+        <div
+          id="authDesc"
+          class="auth-desc"
+        >
+          Sign in to continue your study journey.
+        </div>
 
-      <span id="switchText">
-        Don't have an account?
-      </span>
 
-      <span
-        class="switch"
-        id="switchBtn"
-        onclick="toggleAuth()"
-      >
-        Sign Up
-      </span>
+        <div
+          id="authMessage"
+          class="message"
+        ></div>
 
-    </p>
+
+        <div
+          id="signupFields"
+          class="hidden"
+        >
+
+          <label>HSC Batch</label>
+
+          <select id="batch">
+
+            <option value="HSC 26">HSC 26</option>
+            <option value="HSC 27">HSC 27</option>
+            <option value="HSC 28">HSC 28</option>
+
+          </select>
+
+
+          <label>College</label>
+
+          <input
+            id="college"
+            type="text"
+            placeholder="Enter your college name"
+          >
+
+
+          <label>Zilla</label>
+
+          <input
+            id="zilla"
+            type="text"
+            placeholder="Enter your district"
+          >
+
+        </div>
+
+
+        <label>Email</label>
+
+        <input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          autocomplete="email"
+        >
+
+
+        <label>Password</label>
+
+        <input
+          id="password"
+          type="password"
+          placeholder="Minimum 6 characters"
+          autocomplete="current-password"
+        >
+
+
+        <button
+          id="authBtn"
+          class="primary-btn"
+          onclick="authAction()"
+        >
+          Sign In
+        </button>
+
+
+        <div class="auth-switch">
+
+          <span id="switchText">
+            Don't have an account?
+          </span>
+
+          <span
+            id="switchBtn"
+            onclick="toggleAuth()"
+          >
+            Create account
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
 
 </div>
 
 
-<!-- ================= APP ================= -->
+<!-- =====================================================
+     APP
+===================================================== -->
 
 <div id="app" class="hidden">
 
-<header class="header">
+<header class="topbar">
 
-  <div class="logo">
-    📚 PCM Tracker
+  <div class="top-brand">
+
+    <div class="top-logo">
+      PCM
+    </div>
+
+    <span>PCM Tracker</span>
+
   </div>
 
-  <button
-    class="btn btn-danger"
-    onclick="logout()"
-  >
-    Logout
-  </button>
+  <div class="top-right">
+
+    <span
+      id="userEmail"
+      class="user-email"
+    ></span>
+
+    <button
+      class="logout"
+      onclick="logout()"
+    >
+      Logout
+    </button>
+
+  </div>
 
 </header>
 
 
-<div class="container">
+<div class="layout">
 
-  <!-- DASHBOARD -->
+  <!-- SIDEBAR -->
 
-  <div class="card">
+  <aside class="sidebar">
 
-    <h2>📊 Dashboard</h2>
+    <div class="nav">
 
-    <p id="welcome"></p>
+      <button
+        class="nav-btn active"
+        onclick="showSection('syllabus',this)"
+      >
+        Syllabus Track
+      </button>
 
-    <div class="stats">
+      <button
+        class="nav-btn"
+        onclick="showSection('gpa',this)"
+      >
+        GPA Calculator
+      </button>
 
-      <div class="stat">
-        Overall
-        <b id="overall">0%</b>
-      </div>
-
-      <div class="stat">
-        Completed
-        <b id="doneCount">0</b>
-      </div>
-
-      <div class="stat">
-        7 Days
-        <b id="sevenDays">0</b>
-      </div>
-
-      <div class="stat">
-        30 Days
-        <b id="thirtyDays">0</b>
-      </div>
+      <button
+        class="nav-btn"
+        onclick="showSection('profile',this)"
+      >
+        Profile
+      </button>
 
     </div>
 
-    <br>
-
-    <div class="progress-wrap">
-      <div
-        class="progress-bar"
-        id="overallBar"
-      ></div>
-    </div>
-
-  </div>
+  </aside>
 
 
-  <!-- GPA -->
+  <!-- CONTENT -->
 
-  <div class="card">
+  <main class="content">
 
-    <h2>🧮 GPA Calculator</h2>
+    <!-- SYLLABUS -->
 
-    <div class="gpa-grid">
-
-      <div>
-        <label>Bangla</label>
-        <input
-          id="gBangla"
-          type="number"
-          min="0"
-          max="5"
-          step="0.01"
-          placeholder="0 - 5"
-        >
-      </div>
-
-      <div>
-        <label>English</label>
-        <input
-          id="gEnglish"
-          type="number"
-          min="0"
-          max="5"
-          step="0.01"
-          placeholder="0 - 5"
-        >
-      </div>
-
-      <div>
-        <label>ICT</label>
-        <input
-          id="gICT"
-          type="number"
-          min="0"
-          max="5"
-          step="0.01"
-          placeholder="0 - 5"
-        >
-      </div>
-
-      <div>
-        <label>Physics</label>
-        <input
-          id="gPhysics"
-          type="number"
-          min="0"
-          max="5"
-          step="0.01"
-          placeholder="0 - 5"
-        >
-      </div>
-
-      <div>
-        <label>Chemistry</label>
-        <input
-          id="gChemistry"
-          type="number"
-          min="0"
-          max="5"
-          step="0.01"
-          placeholder="0 - 5"
-        >
-      </div>
-
-      <div>
-        <label>Higher Math</label>
-        <input
-          id="gMath"
-          type="number"
-          min="0"
-          max="5"
-          step="0.01"
-          placeholder="0 - 5"
-        >
-      </div>
-
-      <div>
-        <label>Biology (Optional)</label>
-        <input
-          id="gBiology"
-          type="number"
-          min="0"
-          max="5"
-          step="0.01"
-          placeholder="0 - 5"
-        >
-      </div>
-
-    </div>
-
-    <button
-      class="btn"
-      onclick="calculateGPA()"
+    <section
+      id="syllabusSection"
+      class="section active"
     >
-      Calculate GPA
-    </button>
 
-    <h2 id="gpaResult"></h2>
+      <div class="page-header">
 
-  </div>
+        <h1>Syllabus Track</h1>
 
+        <p>
+          Track your HSC Physics, Chemistry and Higher Math progress.
+        </p>
 
-  <!-- SYLLABUS -->
-
-  <div class="card">
-
-    <h2>📚 Syllabus Progress</h2>
-
-    <div id="syllabus"></div>
-
-  </div>
+      </div>
 
 
-  <!-- PROFILE -->
+      <div class="overview">
 
-  <div class="card">
+        <div class="overview-card main-progress">
 
-    <h2>👤 Profile</h2>
+          <div
+            id="progressCircle"
+            class="progress-circle"
+          >
 
-    <p>
-      <b>Email:</b>
-      <span id="profileEmail"></span>
-    </p>
+            <span id="overallPercent">
+              0%
+            </span>
 
-    <p>
-      <b>HSC Batch:</b>
-      <span id="profileBatch"></span>
-    </p>
+          </div>
 
-    <p>
-      <b>College:</b>
-      <span id="profileCollege"></span>
-    </p>
+          <div>
 
-    <p>
-      <b>Zilla:</b>
-      <span id="profileZilla"></span>
-    </p>
+            <div class="overview-label">
+              Overall Progress
+            </div>
 
-  </div>
+            <div
+              class="overview-number"
+              id="overallText"
+            >
+              0 / 51
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="overview-card">
+
+          <div class="overview-label">
+            Completed
+          </div>
+
+          <div
+            class="overview-number"
+            id="completedCount"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="overview-card">
+
+          <div class="overview-label">
+            Last 7 Days
+          </div>
+
+          <div
+            class="overview-number"
+            id="sevenDays"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="overview-card">
+
+          <div class="overview-label">
+            Last 30 Days
+          </div>
+
+          <div
+            class="overview-number"
+            id="thirtyDays"
+          >
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="subjectCards"
+        class="subject-grid"
+      ></div>
+
+
+      <div id="syllabus"></div>
+
+    </section>
+
+
+    <!-- GPA -->
+
+    <section
+      id="gpaSection"
+      class="section"
+    >
+
+      <div class="page-header">
+
+        <h1>GPA Calculator</h1>
+
+        <p>
+          Enter your GPA for each subject from 0 to 5.
+        </p>
+
+      </div>
+
+
+      <div class="panel">
+
+        <div class="panel-title">
+
+          <h2>Main Subjects</h2>
+
+          <span>6 subjects</span>
+
+        </div>
+
+
+        <div class="gpa-grid">
+
+          <div>
+            <label>Bangla</label>
+            <input
+              id="gBangla"
+              type="number"
+              min="0"
+              max="5"
+              step=".01"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div>
+            <label>English</label>
+            <input
+              id="gEnglish"
+              type="number"
+              min="0"
+              max="5"
+              step=".01"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div>
+            <label>ICT</label>
+            <input
+              id="gICT"
+              type="number"
+              min="0"
+              max="5"
+              step=".01"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div>
+            <label>Physics</label>
+            <input
+              id="gPhysics"
+              type="number"
+              min="0"
+              max="5"
+              step=".01"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div>
+            <label>Chemistry</label>
+            <input
+              id="gChemistry"
+              type="number"
+              min="0"
+              max="5"
+              step=".01"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div>
+            <label>Higher Math</label>
+            <input
+              id="gMath"
+              type="number"
+              min="0"
+              max="5"
+              step=".01"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div>
+            <label>Biology — Optional</label>
+            <input
+              id="gBiology"
+              type="number"
+              min="0"
+              max="5"
+              step=".01"
+              placeholder="Optional"
+            >
+          </div>
+
+        </div>
+
+
+        <button
+          class="primary-btn"
+          onclick="calculateGPA()"
+          style="max-width:220px"
+        >
+          Calculate GPA
+        </button>
+
+
+        <div
+          id="gpaResult"
+          class="gpa-result hidden"
+        >
+
+          <small>Your calculated GPA</small>
+
+          <strong id="gpaValue">
+            0.00
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+
+    <section
+      id="profileSection"
+      class="section"
+    >
+
+      <div class="page-header">
+
+        <h1>Profile</h1>
+
+        <p>
+          Your PCM Tracker account information.
+        </p>
+
+      </div>
+
+
+      <div class="panel">
+
+        <div class="profile-grid">
+
+          <div class="profile-item">
+            <small>Email</small>
+            <strong id="profileEmail">—</strong>
+          </div>
+
+          <div class="profile-item">
+            <small>HSC Batch</small>
+            <strong id="profileBatch">—</strong>
+          </div>
+
+          <div class="profile-item">
+            <small>College</small>
+            <strong id="profileCollege">—</strong>
+          </div>
+
+          <div class="profile-item">
+            <small>Zilla</small>
+            <strong id="profileZilla">—</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
 
 </div>
+
+
+<!-- MOBILE NAV -->
+
+<nav class="mobile-nav">
+
+  <button
+    class="active"
+    onclick="mobileNav('syllabus',this)"
+  >
+    Syllabus
+  </button>
+
+  <button
+    onclick="mobileNav('gpa',this)"
+  >
+    GPA
+  </button>
+
+  <button
+    onclick="mobileNav('profile',this)"
+  >
+    Profile
+  </button>
+
+</nav>
 
 </div>
 
@@ -534,32 +1478,27 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_vaDXie6lMrKp7JYj9dn59A_BIsdojsj";
 
-const { createClient } =
-supabase;
-
 const db =
-createClient(
+supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
 
 /* =====================================================
-   VARIABLES
+   GLOBAL
 ===================================================== */
 
-let signupMode = false;
-
-let currentUser = null;
-
-let userData = null;
+let signupMode=false;
+let currentUser=null;
+let userData=null;
 
 
 /* =====================================================
    SYLLABUS
 ===================================================== */
 
-const syllabus = {
+const syllabus={
 
 Physics:{
 
@@ -592,7 +1531,6 @@ Physics:{
 
 },
 
-
 Chemistry:{
 
 "1st Paper":[
@@ -612,7 +1550,6 @@ Chemistry:{
 ]
 
 },
-
 
 "Higher Math":{
 
@@ -648,43 +1585,30 @@ Chemistry:{
 
 
 /* =====================================================
-   MESSAGE
-===================================================== */
-
-function showMessage(text,type="error"){
-
-  const box =
-  document.getElementById("authMessage");
-
-  box.className =
-  "message "+type;
-
-  box.textContent =
-  text;
-
-}
-
-
-/* =====================================================
-   LOGIN / SIGNUP SWITCH
+   AUTH UI
 ===================================================== */
 
 window.toggleAuth=function(){
 
-  signupMode =
-  !signupMode;
+  signupMode=!signupMode;
 
   document.getElementById("authTitle")
-  .textContent =
+  .textContent=
   signupMode
-  ? "Create Account"
-  : "Login";
+  ?"Create your account"
+  :"Welcome back";
+
+  document.getElementById("authDesc")
+  .textContent=
+  signupMode
+  ?"Create your profile and start tracking your HSC preparation."
+  :"Sign in to continue your study journey.";
 
   document.getElementById("authBtn")
-  .textContent =
+  .textContent=
   signupMode
-  ? "Sign Up"
-  : "Login";
+  ?"Create Account"
+  :"Sign In";
 
   document.getElementById("signupFields")
   .classList
@@ -694,102 +1618,129 @@ window.toggleAuth=function(){
   );
 
   document.getElementById("switchText")
-  .textContent =
+  .textContent=
   signupMode
-  ? "Already have an account?"
-  : "Don't have an account?";
+  ?"Already have an account?"
+  :"Don't have an account?";
 
   document.getElementById("switchBtn")
-  .textContent =
+  .textContent=
   signupMode
-  ? " Login"
-  : " Sign Up";
+  ?"Sign in"
+  :"Create account";
 
-  document.getElementById("authMessage")
-  .className="message";
-
-  document.getElementById("authMessage")
-  .textContent="";
+  clearMessage();
 
 };
 
 
+function showMessage(text,type="error"){
+
+  const box=
+  document.getElementById("authMessage");
+
+  box.className=
+  "message "+type;
+
+  box.textContent=text;
+
+}
+
+
+function clearMessage(){
+
+  const box=
+  document.getElementById("authMessage");
+
+  box.className="message";
+
+  box.textContent="";
+
+}
+
+
 /* =====================================================
-   SIGNUP / LOGIN
+   LOGIN / SIGNUP
 ===================================================== */
 
 window.authAction=async function(){
 
-  const email =
+  clearMessage();
+
+  const email=
   document.getElementById("email")
   .value
   .trim();
 
-  const password =
+  const password=
   document.getElementById("password")
   .value;
 
 
-  if(!email || !password){
+  if(!email||!password){
 
     showMessage(
-      "Email and password required."
+      "Please enter your email and password."
     );
 
     return;
+
   }
 
 
   if(password.length<6){
 
     showMessage(
-      "Password must be at least 6 characters."
+      "Password must contain at least 6 characters."
     );
 
     return;
+
   }
 
 
   try{
 
-    /* ================= SIGNUP ================= */
-
     if(signupMode){
 
-      const batch =
-      document.getElementById("batch")
-      .value;
+      const batch=
+      document.getElementById("batch").value;
 
-      const college =
+      const college=
       document.getElementById("college")
       .value
       .trim();
 
-      const zilla =
+      const zilla=
       document.getElementById("zilla")
       .value
       .trim();
 
 
-      if(!college || !zilla){
+      if(!college||!zilla){
 
         showMessage(
-          "College and Zilla are required."
+          "Please enter your college and zilla."
         );
 
         return;
+
       }
 
 
-      const {
-        data,
-        error
-      } =
+      const {data,error}=
       await db.auth.signUp({
 
-        email:email,
+        email,
+        password,
 
-        password:password
+        options:{
+          data:{
+            batch,
+            college,
+            zilla
+          }
+        }
 
       });
 
@@ -800,43 +1751,31 @@ window.authAction=async function(){
 
       if(data.session){
 
-        await saveProfile(
-          data.user,
-          batch,
-          college,
-          zilla
+        await ensureProfile(
+          data.user
         );
 
         showMessage(
-          "Account created successfully!",
+          "Account created successfully.",
           "success"
         );
 
       }else{
 
         showMessage(
-          "Account created. Please verify your email, then Login.",
+          "Account created. Please confirm your email, then sign in.",
           "success"
         );
 
       }
 
+    }else{
 
-    }
-
-    /* ================= LOGIN ================= */
-
-    else{
-
-      const {
-        data,
-        error
-      } =
+      const {data,error}=
       await db.auth.signInWithPassword({
 
-        email:email,
-
-        password:password
+        email,
+        password
 
       });
 
@@ -845,47 +1784,32 @@ window.authAction=async function(){
         throw error;
 
 
-      if(data.user){
-
-        await loadUser(
-          data.user
-        );
-
-      }
+      await loadUser(
+        data.user
+      );
 
     }
-
 
   }catch(error){
 
     console.error(error);
 
-    let message =
-    error.message || "Something went wrong.";
+    let msg=
+    error.message||
+    "Something went wrong.";
 
     if(
-      message
+      msg
       .toLowerCase()
       .includes("invalid login credentials")
     ){
 
-      message =
-      "Wrong email or password.";
+      msg=
+      "Incorrect email or password.";
 
     }
 
-    else if(
-      message
-      .toLowerCase()
-      .includes("already registered")
-    ){
-
-      message =
-      "This email is already registered. Please Login.";
-
-    }
-
-    showMessage(message);
+    showMessage(msg);
 
   }
 
@@ -893,72 +1817,12 @@ window.authAction=async function(){
 
 
 /* =====================================================
-   SAVE PROFILE
+   PROFILE
 ===================================================== */
 
-async function saveProfile(
-  user,
-  batch,
-  college,
-  zilla
-){
+async function ensureProfile(user){
 
-  const profile={
-
-    id:user.id,
-
-    email:user.email,
-
-    batch:batch,
-
-    college:college,
-
-    zilla:zilla,
-
-    progress:{},
-
-    history:[]
-
-  };
-
-
-  const {
-    error
-  } =
-  await db
-  .from("profiles")
-  .upsert(
-    profile,
-    {
-      onConflict:"id"
-    }
-  );
-
-
-  if(error)
-    throw error;
-
-
-  userData =
-  profile;
-
-}
-
-
-/* =====================================================
-   LOAD USER
-===================================================== */
-
-async function loadUser(user){
-
-  currentUser =
-  user;
-
-
-  let {
-    data,
-    error
-  } =
+  let {data,error}=
   await db
   .from("profiles")
   .select("*")
@@ -970,21 +1834,29 @@ async function loadUser(user){
     throw error;
 
 
-  /* If profile doesn't exist */
-
   if(!data){
 
-    const newProfile={
+    const meta=
+    user.user_metadata||{};
+
+
+    const profile={
 
       id:user.id,
 
       email:user.email,
 
-      batch:"HSC 27",
+      batch:
+      meta.batch||
+      "HSC 27",
 
-      college:"",
+      college:
+      meta.college||
+      "",
 
-      zilla:"",
+      zilla:
+      meta.zilla||
+      "",
 
       progress:{},
 
@@ -993,10 +1865,10 @@ async function loadUser(user){
     };
 
 
-    const result =
+    const result=
     await db
     .from("profiles")
-    .insert(newProfile)
+    .insert(profile)
     .select()
     .single();
 
@@ -1005,14 +1877,24 @@ async function loadUser(user){
       throw result.error;
 
 
-    data =
+    data=
     result.data;
 
   }
 
 
-  userData =
-  data;
+  return data;
+
+}
+
+
+async function loadUser(user){
+
+  currentUser=
+  user;
+
+  userData=
+  await ensureProfile(user);
 
 
   document
@@ -1031,6 +1913,8 @@ async function loadUser(user){
 
   renderSyllabus();
 
+  renderSubjectCards();
+
   updateDashboard();
 
 }
@@ -1043,7 +1927,10 @@ async function loadUser(user){
 db.auth.onAuthStateChange(
   async(event,session)=>{
 
-    if(session){
+    if(
+      session &&
+      !currentUser
+    ){
 
       try{
 
@@ -1055,14 +1942,12 @@ db.auth.onAuthStateChange(
 
         console.error(error);
 
-        showMessage(
-          "Could not load your profile: "+
-          error.message
-        );
-
       }
 
-    }else{
+    }
+
+
+    if(!session){
 
       currentUser=null;
 
@@ -1072,6 +1957,7 @@ db.auth.onAuthStateChange(
       .getElementById("authPage")
       .classList
       .remove("hidden");
+
 
       document
       .getElementById("app")
@@ -1096,52 +1982,280 @@ window.logout=async function(){
 
 
 /* =====================================================
-   PROFILE
+   NAVIGATION
+===================================================== */
+
+window.showSection=function(
+  section,
+  btn
+){
+
+  document
+  .querySelectorAll(".section")
+  .forEach(
+    el=>
+    el.classList.remove("active")
+  );
+
+
+  document
+  .getElementById(
+    section+"Section"
+  )
+  .classList
+  .add("active");
+
+
+  document
+  .querySelectorAll(".nav-btn")
+  .forEach(
+    el=>
+    el.classList.remove("active")
+  );
+
+
+  if(btn)
+    btn.classList.add("active");
+
+};
+
+
+window.mobileNav=function(
+  section,
+  btn
+){
+
+  showSection(
+    section,
+    null
+  );
+
+
+  document
+  .querySelectorAll(
+    ".mobile-nav button"
+  )
+  .forEach(
+    el=>
+    el.classList.remove("active")
+  );
+
+
+  btn.classList.add("active");
+
+};
+
+
+/* =====================================================
+   PROFILE UI
 ===================================================== */
 
 function renderProfile(){
 
   document
-  .getElementById("welcome")
-  .textContent =
-  "Welcome, "+
+  .getElementById("userEmail")
+  .textContent=
   currentUser.email;
 
 
   document
   .getElementById("profileEmail")
-  .textContent =
-  currentUser.email;
+  .textContent=
+  currentUser.email||
+  "—";
 
 
   document
   .getElementById("profileBatch")
-  .textContent =
-  userData.batch || "";
+  .textContent=
+  userData.batch||
+  "—";
 
 
   document
   .getElementById("profileCollege")
-  .textContent =
-  userData.college || "";
+  .textContent=
+  userData.college||
+  "—";
 
 
   document
   .getElementById("profileZilla")
-  .textContent =
-  userData.zilla || "";
+  .textContent=
+  userData.zilla||
+  "—";
 
 }
 
 
 /* =====================================================
-   RENDER SYLLABUS
+   CHAPTER KEY
+===================================================== */
+
+function chapterKey(
+  subject,
+  paper,
+  index
+){
+
+  return(
+    subject+
+    "|" +
+    paper+
+    "|" +
+    index
+  );
+
+}
+
+
+/* =====================================================
+   SUBJECT STATS
+===================================================== */
+
+function getSubjectStats(subject){
+
+  let total=0;
+
+  let done=0;
+
+
+  Object.entries(
+    syllabus[subject]
+  )
+  .forEach(
+    ([paper,chapters])=>{
+
+      chapters.forEach(
+        (_,index)=>{
+
+          total++;
+
+          const key=
+          chapterKey(
+            subject,
+            paper,
+            index
+          );
+
+
+          if(
+            userData
+            .progress?.[key]
+            ===
+            "done"
+          ){
+
+            done++;
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+  return{
+
+    total,
+
+    done,
+
+    percent:
+    total
+    ?
+    Math.round(
+      done/total*100
+    )
+    :
+    0
+
+  };
+
+}
+
+
+/* =====================================================
+   SUBJECT CARDS
+===================================================== */
+
+function renderSubjectCards(){
+
+  const box=
+  document.getElementById(
+    "subjectCards"
+  );
+
+  box.innerHTML="";
+
+
+  Object.keys(syllabus)
+  .forEach(subject=>{
+
+    const stats=
+    getSubjectStats(
+      subject
+    );
+
+
+    const card=
+    document.createElement(
+      "div"
+    );
+
+    card.className=
+    "subject-card";
+
+
+    card.innerHTML=`
+
+      <div class="subject-top">
+
+        <div class="subject-name">
+          ${subject}
+        </div>
+
+        <div class="subject-percent">
+          ${stats.percent}%
+        </div>
+
+      </div>
+
+      <div class="bar">
+
+        <div
+          class="bar-fill"
+          style="width:${stats.percent}%"
+        ></div>
+
+      </div>
+
+      <div class="subject-meta">
+        ${stats.done} of ${stats.total} chapters completed
+      </div>
+
+    `;
+
+
+    box.appendChild(card);
+
+  });
+
+}
+
+
+/* =====================================================
+   SYLLABUS
 ===================================================== */
 
 function renderSyllabus(){
 
-  const box =
-  document.getElementById("syllabus");
+  const box=
+  document.getElementById(
+    "syllabus"
+  );
 
   box.innerHTML="";
 
@@ -1150,120 +2264,191 @@ function renderSyllabus(){
   .forEach(
     ([subject,papers])=>{
 
-      const subjectBox =
-      document.createElement("div");
+      const subjectStats=
+      getSubjectStats(
+        subject
+      );
 
-      subjectBox.className=
-      "subject";
+
+      const subjectBlock=
+      document.createElement(
+        "div"
+      );
+
+      subjectBlock.className=
+      "subject-block";
 
 
-      const title =
-      document.createElement("h2");
+      subjectBlock.innerHTML=`
 
-      title.textContent=
-      subject;
+        <div class="subject-heading">
 
-      subjectBox.appendChild(title);
+          <h2>${subject}</h2>
+
+          <div class="count">
+            ${subjectStats.done}/${subjectStats.total} completed
+          </div>
+
+        </div>
+
+      `;
 
 
       Object.entries(papers)
       .forEach(
         ([paper,chapters])=>{
 
-          const paperBox =
-          document.createElement("div");
-
-          paperBox.className=
-          "paper";
-
-
-          const paperTitle =
-          document.createElement("h3");
-
-          paperTitle.textContent=
-          paper;
-
-          paperBox.appendChild(
-            paperTitle
-          );
+          let paperDone=0;
 
 
           chapters.forEach(
-            (chapter,index)=>{
+            (_,index)=>{
 
-              const key =
-              subject+
-              "|"+
-              paper+
-              "|"+
-              index;
-
-
-              const row =
-              document.createElement("div");
-
-              row.className=
-              "chapter";
+              const key=
+              chapterKey(
+                subject,
+                paper,
+                index
+              );
 
 
-              const name =
-              document.createElement("div");
+              if(
+                userData
+                .progress?.[key]
+                ===
+                "done"
+              ){
 
-              name.className=
-              "chapter-name";
+                paperDone++;
 
-              name.textContent=
-              (index+1)+
-              ". "+
-              chapter;
-
-
-              const select =
-              document.createElement("select");
-
-
-              select.innerHTML=`
-
-                <option value="not_started">
-                  Not Started
-                </option>
-
-                <option value="running">
-                  Running
-                </option>
-
-                <option value="done">
-                  Done
-                </option>
-
-              `;
-
-
-              select.value =
-              userData.progress?.[key]
-              ||
-              "not_started";
-
-
-              select.onchange=()=>{
-                changeProgress(
-                  key,
-                  select.value
-                );
-              };
-
-
-              row.appendChild(name);
-
-              row.appendChild(select);
-
-              paperBox.appendChild(row);
+              }
 
             }
           );
 
 
-          subjectBox.appendChild(
+          const paperBox=
+          document.createElement(
+            "div"
+          );
+
+          paperBox.className=
+          "paper";
+
+
+          paperBox.innerHTML=`
+
+            <div class="paper-head">
+
+              <div class="paper-title">
+                ${paper}
+              </div>
+
+              <div class="paper-progress">
+                ${paperDone}/${chapters.length}
+              </div>
+
+            </div>
+
+          `;
+
+
+          chapters.forEach(
+            (chapter,index)=>{
+
+              const key=
+              chapterKey(
+                subject,
+                paper,
+                index
+              );
+
+
+              const status=
+              userData
+              .progress?.[key]
+              ||
+              "not_started";
+
+
+              const row=
+              document.createElement(
+                "div"
+              );
+
+              row.className=
+              "chapter";
+
+
+              row.innerHTML=`
+
+                <div class="chapter-number">
+                  ${String(index+1).padStart(2,"0")}
+                </div>
+
+                <div class="chapter-info">
+
+                  <div class="chapter-name">
+                    ${chapter}
+                  </div>
+
+                  <div class="chapter-status">
+                    ${statusText(status)}
+                  </div>
+
+                </div>
+
+                <select
+                  class="status-select"
+                >
+
+                  <option value="not_started">
+                    Not Started
+                  </option>
+
+                  <option value="running">
+                    Running
+                  </option>
+
+                  <option value="done">
+                    Done
+                  </option>
+
+                </select>
+
+              `;
+
+
+              const select=
+              row.querySelector(
+                "select"
+              );
+
+
+              select.value=
+              status;
+
+
+              select.addEventListener(
+                "change",
+                ()=>{
+                  changeProgress(
+                    key,
+                    select.value
+                  );
+                }
+              );
+
+
+              paperBox.appendChild(
+                row
+              );
+
+            }
+          );
+
+
+          subjectBlock.appendChild(
             paperBox
           );
 
@@ -1272,7 +2457,7 @@ function renderSyllabus(){
 
 
       box.appendChild(
-        subjectBox
+        subjectBlock
       );
 
     }
@@ -1281,8 +2466,21 @@ function renderSyllabus(){
 }
 
 
+function statusText(status){
+
+  if(status==="done")
+    return"Completed";
+
+  if(status==="running")
+    return"In progress";
+
+  return"Not started";
+
+}
+
+
 /* =====================================================
-   CHANGE PROGRESS
+   SAVE PROGRESS
 ===================================================== */
 
 async function changeProgress(
@@ -1294,20 +2492,20 @@ async function changeProgress(
     return;
 
 
-  userData.progress =
-  userData.progress || {};
+  userData.progress=
+  userData.progress||
+  {};
 
-  userData.history =
-  userData.history || [];
+  userData.history=
+  userData.history||
+  [];
 
 
-  const old =
+  const old=
   userData.progress[key]
   ||
   "not_started";
 
-
-  /* Record completion */
 
   if(
     old!=="done" &&
@@ -1316,8 +2514,7 @@ async function changeProgress(
 
     userData.history.push({
 
-      time:
-      Date.now(),
+      time:Date.now(),
 
       key:key
 
@@ -1330,9 +2527,7 @@ async function changeProgress(
   status;
 
 
-  const {
-    error
-  } =
+  const {error}=
   await db
   .from("profiles")
   .update({
@@ -1356,16 +2551,18 @@ async function changeProgress(
   if(error){
 
     alert(
-      "Progress could not be saved:\n\n"+
+      "Could not save progress:\n"+
       error.message
     );
-
-    renderSyllabus();
 
     return;
 
   }
 
+
+  renderSyllabus();
+
+  renderSubjectCards();
 
   updateDashboard();
 
@@ -1383,77 +2580,114 @@ function updateDashboard(){
   let done=0;
 
 
-  Object.values(syllabus)
-  .forEach(papers=>{
+  Object.values(
+    syllabus
+  )
+  .forEach(
+    papers=>{
 
-    Object.values(papers)
-    .forEach(chapters=>{
+      Object.values(
+        papers
+      )
+      .forEach(
+        chapters=>{
 
-      total +=
-      chapters.length;
+          total+=
+          chapters.length;
 
-    });
+        }
+      );
 
-  });
+    }
+  );
 
 
   Object.values(
-    userData.progress || {}
+    userData.progress||
+    {}
   )
-  .forEach(status=>{
+  .forEach(
+    status=>{
 
-    if(status==="done")
-      done++;
+      if(status==="done")
+        done++;
 
-  });
+    }
+  );
 
 
-  const percent =
+  const percent=
   total
-  ? Math.round(
-      done/total*100
-    )
-  : 0;
+  ?
+  Math.round(
+    done/total*100
+  )
+  :
+  0;
 
 
   document
-  .getElementById("overall")
-  .textContent =
+  .getElementById(
+    "overallPercent"
+  )
+  .textContent=
   percent+"%";
 
 
   document
-  .getElementById("overallBar")
-  .style.width =
-  percent+"%";
+  .getElementById(
+    "overallText"
+  )
+  .textContent=
+  done+
+  " / "+
+  total;
 
 
   document
-  .getElementById("doneCount")
-  .textContent =
+  .getElementById(
+    "completedCount"
+  )
+  .textContent=
   done;
 
 
-  const now =
+  const circle=
+  document.getElementById(
+    "progressCircle"
+  );
+
+
+  circle.style.background=
+  `conic-gradient(
+    var(--blue)
+    ${percent*3.6}deg,
+    #e5e7eb
+    ${percent*3.6}deg
+  )`;
+
+
+  const now=
   Date.now();
 
 
-  const history =
-  userData.history || [];
+  const history=
+  userData.history||
+  [];
 
 
-  const seven =
+  const seven=
   history.filter(
-    item =>
+    item=>
     now-item.time
     <=
     7*24*60*60*1000
   ).length;
 
 
-  const thirty =
+  const thirty=
   history.filter(
-    item =>
+    item=>
     now-item.time
     <=
     30*24*60*60*1000
@@ -1461,14 +2695,18 @@ function updateDashboard(){
 
 
   document
-  .getElementById("sevenDays")
-  .textContent =
+  .getElementById(
+    "sevenDays"
+  )
+  .textContent=
   seven;
 
 
   document
-  .getElementById("thirtyDays")
-  .textContent =
+  .getElementById(
+    "thirtyDays"
+  )
+  .textContent=
   thirty;
 
 }
@@ -1492,9 +2730,9 @@ window.calculateGPA=function(){
   ];
 
 
-  const values =
+  const values=
   ids.map(
-    id =>
+    id=>
     Number(
       document
       .getElementById(id)
@@ -1505,89 +2743,95 @@ window.calculateGPA=function(){
 
   if(
     values.some(
-      value =>
-      isNaN(value) ||
-      value<0 ||
+      value=>
+      isNaN(value)||
+      value<0||
       value>5
     )
   ){
 
-    document
-    .getElementById("gpaResult")
-    .textContent =
-    "Enter all 6 main subject GPAs.";
+    alert(
+      "Please enter all 6 main subject GPAs."
+    );
 
     return;
 
   }
 
 
-  let total =
+  let total=
   values.reduce(
-    (a,b)=>a+b,
+    (a,b)=>
+    a+b,
     0
   );
 
 
-  const biology =
+  const biology=
   Number(
     document
-    .getElementById("gBiology")
+    .getElementById(
+      "gBiology"
+    )
     .value
   );
 
-
-  /* Optional Biology bonus */
 
   if(
     !isNaN(biology) &&
     biology>2
   ){
 
-    total +=
+    total+=
     biology-2;
 
   }
 
 
-  let gpa =
+  let gpa=
   total/6;
 
 
-  gpa =
+  gpa=
   Math.min(
     5,
     gpa
   );
 
 
-  gpa =
+  gpa=
   Math.round(
     gpa*100
   )/100;
 
 
   document
-  .getElementById("gpaResult")
-  .textContent =
-  "Your GPA: "+
-  gpa+
-  "/5";
+  .getElementById(
+    "gpaResult"
+  )
+  .classList
+  .remove("hidden");
+
+
+  document
+  .getElementById(
+    "gpaValue"
+  )
+  .textContent=
+  gpa.toFixed(2);
 
 };
 
 
 /* =====================================================
-   CHECK EXISTING SESSION
+   INITIAL SESSION
 ===================================================== */
 
 (async function(){
 
   try{
 
-    const {
-      data
-    } =
+    const {data}=
     await db.auth.getSession();
 
 
