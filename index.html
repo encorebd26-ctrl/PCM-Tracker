@@ -23,9 +23,7 @@
   --shadow:0 10px 35px rgba(15,23,42,.07);
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -34,17 +32,9 @@ body{
   color:var(--text);
 }
 
-button,input,select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
 
 /* ================= AUTH ================= */
 
@@ -71,8 +61,6 @@ button{
   overflow:hidden;
   box-shadow:0 25px 70px rgba(15,23,42,.11);
 }
-
-/* LEFT */
 
 .auth-brand-panel{
   position:relative;
@@ -136,9 +124,7 @@ button{
   font-weight:800;
 }
 
-.auth-brand-title span{
-  color:#60a5fa;
-}
+.auth-brand-title span{color:#60a5fa}
 
 .auth-tagline{
   max-width:440px;
@@ -175,7 +161,7 @@ button{
   font-weight:800;
 }
 
-/* RIGHT */
+/* ================= AUTH FORM ================= */
 
 .auth-form-panel{
   padding:48px;
@@ -183,9 +169,7 @@ button{
   align-items:center;
 }
 
-.auth-box{
-  width:100%;
-}
+.auth-box{width:100%}
 
 .auth-box h1{
   margin:0 0 8px;
@@ -238,9 +222,7 @@ input:focus,select:focus{
   box-shadow:0 8px 20px rgba(37,99,235,.18);
 }
 
-.primary-btn:hover{
-  background:var(--blue2);
-}
+.primary-btn:hover{background:var(--blue2)}
 
 .auth-switch{
   text-align:center;
@@ -332,9 +314,7 @@ input:focus,select:focus{
   font-weight:600;
 }
 
-.logout:hover{
-  background:#f8fafc;
-}
+.logout:hover{background:#f8fafc}
 
 /* ================= LAYOUT ================= */
 
@@ -378,15 +358,11 @@ input:focus,select:focus{
   color:var(--blue);
 }
 
-.content{
-  min-width:0;
-}
+.content{min-width:0}
 
 /* ================= PAGE HEADER ================= */
 
-.page-header{
-  margin-bottom:23px;
-}
+.page-header{margin-bottom:23px}
 
 .page-header h1{
   margin:0 0 7px;
@@ -521,13 +497,8 @@ input:focus,select:focus{
 
 /* ================= SECTIONS ================= */
 
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
-}
+.section{display:none}
+.section.active{display:block}
 
 .panel{
   background:white;
@@ -556,9 +527,7 @@ input:focus,select:focus{
 
 /* ================= SYLLABUS ================= */
 
-.subject-block{
-  margin-bottom:25px;
-}
+.subject-block{margin-bottom:25px}
 
 .subject-heading{
   display:flex;
@@ -702,15 +671,154 @@ input:focus,select:focus{
   margin-bottom:5px;
 }
 
-.profile-item strong{
+.profile-item strong{font-size:13px}
+
+/* ================= SCIENTIFIC CALCULATOR ================= */
+
+.calculator-wrap{
+  display:flex;
+  justify-content:center;
+}
+
+.calculator{
+  width:100%;
+  max-width:540px;
+  background:#0f172a;
+  border:1px solid #1e293b;
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 20px 50px rgba(15,23,42,.15);
+}
+
+.calc-brand{
+  color:#cbd5e1;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.7px;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.calc-display{
+  background:#020617;
+  border:1px solid #1e293b;
+  border-radius:15px;
+  min-height:108px;
+  padding:15px;
+  margin-bottom:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  overflow:hidden;
+}
+
+.calc-expression{
+  color:#94a3b8;
   font-size:13px;
+  min-height:20px;
+  text-align:right;
+  word-break:break-all;
+}
+
+.calc-result{
+  color:white;
+  font-size:30px;
+  font-weight:700;
+  text-align:right;
+  margin-top:7px;
+  word-break:break-all;
+}
+
+.calc-mode{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:7px;
+  margin-bottom:10px;
+}
+
+.calc-mode button{
+  border:1px solid #334155;
+  background:#1e293b;
+  color:#cbd5e1;
+  border-radius:8px;
+  padding:9px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.calc-mode button.mode-active{
+  background:var(--blue);
+  border-color:var(--blue);
+  color:white;
+}
+
+.calc-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+}
+
+.calc-grid button{
+  min-height:48px;
+  border:1px solid #334155;
+  background:#1e293b;
+  color:#f8fafc;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:600;
+  transition:.15s;
+}
+
+.calc-grid button:hover{
+  background:#334155;
+}
+
+.calc-grid button.operator{
+  background:#172554;
+  color:#93c5fd;
+}
+
+.calc-grid button.equals{
+  background:var(--blue);
+  color:white;
+  border-color:var(--blue);
+  grid-column:span 2;
+}
+
+.calc-history{
+  margin-top:15px;
+  border-top:1px solid #1e293b;
+  padding-top:13px;
+}
+
+.calc-history-title{
+  color:#94a3b8;
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  margin-bottom:8px;
+}
+
+#calcHistory{
+  color:#64748b;
+  font-size:11px;
+  max-height:130px;
+  overflow-y:auto;
+}
+
+.history-item{
+  padding:7px 0;
+  border-bottom:1px solid #1e293b;
+}
+
+.history-item strong{
+  color:#e2e8f0;
 }
 
 /* ================= MOBILE NAV ================= */
 
-.mobile-nav{
-  display:none;
-}
+.mobile-nav{display:none}
 
 /* ================= RESPONSIVE ================= */
 
@@ -721,9 +829,7 @@ input:focus,select:focus{
     padding:18px;
   }
 
-  .sidebar{
-    display:none;
-  }
+  .sidebar{display:none}
 
   .overview{
     grid-template-columns:repeat(2,1fr);
@@ -739,30 +845,29 @@ input:focus,select:focus{
     bottom:0;
     left:0;
     right:0;
-    height:65px;
+    min-height:65px;
     background:white;
     border-top:1px solid var(--border);
     z-index:50;
     justify-content:space-around;
     padding:7px;
+    gap:3px;
   }
 
   .mobile-nav button{
     border:0;
     background:transparent;
     color:var(--muted);
-    font-size:10px;
+    font-size:9px;
     font-weight:700;
+    padding:6px 3px;
   }
 
   .mobile-nav button.active{
     color:var(--blue);
   }
 
-  .content{
-    padding-bottom:75px;
-  }
-
+  .content{padding-bottom:75px}
 }
 
 @media(max-width:800px){
@@ -777,9 +882,7 @@ input:focus,select:focus{
     padding:32px 28px;
   }
 
-  .auth-brand-title{
-    font-size:32px;
-  }
+  .auth-brand-title{font-size:32px}
 
   .auth-logo{
     width:50px;
@@ -792,74 +895,45 @@ input:focus,select:focus{
     margin-bottom:0;
   }
 
-  .auth-features{
-    display:none;
-  }
+  .auth-features{display:none}
 
-  .auth-form-panel{
-    padding:30px 28px;
-  }
-
+  .auth-form-panel{padding:30px 28px}
 }
 
 @media(max-width:600px){
 
-  .auth-page{
-    padding:12px;
-  }
+  .auth-page{padding:12px}
 
-  .auth-wrapper{
-    border-radius:22px;
-  }
+  .auth-wrapper{border-radius:22px}
 
-  .auth-brand-panel{
-    padding:28px 23px;
-  }
+  .auth-brand-panel{padding:28px 23px}
 
-  .auth-brand-title{
-    font-size:29px;
-  }
+  .auth-brand-title{font-size:29px}
 
-  .auth-form-panel{
-    padding:27px 21px;
-  }
+  .auth-form-panel{padding:27px 21px}
 
   .topbar{
     height:62px;
     padding:0 16px;
   }
 
-  .user-email{
-    display:none;
-  }
+  .user-email{display:none}
 
-  .layout{
-    padding:16px;
-  }
+  .layout{padding:16px}
 
-  .page-header h1{
-    font-size:25px;
-  }
+  .page-header h1{font-size:25px}
 
   .overview{
     grid-template-columns:1fr 1fr;
   }
 
-  .main-progress{
-    grid-column:span 2;
-  }
+  .main-progress{grid-column:span 2}
 
-  .overview-card{
-    padding:15px;
-  }
+  .overview-card{padding:15px}
 
-  .overview-number{
-    font-size:22px;
-  }
+  .overview-number{font-size:22px}
 
-  .panel{
-    padding:16px;
-  }
+  .panel{padding:16px}
 
   .chapter{
     flex-wrap:wrap;
@@ -876,6 +950,19 @@ input:focus,select:focus{
     grid-template-columns:1fr;
   }
 
+  .calculator{
+    padding:12px;
+    border-radius:18px;
+  }
+
+  .calc-grid{gap:5px}
+
+  .calc-grid button{
+    min-height:45px;
+    font-size:10px;
+  }
+
+  .calc-result{font-size:25px}
 }
 </style>
 </head>
@@ -890,15 +977,11 @@ input:focus,select:focus{
 
   <div class="auth-wrapper">
 
-    <!-- BRANDING -->
-
     <div class="auth-brand-panel">
 
       <div class="auth-brand-content">
 
-        <div class="auth-logo">
-          PCM
-        </div>
+        <div class="auth-logo">PCM</div>
 
         <h1 class="auth-brand-title">
           PCM <span>Tracker</span>
@@ -928,7 +1011,7 @@ input:focus,select:focus{
 
           <div class="auth-feature">
             <div class="auth-check">✓</div>
-            Stay focused on your admission journey
+            Use a scientific calculator
           </div>
 
         </div>
@@ -937,46 +1020,27 @@ input:focus,select:focus{
 
     </div>
 
-
-    <!-- LOGIN / SIGNUP -->
-
     <div class="auth-form-panel">
 
       <div class="auth-box">
 
-        <h1 id="authTitle">
-          Welcome back
-        </h1>
+        <h1 id="authTitle">Welcome back</h1>
 
-        <div
-          id="authDesc"
-          class="auth-desc"
-        >
+        <div id="authDesc" class="auth-desc">
           Sign in to continue your study journey.
         </div>
 
+        <div id="authMessage" class="message"></div>
 
-        <div
-          id="authMessage"
-          class="message"
-        ></div>
-
-
-        <div
-          id="signupFields"
-          class="hidden"
-        >
+        <div id="signupFields" class="hidden">
 
           <label>HSC Batch</label>
 
           <select id="batch">
-
             <option value="HSC 26">HSC 26</option>
             <option value="HSC 27">HSC 27</option>
             <option value="HSC 28">HSC 28</option>
-
           </select>
-
 
           <label>College</label>
 
@@ -985,7 +1049,6 @@ input:focus,select:focus{
             type="text"
             placeholder="Enter your college name"
           >
-
 
           <label>Zilla</label>
 
@@ -997,7 +1060,6 @@ input:focus,select:focus{
 
         </div>
 
-
         <label>Email</label>
 
         <input
@@ -1006,7 +1068,6 @@ input:focus,select:focus{
           placeholder="Enter your email"
           autocomplete="email"
         >
-
 
         <label>Password</label>
 
@@ -1017,7 +1078,6 @@ input:focus,select:focus{
           autocomplete="current-password"
         >
 
-
         <button
           id="authBtn"
           class="primary-btn"
@@ -1025,7 +1085,6 @@ input:focus,select:focus{
         >
           Sign In
         </button>
-
 
         <div class="auth-switch">
 
@@ -1061,9 +1120,7 @@ input:focus,select:focus{
 
   <div class="top-brand">
 
-    <div class="top-logo">
-      PCM
-    </div>
+    <div class="top-logo">PCM</div>
 
     <span>PCM Tracker</span>
 
@@ -1071,15 +1128,9 @@ input:focus,select:focus{
 
   <div class="top-right">
 
-    <span
-      id="userEmail"
-      class="user-email"
-    ></span>
+    <span id="userEmail" class="user-email"></span>
 
-    <button
-      class="logout"
-      onclick="logout()"
-    >
+    <button class="logout" onclick="logout()">
       Logout
     </button>
 
@@ -1112,6 +1163,13 @@ input:focus,select:focus{
 
       <button
         class="nav-btn"
+        onclick="showSection('calculator',this)"
+      >
+        Scientific Calculator
+      </button>
+
+      <button
+        class="nav-btn"
         onclick="showSection('profile',this)"
       >
         Profile
@@ -1126,7 +1184,7 @@ input:focus,select:focus{
 
   <main class="content">
 
-    <!-- SYLLABUS -->
+    <!-- ================= SYLLABUS ================= -->
 
     <section
       id="syllabusSection"
@@ -1143,15 +1201,11 @@ input:focus,select:focus{
 
       </div>
 
-
       <div class="overview">
 
         <div class="overview-card main-progress">
 
-          <div
-            id="progressCircle"
-            class="progress-circle"
-          >
+          <div id="progressCircle" class="progress-circle">
 
             <span id="overallPercent">
               0%
@@ -1176,7 +1230,6 @@ input:focus,select:focus{
 
         </div>
 
-
         <div class="overview-card">
 
           <div class="overview-label">
@@ -1192,7 +1245,6 @@ input:focus,select:focus{
 
         </div>
 
-
         <div class="overview-card">
 
           <div class="overview-label">
@@ -1207,7 +1259,6 @@ input:focus,select:focus{
           </div>
 
         </div>
-
 
         <div class="overview-card">
 
@@ -1226,19 +1277,14 @@ input:focus,select:focus{
 
       </div>
 
-
-      <div
-        id="subjectCards"
-        class="subject-grid"
-      ></div>
-
+      <div id="subjectCards" class="subject-grid"></div>
 
       <div id="syllabus"></div>
 
     </section>
 
 
-    <!-- GPA -->
+    <!-- ================= GPA ================= -->
 
     <section
       id="gpaSection"
@@ -1255,7 +1301,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <div class="panel">
 
         <div class="panel-title">
@@ -1266,95 +1311,44 @@ input:focus,select:focus{
 
         </div>
 
-
         <div class="gpa-grid">
 
           <div>
             <label>Bangla</label>
-            <input
-              id="gBangla"
-              type="number"
-              min="0"
-              max="5"
-              step=".01"
-              placeholder="0.00"
-            >
+            <input id="gBangla" type="number" min="0" max="5" step=".01" placeholder="0.00">
           </div>
 
           <div>
             <label>English</label>
-            <input
-              id="gEnglish"
-              type="number"
-              min="0"
-              max="5"
-              step=".01"
-              placeholder="0.00"
-            >
+            <input id="gEnglish" type="number" min="0" max="5" step=".01" placeholder="0.00">
           </div>
 
           <div>
             <label>ICT</label>
-            <input
-              id="gICT"
-              type="number"
-              min="0"
-              max="5"
-              step=".01"
-              placeholder="0.00"
-            >
+            <input id="gICT" type="number" min="0" max="5" step=".01" placeholder="0.00">
           </div>
 
           <div>
             <label>Physics</label>
-            <input
-              id="gPhysics"
-              type="number"
-              min="0"
-              max="5"
-              step=".01"
-              placeholder="0.00"
-            >
+            <input id="gPhysics" type="number" min="0" max="5" step=".01" placeholder="0.00">
           </div>
 
           <div>
             <label>Chemistry</label>
-            <input
-              id="gChemistry"
-              type="number"
-              min="0"
-              max="5"
-              step=".01"
-              placeholder="0.00"
-            >
+            <input id="gChemistry" type="number" min="0" max="5" step=".01" placeholder="0.00">
           </div>
 
           <div>
             <label>Higher Math</label>
-            <input
-              id="gMath"
-              type="number"
-              min="0"
-              max="5"
-              step=".01"
-              placeholder="0.00"
-            >
+            <input id="gMath" type="number" min="0" max="5" step=".01" placeholder="0.00">
           </div>
 
           <div>
             <label>Biology — Optional</label>
-            <input
-              id="gBiology"
-              type="number"
-              min="0"
-              max="5"
-              step=".01"
-              placeholder="Optional"
-            >
+            <input id="gBiology" type="number" min="0" max="5" step=".01" placeholder="Optional">
           </div>
 
         </div>
-
 
         <button
           class="primary-btn"
@@ -1364,11 +1358,7 @@ input:focus,select:focus{
           Calculate GPA
         </button>
 
-
-        <div
-          id="gpaResult"
-          class="gpa-result hidden"
-        >
+        <div id="gpaResult" class="gpa-result hidden">
 
           <small>Your calculated GPA</small>
 
@@ -1383,7 +1373,168 @@ input:focus,select:focus{
     </section>
 
 
-    <!-- PROFILE -->
+    <!-- ================= CALCULATOR ================= -->
+
+    <section
+      id="calculatorSection"
+      class="section"
+    >
+
+      <div class="page-header">
+
+        <h1>Scientific Calculator</h1>
+
+        <p>
+          Advanced calculator for HSC Physics, Chemistry and Higher Math.
+        </p>
+
+      </div>
+
+      <div class="calculator-wrap">
+
+        <div class="calculator">
+
+          <div class="calc-brand">
+            PCM TRACK • SCIENTIFIC
+          </div>
+
+          <div class="calc-display">
+
+            <div
+              id="calcExpression"
+              class="calc-expression"
+            ></div>
+
+            <div
+              id="calcResult"
+              class="calc-result"
+            >
+              0
+            </div>
+
+          </div>
+
+          <div class="calc-mode">
+
+            <button
+              id="degreeBtn"
+              class="mode-active"
+              onclick="setAngleMode('DEG')"
+            >
+              DEG
+            </button>
+
+            <button
+              id="radianBtn"
+              onclick="setAngleMode('RAD')"
+            >
+              RAD
+            </button>
+
+            <button onclick="calcClear()">
+              AC
+            </button>
+
+          </div>
+
+          <div class="calc-grid">
+
+            <button onclick="calcInput('sin(')">sin</button>
+            <button onclick="calcInput('cos(')">cos</button>
+            <button onclick="calcInput('tan(')">tan</button>
+            <button onclick="calcInput('log(')">log</button>
+            <button onclick="calcInput('ln(')">ln</button>
+
+            <button onclick="calcInput('asin(')">sin⁻¹</button>
+            <button onclick="calcInput('acos(')">cos⁻¹</button>
+            <button onclick="calcInput('atan(')">tan⁻¹</button>
+            <button onclick="calcInput('√(')">√</button>
+            <button onclick="calcInput('^')">xʸ</button>
+
+            <button onclick="calcInput('π')">π</button>
+            <button onclick="calcInput('e')">e</button>
+            <button onclick="calcInput('(')">(</button>
+            <button onclick="calcInput(')')">)</button>
+            <button onclick="calcInput('!')">x!</button>
+
+            <button onclick="calcInput('7')">7</button>
+            <button onclick="calcInput('8')">8</button>
+            <button onclick="calcInput('9')">9</button>
+
+            <button
+              class="operator"
+              onclick="calcInput('÷')"
+            >
+              ÷
+            </button>
+
+            <button onclick="calcDelete()">DEL</button>
+
+            <button onclick="calcInput('4')">4</button>
+            <button onclick="calcInput('5')">5</button>
+            <button onclick="calcInput('6')">6</button>
+
+            <button
+              class="operator"
+              onclick="calcInput('×')"
+            >
+              ×
+            </button>
+
+            <button onclick="calcAns()">Ans</button>
+
+            <button onclick="calcInput('1')">1</button>
+            <button onclick="calcInput('2')">2</button>
+            <button onclick="calcInput('3')">3</button>
+
+            <button
+              class="operator"
+              onclick="calcInput('-')"
+            >
+              −
+            </button>
+
+            <button onclick="calcInput('%')">%</button>
+
+            <button onclick="calcInput('0')">0</button>
+            <button onclick="calcInput('.')">.</button>
+
+            <button
+              class="equals"
+              onclick="calculateScientific()"
+            >
+              =
+            </button>
+
+            <button
+              class="operator"
+              onclick="calcInput('+')"
+            >
+              +
+            </button>
+
+          </div>
+
+          <div class="calc-history">
+
+            <div class="calc-history-title">
+              Calculation History
+            </div>
+
+            <div id="calcHistory">
+              No calculations yet.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PROFILE ================= -->
 
     <section
       id="profileSection"
@@ -1399,7 +1550,6 @@ input:focus,select:focus{
         </p>
 
       </div>
-
 
       <div class="panel">
 
@@ -1436,7 +1586,7 @@ input:focus,select:focus{
 </div>
 
 
-<!-- MOBILE NAV -->
+<!-- ================= MOBILE NAV ================= -->
 
 <nav class="mobile-nav">
 
@@ -1451,6 +1601,12 @@ input:focus,select:focus{
     onclick="mobileNav('gpa',this)"
   >
     GPA
+  </button>
+
+  <button
+    onclick="mobileNav('calculator',this)"
+  >
+    Calculator
   </button>
 
   <button
@@ -1592,42 +1748,35 @@ window.toggleAuth=function(){
 
   signupMode=!signupMode;
 
-  document.getElementById("authTitle")
-  .textContent=
-  signupMode
-  ?"Create your account"
-  :"Welcome back";
+  document.getElementById("authTitle").textContent =
+    signupMode
+    ? "Create your account"
+    : "Welcome back";
 
-  document.getElementById("authDesc")
-  .textContent=
-  signupMode
-  ?"Create your profile and start tracking your HSC preparation."
-  :"Sign in to continue your study journey.";
+  document.getElementById("authDesc").textContent =
+    signupMode
+    ? "Create your profile and start tracking your HSC preparation."
+    : "Sign in to continue your study journey.";
 
-  document.getElementById("authBtn")
-  .textContent=
-  signupMode
-  ?"Create Account"
-  :"Sign In";
+  document.getElementById("authBtn").textContent =
+    signupMode
+    ? "Create Account"
+    : "Sign In";
 
-  document.getElementById("signupFields")
-  .classList
-  .toggle(
-    "hidden",
-    !signupMode
-  );
+  document
+    .getElementById("signupFields")
+    .classList
+    .toggle("hidden",!signupMode);
 
-  document.getElementById("switchText")
-  .textContent=
-  signupMode
-  ?"Already have an account?"
-  :"Don't have an account?";
+  document.getElementById("switchText").textContent =
+    signupMode
+    ? "Already have an account?"
+    : "Don't have an account?";
 
-  document.getElementById("switchBtn")
-  .textContent=
-  signupMode
-  ?"Sign in"
-  :"Create account";
+  document.getElementById("switchBtn").textContent =
+    signupMode
+    ? "Sign in"
+    : "Create account";
 
   clearMessage();
 
@@ -1639,9 +1788,7 @@ function showMessage(text,type="error"){
   const box=
   document.getElementById("authMessage");
 
-  box.className=
-  "message "+type;
-
+  box.className="message "+type;
   box.textContent=text;
 
 }
@@ -1653,7 +1800,6 @@ function clearMessage(){
   document.getElementById("authMessage");
 
   box.className="message";
-
   box.textContent="";
 
 }
@@ -1668,14 +1814,10 @@ window.authAction=async function(){
   clearMessage();
 
   const email=
-  document.getElementById("email")
-  .value
-  .trim();
+  document.getElementById("email").value.trim();
 
   const password=
-  document.getElementById("password")
-  .value;
-
+  document.getElementById("password").value;
 
   if(!email||!password){
 
@@ -1684,9 +1826,7 @@ window.authAction=async function(){
     );
 
     return;
-
   }
-
 
   if(password.length<6){
 
@@ -1695,9 +1835,7 @@ window.authAction=async function(){
     );
 
     return;
-
   }
-
 
   try{
 
@@ -1707,15 +1845,10 @@ window.authAction=async function(){
       document.getElementById("batch").value;
 
       const college=
-      document.getElementById("college")
-      .value
-      .trim();
+      document.getElementById("college").value.trim();
 
       const zilla=
-      document.getElementById("zilla")
-      .value
-      .trim();
-
+      document.getElementById("zilla").value.trim();
 
       if(!college||!zilla){
 
@@ -1724,9 +1857,7 @@ window.authAction=async function(){
         );
 
         return;
-
       }
-
 
       const {data,error}=
       await db.auth.signUp({
@@ -1744,16 +1875,11 @@ window.authAction=async function(){
 
       });
 
-
-      if(error)
-        throw error;
-
+      if(error) throw error;
 
       if(data.session){
 
-        await ensureProfile(
-          data.user
-        );
+        await ensureProfile(data.user);
 
         showMessage(
           "Account created successfully.",
@@ -1773,20 +1899,13 @@ window.authAction=async function(){
 
       const {data,error}=
       await db.auth.signInWithPassword({
-
         email,
         password
-
       });
 
+      if(error) throw error;
 
-      if(error)
-        throw error;
-
-
-      await loadUser(
-        data.user
-      );
+      await loadUser(data.user);
 
     }
 
@@ -1799,13 +1918,11 @@ window.authAction=async function(){
     "Something went wrong.";
 
     if(
-      msg
-      .toLowerCase()
+      msg.toLowerCase()
       .includes("invalid login credentials")
     ){
 
-      msg=
-      "Incorrect email or password.";
+      msg="Incorrect email or password.";
 
     }
 
@@ -1824,21 +1941,16 @@ async function ensureProfile(user){
 
   let {data,error}=
   await db
-  .from("profiles")
-  .select("*")
-  .eq("id",user.id)
-  .maybeSingle();
+    .from("profiles")
+    .select("*")
+    .eq("id",user.id)
+    .maybeSingle();
 
-
-  if(error)
-    throw error;
-
+  if(error) throw error;
 
   if(!data){
 
-    const meta=
-    user.user_metadata||{};
-
+    const meta=user.user_metadata||{};
 
     const profile={
 
@@ -1864,24 +1976,19 @@ async function ensureProfile(user){
 
     };
 
-
     const result=
     await db
-    .from("profiles")
-    .insert(profile)
-    .select()
-    .single();
-
+      .from("profiles")
+      .insert(profile)
+      .select()
+      .single();
 
     if(result.error)
       throw result.error;
 
-
-    data=
-    result.data;
+    data=result.data;
 
   }
-
 
   return data;
 
@@ -1890,31 +1997,22 @@ async function ensureProfile(user){
 
 async function loadUser(user){
 
-  currentUser=
-  user;
+  currentUser=user;
 
   userData=
   await ensureProfile(user);
 
+  document
+    .getElementById("authPage")
+    .classList.add("hidden");
 
   document
-  .getElementById("authPage")
-  .classList
-  .add("hidden");
-
-
-  document
-  .getElementById("app")
-  .classList
-  .remove("hidden");
-
+    .getElementById("app")
+    .classList.remove("hidden");
 
   renderProfile();
-
   renderSyllabus();
-
   renderSubjectCards();
-
   updateDashboard();
 
 }
@@ -1927,16 +2025,11 @@ async function loadUser(user){
 db.auth.onAuthStateChange(
   async(event,session)=>{
 
-    if(
-      session &&
-      !currentUser
-    ){
+    if(session && !currentUser){
 
       try{
 
-        await loadUser(
-          session.user
-        );
+        await loadUser(session.user);
 
       }catch(error){
 
@@ -1946,23 +2039,18 @@ db.auth.onAuthStateChange(
 
     }
 
-
     if(!session){
 
       currentUser=null;
-
       userData=null;
 
       document
-      .getElementById("authPage")
-      .classList
-      .remove("hidden");
-
+        .getElementById("authPage")
+        .classList.remove("hidden");
 
       document
-      .getElementById("app")
-      .classList
-      .add("hidden");
+        .getElementById("app")
+        .classList.add("hidden");
 
     }
 
@@ -1985,34 +2073,23 @@ window.logout=async function(){
    NAVIGATION
 ===================================================== */
 
-window.showSection=function(
-  section,
-  btn
-){
+window.showSection=function(section,btn){
 
   document
-  .querySelectorAll(".section")
-  .forEach(
-    el=>
-    el.classList.remove("active")
-  );
-
+    .querySelectorAll(".section")
+    .forEach(el=>{
+      el.classList.remove("active");
+    });
 
   document
-  .getElementById(
-    section+"Section"
-  )
-  .classList
-  .add("active");
-
+    .getElementById(section+"Section")
+    .classList.add("active");
 
   document
-  .querySelectorAll(".nav-btn")
-  .forEach(
-    el=>
-    el.classList.remove("active")
-  );
-
+    .querySelectorAll(".nav-btn")
+    .forEach(el=>{
+      el.classList.remove("active");
+    });
 
   if(btn)
     btn.classList.add("active");
@@ -2020,26 +2097,15 @@ window.showSection=function(
 };
 
 
-window.mobileNav=function(
-  section,
-  btn
-){
+window.mobileNav=function(section,btn){
 
-  showSection(
-    section,
-    null
-  );
-
+  showSection(section,null);
 
   document
-  .querySelectorAll(
-    ".mobile-nav button"
-  )
-  .forEach(
-    el=>
-    el.classList.remove("active")
-  );
-
+    .querySelectorAll(".mobile-nav button")
+    .forEach(el=>{
+      el.classList.remove("active");
+    });
 
   btn.classList.add("active");
 
@@ -2053,37 +2119,24 @@ window.mobileNav=function(
 function renderProfile(){
 
   document
-  .getElementById("userEmail")
-  .textContent=
-  currentUser.email;
-
+    .getElementById("userEmail")
+    .textContent=currentUser.email;
 
   document
-  .getElementById("profileEmail")
-  .textContent=
-  currentUser.email||
-  "—";
-
+    .getElementById("profileEmail")
+    .textContent=currentUser.email||"—";
 
   document
-  .getElementById("profileBatch")
-  .textContent=
-  userData.batch||
-  "—";
-
+    .getElementById("profileBatch")
+    .textContent=userData.batch||"—";
 
   document
-  .getElementById("profileCollege")
-  .textContent=
-  userData.college||
-  "—";
-
+    .getElementById("profileCollege")
+    .textContent=userData.college||"—";
 
   document
-  .getElementById("profileZilla")
-  .textContent=
-  userData.zilla||
-  "—";
+    .getElementById("profileZilla")
+    .textContent=userData.zilla||"—";
 
 }
 
@@ -2092,19 +2145,9 @@ function renderProfile(){
    CHAPTER KEY
 ===================================================== */
 
-function chapterKey(
-  subject,
-  paper,
-  index
-){
+function chapterKey(subject,paper,index){
 
-  return(
-    subject+
-    "|" +
-    paper+
-    "|" +
-    index
-  );
+  return subject+"|"+paper+"|"+index;
 
 }
 
@@ -2116,62 +2159,35 @@ function chapterKey(
 function getSubjectStats(subject){
 
   let total=0;
-
   let done=0;
 
+  Object.entries(syllabus[subject])
+  .forEach(([paper,chapters])=>{
 
-  Object.entries(
-    syllabus[subject]
-  )
-  .forEach(
-    ([paper,chapters])=>{
+    chapters.forEach((_,index)=>{
 
-      chapters.forEach(
-        (_,index)=>{
+      total++;
 
-          total++;
+      const key=
+      chapterKey(subject,paper,index);
 
-          const key=
-          chapterKey(
-            subject,
-            paper,
-            index
-          );
+      if(
+        userData.progress?.[key]==="done"
+      ){
+        done++;
+      }
 
+    });
 
-          if(
-            userData
-            .progress?.[key]
-            ===
-            "done"
-          ){
-
-            done++;
-
-          }
-
-        }
-      );
-
-    }
-  );
-
+  });
 
   return{
-
     total,
-
     done,
-
     percent:
-    total
-    ?
-    Math.round(
-      done/total*100
-    )
-    :
-    0
-
+      total
+      ? Math.round(done/total*100)
+      : 0
   };
 
 }
@@ -2184,30 +2200,20 @@ function getSubjectStats(subject){
 function renderSubjectCards(){
 
   const box=
-  document.getElementById(
-    "subjectCards"
-  );
+  document.getElementById("subjectCards");
 
   box.innerHTML="";
-
 
   Object.keys(syllabus)
   .forEach(subject=>{
 
     const stats=
-    getSubjectStats(
-      subject
-    );
-
+    getSubjectStats(subject);
 
     const card=
-    document.createElement(
-      "div"
-    );
+    document.createElement("div");
 
-    card.className=
-    "subject-card";
-
+    card.className="subject-card";
 
     card.innerHTML=`
 
@@ -2238,7 +2244,6 @@ function renderSubjectCards(){
 
     `;
 
-
     box.appendChild(card);
 
   });
@@ -2253,215 +2258,150 @@ function renderSubjectCards(){
 function renderSyllabus(){
 
   const box=
-  document.getElementById(
-    "syllabus"
-  );
+  document.getElementById("syllabus");
 
   box.innerHTML="";
 
-
   Object.entries(syllabus)
-  .forEach(
-    ([subject,papers])=>{
+  .forEach(([subject,papers])=>{
 
-      const subjectStats=
-      getSubjectStats(
-        subject
-      );
+    const subjectStats=
+    getSubjectStats(subject);
 
+    const subjectBlock=
+    document.createElement("div");
 
-      const subjectBlock=
-      document.createElement(
-        "div"
-      );
+    subjectBlock.className="subject-block";
 
-      subjectBlock.className=
-      "subject-block";
+    subjectBlock.innerHTML=`
 
+      <div class="subject-heading">
 
-      subjectBlock.innerHTML=`
+        <h2>${subject}</h2>
 
-        <div class="subject-heading">
+        <div class="count">
+          ${subjectStats.done}/${subjectStats.total} completed
+        </div>
 
-          <h2>${subject}</h2>
+      </div>
 
-          <div class="count">
-            ${subjectStats.done}/${subjectStats.total} completed
+    `;
+
+    Object.entries(papers)
+    .forEach(([paper,chapters])=>{
+
+      let paperDone=0;
+
+      chapters.forEach((_,index)=>{
+
+        const key=
+        chapterKey(subject,paper,index);
+
+        if(
+          userData.progress?.[key]==="done"
+        ){
+          paperDone++;
+        }
+
+      });
+
+      const paperBox=
+      document.createElement("div");
+
+      paperBox.className="paper";
+
+      paperBox.innerHTML=`
+
+        <div class="paper-head">
+
+          <div class="paper-title">
+            ${paper}
+          </div>
+
+          <div class="paper-progress">
+            ${paperDone}/${chapters.length}
           </div>
 
         </div>
 
       `;
 
+      chapters.forEach((chapter,index)=>{
 
-      Object.entries(papers)
-      .forEach(
-        ([paper,chapters])=>{
+        const key=
+        chapterKey(subject,paper,index);
 
-          let paperDone=0;
+        const status=
+        userData.progress?.[key]||
+        "not_started";
 
+        const row=
+        document.createElement("div");
 
-          chapters.forEach(
-            (_,index)=>{
+        row.className="chapter";
 
-              const key=
-              chapterKey(
-                subject,
-                paper,
-                index
-              );
+        row.innerHTML=`
 
+          <div class="chapter-number">
+            ${String(index+1).padStart(2,"0")}
+          </div>
 
-              if(
-                userData
-                .progress?.[key]
-                ===
-                "done"
-              ){
+          <div class="chapter-info">
 
-                paperDone++;
-
-              }
-
-            }
-          );
-
-
-          const paperBox=
-          document.createElement(
-            "div"
-          );
-
-          paperBox.className=
-          "paper";
-
-
-          paperBox.innerHTML=`
-
-            <div class="paper-head">
-
-              <div class="paper-title">
-                ${paper}
-              </div>
-
-              <div class="paper-progress">
-                ${paperDone}/${chapters.length}
-              </div>
-
+            <div class="chapter-name">
+              ${chapter}
             </div>
 
-          `;
+            <div class="chapter-status">
+              ${statusText(status)}
+            </div>
 
+          </div>
 
-          chapters.forEach(
-            (chapter,index)=>{
+          <select class="status-select">
 
-              const key=
-              chapterKey(
-                subject,
-                paper,
-                index
-              );
+            <option value="not_started">
+              Not Started
+            </option>
 
+            <option value="running">
+              Running
+            </option>
 
-              const status=
-              userData
-              .progress?.[key]
-              ||
-              "not_started";
+            <option value="done">
+              Done
+            </option>
 
+          </select>
 
-              const row=
-              document.createElement(
-                "div"
-              );
+        `;
 
-              row.className=
-              "chapter";
+        const select=
+        row.querySelector("select");
 
+        select.value=status;
 
-              row.innerHTML=`
+        select.addEventListener(
+          "change",
+          ()=>{
+            changeProgress(
+              key,
+              select.value
+            );
+          }
+        );
 
-                <div class="chapter-number">
-                  ${String(index+1).padStart(2,"0")}
-                </div>
+        paperBox.appendChild(row);
 
-                <div class="chapter-info">
+      });
 
-                  <div class="chapter-name">
-                    ${chapter}
-                  </div>
+      subjectBlock.appendChild(paperBox);
 
-                  <div class="chapter-status">
-                    ${statusText(status)}
-                  </div>
+    });
 
-                </div>
+    box.appendChild(subjectBlock);
 
-                <select
-                  class="status-select"
-                >
-
-                  <option value="not_started">
-                    Not Started
-                  </option>
-
-                  <option value="running">
-                    Running
-                  </option>
-
-                  <option value="done">
-                    Done
-                  </option>
-
-                </select>
-
-              `;
-
-
-              const select=
-              row.querySelector(
-                "select"
-              );
-
-
-              select.value=
-              status;
-
-
-              select.addEventListener(
-                "change",
-                ()=>{
-                  changeProgress(
-                    key,
-                    select.value
-                  );
-                }
-              );
-
-
-              paperBox.appendChild(
-                row
-              );
-
-            }
-          );
-
-
-          subjectBlock.appendChild(
-            paperBox
-          );
-
-        }
-      );
-
-
-      box.appendChild(
-        subjectBlock
-      );
-
-    }
-  );
+  });
 
 }
 
@@ -2483,29 +2423,19 @@ function statusText(status){
    SAVE PROGRESS
 ===================================================== */
 
-async function changeProgress(
-  key,
-  status
-){
+async function changeProgress(key,status){
 
-  if(!userData)
-    return;
-
+  if(!userData) return;
 
   userData.progress=
-  userData.progress||
-  {};
+  userData.progress||{};
 
   userData.history=
-  userData.history||
-  [];
-
+  userData.history||[];
 
   const old=
-  userData.progress[key]
-  ||
+  userData.progress[key]||
   "not_started";
-
 
   if(
     old!=="done" &&
@@ -2513,40 +2443,27 @@ async function changeProgress(
   ){
 
     userData.history.push({
-
       time:Date.now(),
-
       key:key
-
     });
 
   }
 
-
-  userData.progress[key]=
-  status;
-
+  userData.progress[key]=status;
 
   const {error}=
   await db
-  .from("profiles")
-  .update({
+    .from("profiles")
+    .update({
 
-    progress:
-    userData.progress,
+      progress:userData.progress,
 
-    history:
-    userData.history,
+      history:userData.history,
 
-    updated_at:
-    new Date().toISOString()
+      updated_at:new Date().toISOString()
 
-  })
-  .eq(
-    "id",
-    currentUser.id
-  );
-
+    })
+    .eq("id",currentUser.id);
 
   if(error){
 
@@ -2559,11 +2476,8 @@ async function changeProgress(
 
   }
 
-
   renderSyllabus();
-
   renderSubjectCards();
-
   updateDashboard();
 
 }
@@ -2576,87 +2490,50 @@ async function changeProgress(
 function updateDashboard(){
 
   let total=0;
-
   let done=0;
 
+  Object.values(syllabus)
+  .forEach(papers=>{
+
+    Object.values(papers)
+    .forEach(chapters=>{
+
+      total+=chapters.length;
+
+    });
+
+  });
 
   Object.values(
-    syllabus
+    userData.progress||{}
   )
-  .forEach(
-    papers=>{
+  .forEach(status=>{
 
-      Object.values(
-        papers
-      )
-      .forEach(
-        chapters=>{
+    if(status==="done")
+      done++;
 
-          total+=
-          chapters.length;
-
-        }
-      );
-
-    }
-  );
-
-
-  Object.values(
-    userData.progress||
-    {}
-  )
-  .forEach(
-    status=>{
-
-      if(status==="done")
-        done++;
-
-    }
-  );
-
+  });
 
   const percent=
   total
-  ?
-  Math.round(
-    done/total*100
-  )
-  :
-  0;
-
+  ? Math.round(done/total*100)
+  : 0;
 
   document
-  .getElementById(
-    "overallPercent"
-  )
-  .textContent=
-  percent+"%";
-
+    .getElementById("overallPercent")
+    .textContent=percent+"%";
 
   document
-  .getElementById(
-    "overallText"
-  )
-  .textContent=
-  done+
-  " / "+
-  total;
-
+    .getElementById("overallText")
+    .textContent=
+    done+" / "+total;
 
   document
-  .getElementById(
-    "completedCount"
-  )
-  .textContent=
-  done;
-
+    .getElementById("completedCount")
+    .textContent=done;
 
   const circle=
-  document.getElementById(
-    "progressCircle"
-  );
-
+  document.getElementById("progressCircle");
 
   circle.style.background=
   `conic-gradient(
@@ -2666,48 +2543,32 @@ function updateDashboard(){
     ${percent*3.6}deg
   )`;
 
-
-  const now=
-  Date.now();
-
+  const now=Date.now();
 
   const history=
-  userData.history||
-  [];
-
+  userData.history||[];
 
   const seven=
   history.filter(
     item=>
-    now-item.time
-    <=
-    7*24*60*60*1000
+      now-item.time<=
+      7*24*60*60*1000
   ).length;
-
 
   const thirty=
   history.filter(
     item=>
-    now-item.time
-    <=
-    30*24*60*60*1000
+      now-item.time<=
+      30*24*60*60*1000
   ).length;
 
+  document
+    .getElementById("sevenDays")
+    .textContent=seven;
 
   document
-  .getElementById(
-    "sevenDays"
-  )
-  .textContent=
-  seven;
-
-
-  document
-  .getElementById(
-    "thirtyDays"
-  )
-  .textContent=
-  thirty;
+    .getElementById("thirtyDays")
+    .textContent=thirty;
 
 }
 
@@ -2719,34 +2580,30 @@ function updateDashboard(){
 window.calculateGPA=function(){
 
   const ids=[
-
     "gBangla",
     "gEnglish",
     "gICT",
     "gPhysics",
     "gChemistry",
     "gMath"
-
   ];
-
 
   const values=
   ids.map(
     id=>
-    Number(
-      document
-      .getElementById(id)
-      .value
-    )
+      Number(
+        document
+          .getElementById(id)
+          .value
+      )
   );
-
 
   if(
     values.some(
       value=>
-      isNaN(value)||
-      value<0||
-      value>5
+        isNaN(value)||
+        value<0||
+        value>5
     )
   ){
 
@@ -2758,69 +2615,376 @@ window.calculateGPA=function(){
 
   }
 
-
   let total=
   values.reduce(
-    (a,b)=>
-    a+b,
+    (a,b)=>a+b,
     0
   );
-
 
   const biology=
   Number(
     document
-    .getElementById(
-      "gBiology"
-    )
-    .value
+      .getElementById("gBiology")
+      .value
   );
 
-
   if(
-    !isNaN(biology) &&
+    !isNaN(biology)&&
     biology>2
   ){
 
-    total+=
-    biology-2;
+    total+=biology-2;
 
   }
 
+  let gpa=total/6;
 
-  let gpa=
-  total/6;
+  gpa=Math.min(5,gpa);
 
-
-  gpa=
-  Math.min(
-    5,
-    gpa
-  );
-
-
-  gpa=
-  Math.round(
-    gpa*100
-  )/100;
-
+  gpa=Math.round(gpa*100)/100;
 
   document
-  .getElementById(
-    "gpaResult"
-  )
-  .classList
-  .remove("hidden");
-
+    .getElementById("gpaResult")
+    .classList
+    .remove("hidden");
 
   document
-  .getElementById(
-    "gpaValue"
-  )
-  .textContent=
-  gpa.toFixed(2);
+    .getElementById("gpaValue")
+    .textContent=
+    gpa.toFixed(2);
 
 };
+
+
+/* =====================================================
+   SCIENTIFIC CALCULATOR
+===================================================== */
+
+let calcExpression="";
+let calcAnswer=0;
+let angleMode="DEG";
+
+
+function updateCalculator(){
+
+  document
+    .getElementById("calcExpression")
+    .textContent=calcExpression;
+
+  document
+    .getElementById("calcResult")
+    .textContent=
+    calcExpression
+    ? calcExpression
+    : "0";
+
+}
+
+
+window.calcInput=function(value){
+
+  calcExpression+=value;
+
+  updateCalculator();
+
+};
+
+
+window.calcClear=function(){
+
+  calcExpression="";
+  calcAnswer=0;
+
+  document
+    .getElementById("calcExpression")
+    .textContent="";
+
+  document
+    .getElementById("calcResult")
+    .textContent="0";
+
+};
+
+
+window.calcDelete=function(){
+
+  calcExpression=
+  calcExpression.slice(0,-1);
+
+  updateCalculator();
+
+};
+
+
+window.calcAns=function(){
+
+  calcExpression+=String(calcAnswer);
+
+  updateCalculator();
+
+};
+
+
+window.setAngleMode=function(mode){
+
+  angleMode=mode;
+
+  document
+    .getElementById("degreeBtn")
+    .classList
+    .toggle(
+      "mode-active",
+      mode==="DEG"
+    );
+
+  document
+    .getElementById("radianBtn")
+    .classList
+    .toggle(
+      "mode-active",
+      mode==="RAD"
+    );
+
+};
+
+
+function factorial(n){
+
+  if(
+    !Number.isFinite(n)||
+    n<0||
+    !Number.isInteger(n)||
+    n>170
+  ){
+
+    throw new Error(
+      "Invalid factorial"
+    );
+
+  }
+
+  let result=1;
+
+  for(let i=2;i<=n;i++){
+    result*=i;
+  }
+
+  return result;
+
+}
+
+
+function toRadians(x){
+
+  return angleMode==="DEG"
+    ? x*Math.PI/180
+    : x;
+
+}
+
+
+function fromRadians(x){
+
+  return angleMode==="DEG"
+    ? x*180/Math.PI
+    : x;
+
+}
+
+
+function safeEvaluate(expression){
+
+  let exp=expression;
+
+  exp=exp.replaceAll("π","Math.PI");
+  exp=exp.replaceAll("√","Math.sqrt");
+  exp=exp.replaceAll("×","*");
+  exp=exp.replaceAll("÷","/");
+  exp=exp.replaceAll("^","**");
+
+  /*
+    e is handled only when it appears
+    as a standalone constant.
+  */
+
+  exp=exp.replace(
+    /\be\b/g,
+    "Math.E"
+  );
+
+  exp=exp.replaceAll("sin(","SIN(");
+  exp=exp.replaceAll("cos(","COS(");
+  exp=exp.replaceAll("tan(","TAN(");
+
+  exp=exp.replaceAll("asin(","ASIN(");
+  exp=exp.replaceAll("acos(","ACOS(");
+  exp=exp.replaceAll("atan(","ATAN(");
+
+  exp=exp.replaceAll(
+    "log(",
+    "Math.log10("
+  );
+
+  exp=exp.replaceAll(
+    "ln(",
+    "Math.log("
+  );
+
+  exp=exp.replace(
+    /(\d+(?:\.\d+)?)!/g,
+    "FACT($1)"
+  );
+
+  exp=exp.replace(
+    /(\d+(?:\.\d+)?)%/g,
+    "($1/100)"
+  );
+
+  const SIN=
+    x=>Math.sin(toRadians(x));
+
+  const COS=
+    x=>Math.cos(toRadians(x));
+
+  const TAN=
+    x=>Math.tan(toRadians(x));
+
+  const ASIN=
+    x=>fromRadians(Math.asin(x));
+
+  const ACOS=
+    x=>fromRadians(Math.acos(x));
+
+  const ATAN=
+    x=>fromRadians(Math.atan(x));
+
+  const FACT=
+    x=>factorial(x);
+
+  /*
+    Allow only calculator-generated
+    mathematical characters/functions.
+  */
+
+  if(
+    !/^[0-9+\-*/().,\sA-Z_]+$/.test(exp)
+  ){
+
+    throw new Error(
+      "Invalid expression"
+    );
+
+  }
+
+  return Function(
+    "SIN",
+    "COS",
+    "TAN",
+    "ASIN",
+    "ACOS",
+    "ATAN",
+    "FACT",
+    `"use strict"; return (${exp})`
+  )(
+    SIN,
+    COS,
+    TAN,
+    ASIN,
+    ACOS,
+    ATAN,
+    FACT
+  );
+
+}
+
+
+window.calculateScientific=function(){
+
+  if(!calcExpression)
+    return;
+
+  try{
+
+    const result=
+    safeEvaluate(calcExpression);
+
+    if(!Number.isFinite(result)){
+      throw new Error("Invalid result");
+    }
+
+    calcAnswer=result;
+
+    const rounded=
+      Math.abs(result)<1e-12
+      ? 0
+      : Number(
+          result.toPrecision(12)
+        );
+
+    document
+      .getElementById("calcResult")
+      .textContent=
+      String(rounded);
+
+    addCalcHistory(
+      calcExpression,
+      rounded
+    );
+
+    calcExpression=
+      String(rounded);
+
+  }catch(error){
+
+    console.error(error);
+
+    document
+      .getElementById("calcResult")
+      .textContent="Error";
+
+  }
+
+};
+
+
+function addCalcHistory(
+  expression,
+  result
+){
+
+  const box=
+  document.getElementById("calcHistory");
+
+  if(
+    box.textContent===
+    "No calculations yet."
+  ){
+
+    box.innerHTML="";
+
+  }
+
+  const item=
+  document.createElement("div");
+
+  item.className="history-item";
+
+  const expressionNode=
+  document.createTextNode(
+    expression+" = "
+  );
+
+  const resultNode=
+  document.createElement("strong");
+
+  resultNode.textContent=String(result);
+
+  item.appendChild(expressionNode);
+  item.appendChild(resultNode);
+
+  box.prepend(item);
+
+}
 
 
 /* =====================================================
@@ -2833,7 +2997,6 @@ window.calculateGPA=function(){
 
     const {data}=
     await db.auth.getSession();
-
 
     if(data.session){
 
@@ -2854,4 +3017,4 @@ window.calculateGPA=function(){
 </script>
 
 </body>
-  </html>
+          </html>
