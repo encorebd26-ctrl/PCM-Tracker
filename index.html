@@ -1,241 +1,778 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>PCM Tracker</title>
+<title>PCM Tracker</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  background:#f5f5f5;
+  color:#111;
+}
+
+header{
+  background:#111;
+  color:white;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+select{
+  padding:9px 12px;
+  border-radius:8px;
+  border:none;
+  font-weight:bold;
+}
+
+.hero{
+  padding:55px 6% 35px;
+  background:white;
+}
+
+.hero small{
+  color:#777;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+.hero h1{
+  font-size:clamp(38px,7vw,70px);
+  margin-top:12px;
+  line-height:1;
+}
+
+.hero h1 span{
+  color:#777;
+}
+
+.hero p{
+  color:#666;
+  max-width:600px;
+  margin-top:18px;
+  line-height:1.6;
+}
+
+.progress-area{
+  padding:25px 6%;
+  background:#111;
+  color:white;
+}
+
+.progress-text{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.progress-bar{
+  height:12px;
+  background:#333;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:white;
+  transition:.3s;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px 60px;
+}
+
+.tabs{
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+button{
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.tab{
+  padding:12px 20px;
+  border-radius:9px;
+  background:#ddd;
+}
+
+.tab.active{
+  background:#111;
+  color:white;
+}
+
+.paper{
+  display:flex;
+  gap:8px;
+  margin-bottom:25px;
+}
+
+.paper button{
+  padding:9px 15px;
+  border-radius:8px;
+  background:white;
+  border:1px solid #ddd;
+}
+
+.paper button.active{
+  background:#222;
+  color:white;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:20px 0;
+}
+
+.section-title h2{
+  font-size:30px;
+}
+
+.reset{
+  background:transparent;
+  color:#b00020;
+  border:1px solid #b00020;
+  padding:8px 12px;
+  border-radius:7px;
+}
+
+.chapter{
+  background:white;
+  padding:18px;
+  margin-bottom:10px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  border:2px solid transparent;
+  transition:.2s;
+}
+
+.chapter:hover{
+  transform:translateY(-2px);
+}
+
+.number{
+  width:42px;
+  height:42px;
+  background:#eee;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  color:#777;
+}
+
+.chapter-info{
+  flex:1;
+}
+
+.chapter-info h3{
+  font-size:17px;
+  margin-bottom:4px;
+}
+
+.chapter-info p{
+  font-size:12px;
+  color:#888;
+}
+
+.status{
+  display:flex;
+  gap:5px;
+}
+
+.status button{
+  width:35px;
+  height:35px;
+  border-radius:8px;
+  background:#eee;
+  color:#777;
+}
+
+.status button.active{
+  background:#111;
+  color:white;
+}
+
+.chapter.done{
+  border-color:#8bc48b;
+  background:#f0fff0;
+}
+
+.chapter.progress{
+  border-color:#e2c45a;
+  background:#fffbed;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#888;
+  border-top:1px solid #ddd;
+}
+
+@media(max-width:600px){
+
+  header{
+    padding:15px;
+  }
+
+  .hero{
+    padding:40px 20px 30px;
+  }
+
+  .container{
+    padding:25px 15px 50px;
+  }
+
+  .chapter{
+    display:grid;
+    grid-template-columns:40px 1fr;
+  }
+
+  .status{
+    grid-column:2;
+  }
+
+  .status button{
+    width:40px;
+    height:40px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    PCM TRACKER
+  </div>
+
+  <select id="batch">
+
+    <option>HSC 26</option>
+    <option>HSC 27</option>
+    <option>HSC 28</option>
+    <option>HSC 29</option>
+    <option>HSC 30</option>
+
+  </select>
+
+</header>
+
+
+<section class="hero">
+
+  <small>HSC 26 — 30</small>
+
+  <h1>
+    Track your<br>
+    <span>PCM syllabus.</span>
+  </h1>
+
+  <p>
+    Physics & Chemistry syllabus tracker.
+    কোন chapter পড়া হয়েছে, কোনটা চলছে আর কোনটা বাকি—
+    সবকিছু এক জায়গায় track করো।
+  </p>
+
+</section>
+
+
+<section class="progress-area">
+
+  <div class="progress-text">
+
+    <span>
+      Current Paper Progress
+    </span>
+
+    <b id="percent">
+      0%
+    </b>
+
+  </div>
+
+  <div class="progress-bar">
+
+    <div
+      class="progress-fill"
+      id="progressFill">
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="container">
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      onclick="changeSubject('Physics',this)">
+
+      Physics
+
+    </button>
+
+    <button
+      class="tab"
+      onclick="changeSubject('Chemistry',this)">
+
+      Chemistry
+
+    </button>
+
+  </div>
+
+
+  <div class="paper">
+
+    <button
+      class="active"
+      onclick="changePaper('1st Paper',this)">
+
+      1st Paper
+
+    </button>
+
+    <button
+      onclick="changePaper('2nd Paper',this)">
+
+      2nd Paper
+
+    </button>
+
+  </div>
+
+
+  <div class="section-title">
+
+    <div>
+
+      <h2 id="subjectTitle">
+        Physics
+      </h2>
+
+      <small id="paperTitle">
+        1st Paper
+      </small>
+
+    </div>
+
+    <button
+      class="reset"
+      onclick="resetProgress()">
+
+      Reset
+
+    </button>
+
+  </div>
+
+
+  <div id="chapters"></div>
+
+</div>
+
+
+<footer>
+
+  <b>PCM TRACKER</b>
+
+  <br>
+
+  HSC 26–30
+
+</footer>
+
+
+<script>
+
+const syllabus = {
+
+  Physics: {
+
+    "1st Paper":[
+
+      "ভৌত জগৎ ও পরিমাপ",
+      "ভেক্টর",
+      "গতিবিদ্যা",
+      "নিউটনিয়ান বলবিদ্যা",
+      "কাজ, শক্তি ও ক্ষমতা",
+      "মহাকর্ষ ও অভিকর্ষ",
+      "পদার্থের গাঠনিক ধর্ম",
+      "পর্যায়বৃত্ত গতি",
+      "তরঙ্গ",
+      "আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব"
+
+    ],
+
+    "2nd Paper":[
+
+      "তাপগতিবিদ্যা",
+      "স্থির তড়িৎ",
+      "চল তড়িৎ",
+      "তড়িৎ প্রবাহের চৌম্বক ক্রিয়া ও চুম্বকত্ব",
+      "তড়িৎচৌম্বকীয় আবেশ ও পরিবর্তী প্রবাহ",
+      "জ্যামিতিক আলোকবিজ্ঞান",
+      "ভৌত আলোকবিজ্ঞান",
+      "আধুনিক পদার্থবিজ্ঞানের সূচনা",
+      "পরমাণু ও নিউক্লিয়াসের পদার্থবিজ্ঞান",
+      "সেমিকন্ডাক্টর ও ইলেকট্রনিক্স"
+
+    ]
+
+  },
+
+
+  Chemistry: {
+
+    "1st Paper":[
+
+      "ল্যাবরেটরির নিরাপদ ব্যবহার",
+      "গুণগত রসায়ন",
+      "মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন",
+      "রাসায়নিক পরিবর্তন",
+      "কর্মমুখী রসায়ন"
+
+    ],
+
+    "2nd Paper":[
+
+      "পরিবেশ রসায়ন",
+      "জৈব রসায়ন",
+      "পরিমাণগত রসায়ন",
+      "তড়িৎ রসায়ন",
+      "অর্থনৈতিক ও শিল্প রসায়ন"
+
+    ]
+
+  }
+
+};
+
+
+let currentSubject="Physics";
+
+let currentPaper="1st Paper";
+
+
+function storageKey(){
+
+  const batch=
+    document.getElementById("batch").value;
+
+  return "pcm-"+batch+"-"+
+    currentSubject+"-"+
+    currentPaper;
+
+}
+
+
+function getData(){
+
+  return JSON.parse(
+    localStorage.getItem(storageKey()) || "{}"
+  );
+
+}
+
+
+function saveData(data){
+
+  localStorage.setItem(
+    storageKey(),
+    JSON.stringify(data)
+  );
+
+}
+
+
+function render(){
+
+  const chapters=
+    document.getElementById("chapters");
+
+  chapters.innerHTML="";
+
+  const data=getData();
+
+  const list=
+    syllabus[currentSubject][currentPaper];
+
+
+  list.forEach((name,index)=>{
+
+    const status=
+      data[index] || "none";
+
+
+    const div=
+      document.createElement("div");
+
+
+    div.className=
+      "chapter "+
+      (
+        status==="done"
+        ? "done"
+        : status==="progress"
+        ? "progress"
+        : ""
+      );
+
+
+    div.innerHTML=`
+
+      <div class="number">
+
+        ${String(index+1).padStart(2,"0")}
+
+      </div>
+
+
+      <div class="chapter-info">
+
+        <h3>
+          ${name}
+        </h3>
+
+        <p>
+
+          ${
+            status==="done"
+            ? "✓ Completed"
+            : status==="progress"
+            ? "◐ In Progress"
+            : "○ Not Started"
+          }
+
+        </p>
+
+      </div>
+
+
+      <div class="status">
+
+        <button
+          class="${
+            status==="none" ? "active" : ""
+          }"
+          onclick="setStatus(${index},'none')">
+
+          ○
+
+        </button>
+
+
+        <button
+          class="${
+            status==="progress" ? "active" : ""
+          }"
+          onclick="setStatus(${index},'progress')">
+
+          ◐
+
+        </button>
+
+
+        <button
+          class="${
+            status==="done" ? "active" : ""
+          }"
+          onclick="setStatus(${index},'done')">
+
+          ✓
+
+        </button>
+
+      </div>
+
+    `;
+
+
+    chapters.appendChild(div);
+
+  });
+
+
+  updateProgress();
+
+}
+
+
+function setStatus(index,status){
+
+  const data=getData();
+
+  data[index]=status;
+
+  saveData(data);
+
+  render();
+
+}
+
+
+function updateProgress(){
+
+  const list=
+    syllabus[currentSubject][currentPaper];
+
+  const data=getData();
+
+  let done=0;
+
+
+  list.forEach((_,index)=>{
+
+    if(data[index]==="done"){
+
+      done++;
+
     }
 
-    body {
-      font-family: Arial, "Noto Sans Bengali", sans-serif;
-      background: #f5f5f5;
-      color: #111;
-    }
+  });
 
-    header {
-      background: #111;
-      color: white;
-      padding: 18px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
 
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
+  const percent=
+    Math.round(
+      (done/list.length)*100
+    );
 
-    select {
-      padding: 9px 12px;
-      border-radius: 8px;
-      border: none;
-      font-weight: bold;
-    }
 
-    .hero {
-      padding: 55px 6% 35px;
-      background: white;
-    }
+  document.getElementById("percent")
+    .innerText=percent+"%";
 
-    .hero small {
-      color: #777;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
 
-    .hero h1 {
-      font-size: clamp(38px, 7vw, 70px);
-      margin-top: 12px;
-      line-height: 1;
-    }
+  document.getElementById("progressFill")
+    .style.width=percent+"%";
 
-    .hero h1 span {
-      color: #777;
-    }
+}
 
-    .hero p {
-      color: #666;
-      max-width: 600px;
-      margin-top: 18px;
-      line-height: 1.6;
-    }
 
-    .progress-area {
-      padding: 25px 6%;
-      background: #111;
-      color: white;
-    }
+function changeSubject(subject,button){
 
-    .progress-text {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
+  currentSubject=subject;
 
-    .progress-bar {
-      height: 12px;
-      background: #333;
-      border-radius: 20px;
-      overflow: hidden;
-    }
 
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: #fff;
-      transition: 0.3s;
-    }
+  document
+    .querySelectorAll(".tab")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px 20px 60px;
-    }
 
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
+  button.classList.add("active");
 
-    button {
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
 
-    .tab {
-      padding: 12px 20px;
-      border-radius: 9px;
-      background: #ddd;
-    }
+  document.getElementById(
+    "subjectTitle"
+  ).innerText=subject;
 
-    .tab.active {
-      background: #111;
-      color: white;
-    }
 
-    .paper {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 25px;
-    }
+  render();
 
-    .paper button {
-      padding: 9px 15px;
-      border-radius: 8px;
-      background: white;
-      border: 1px solid #ddd;
-    }
+}
 
-    .paper button.active {
-      background: #222;
-      color: white;
-    }
 
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 20px 0;
-    }
+function changePaper(paper,button){
 
-    .section-title h2 {
-      font-size: 30px;
-    }
+  currentPaper=paper;
 
-    .reset {
-      background: transparent;
-      color: #b00020;
-      border: 1px solid #b00020;
-      padding: 8px 12px;
-      border-radius: 7px;
-    }
 
-    .chapter {
-      background: white;
-      padding: 18px;
-      margin-bottom: 10px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      border: 2px solid transparent;
-      transition: .2s;
-    }
+  document
+    .querySelectorAll(".paper button")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
 
-    .chapter:hover {
-      transform: translateY(-2px);
-    }
 
-    .number {
-      width: 42px;
-      height: 42px;
-      background: #eee;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #777;
-    }
+  button.classList.add("active");
 
-    .chapter-info {
-      flex: 1;
-    }
 
-    .chapter-info h3 {
-      font-size: 17px;
-      margin-bottom: 4px;
-    }
+  document.getElementById(
+    "paperTitle"
+  ).innerText=paper;
 
-    .chapter-info p {
-      font-size: 12px;
-      color: #888;
-    }
 
-    .status {
-      display: flex;
-      gap: 5px;
-    }
+  render();
 
-    .status button {
-      width: 35px;
-      height: 35px;
-      border-radius: 8px;
-      background: #eee;
-      color: #777;
-    }
+}
 
-    .status button.active {
-      background: #111;
-      color: white;
-    }
 
-    .chapter.done {
-      border-color: #8bc48b;
-      background: #f0fff0;
-    }
+function resetProgress(){
 
-    .chapter.progress {
-      border-color: #e2c45a;
-      background: #fffbed;
-    }
+  const batch=
+    document.getElementById("batch").value;
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #888;
-      border-top: 1px solid #ddd;
+
+  const message=
+    batch+" — "+
+    currentSubject+" "+
+    currentPaper+
+    " এর progress reset করবেন?";
+
+
+  if(confirm(message)){
+
+    localStorage.removeItem(
+      storageKey()
+    );
+
+    render();
+
+  }
+
+}
+
+
+document
+  .getElementById("batch")
+  .addEventListener(
+    "change",
+    render
+  );
+
+
+render();
+
+</script>
+
+</body>
+  </html>
