@@ -7,12 +7,14 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
   background:#f5f7fb;
   color:#111827;
 }
+
 button,input,select{font:inherit}
 button{cursor:pointer;border:0}
 
@@ -24,8 +26,17 @@ button{cursor:pointer;border:0}
   justify-content:space-between;
   align-items:center;
 }
-.logo{font-size:22px;font-weight:800}
-.container{max-width:1100px;margin:auto;padding:20px}
+
+.logo{
+  font-size:22px;
+  font-weight:800;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
 
 .card{
   background:white;
@@ -35,7 +46,9 @@ button{cursor:pointer;border:0}
   box-shadow:0 4px 18px rgba(0,0,0,.06);
 }
 
-h1,h2,h3{margin-top:0}
+h1,h2,h3{
+  margin-top:0;
+}
 
 input,select{
   width:100%;
@@ -44,6 +57,7 @@ input,select{
   border-radius:10px;
   margin:6px 0 12px;
   outline:none;
+  background:white;
 }
 
 input:focus,select:focus{
@@ -57,13 +71,18 @@ input:focus,select:focus{
   border-radius:10px;
   font-weight:700;
 }
-.btn:hover{opacity:.9}
 
-.btn-danger{background:#dc2626}
-.btn-green{background:#16a34a}
-.btn-gray{background:#6b7280}
+.btn:hover{
+  opacity:.9;
+}
 
-.hidden{display:none!important}
+.btn-danger{
+  background:#dc2626;
+}
+
+.hidden{
+  display:none!important;
+}
 
 .auth{
   max-width:430px;
@@ -76,17 +95,35 @@ input:focus,select:focus{
   font-weight:700;
 }
 
+.error{
+  color:#dc2626;
+  background:#fef2f2;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:12px;
+}
+
+.success{
+  color:#166534;
+  background:#f0fdf4;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:12px;
+}
+
 .stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:12px;
 }
+
 .stat{
   background:#f8fafc;
   padding:18px;
   border-radius:14px;
   text-align:center;
 }
+
 .stat b{
   display:block;
   font-size:25px;
@@ -99,15 +136,22 @@ input:focus,select:focus{
   border-radius:20px;
   overflow:hidden;
 }
+
 .progress-bar{
   height:100%;
   background:#2563eb;
   width:0%;
+  transition:.3s;
 }
 
 .subject{
+  margin-bottom:25px;
+}
+
+.paper{
   margin-bottom:20px;
 }
+
 .chapter{
   display:flex;
   justify-content:space-between;
@@ -117,16 +161,16 @@ input:focus,select:focus{
   border:1px solid #e5e7eb;
   border-radius:12px;
   margin:8px 0;
-}
-.chapter-name{flex:1}
-.chapter select{
-  width:150px;
-  margin:0;
+  background:#fff;
 }
 
-.reward-box{
-  background:#ecfdf5;
-  border:1px solid #bbf7d0;
+.chapter-name{
+  flex:1;
+}
+
+.chapter select{
+  width:160px;
+  margin:0;
 }
 
 .gpa-grid{
@@ -136,25 +180,45 @@ input:focus,select:focus{
 }
 
 @media(max-width:700px){
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .chapter{flex-direction:column;align-items:stretch}
-  .chapter select{width:100%}
-  .gpa-grid{grid-template-columns:1fr}
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .chapter{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .chapter select{
+    width:100%;
+  }
+
+  .gpa-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
+<!-- ================= LOGIN / SIGNUP ================= -->
+
 <div id="authPage">
+
   <div class="auth card">
 
     <h1 id="authTitle">Login</h1>
-    <p id="authMessage"></p>
 
+    <div id="authMessage"></div>
+
+    <!-- SIGNUP ONLY -->
     <div id="signupFields" class="hidden">
 
       <label>HSC Batch</label>
+
       <select id="batch">
         <option value="HSC 26">HSC 26</option>
         <option value="HSC 27">HSC 27</option>
@@ -162,204 +226,279 @@ input:focus,select:focus{
       </select>
 
       <label>College Name</label>
-      <input id="college" placeholder="Your college name">
+      <input
+        id="college"
+        type="text"
+        placeholder="Your college name"
+      >
 
       <label>Zilla</label>
-      <input id="zilla" placeholder="Your district">
+      <input
+        id="zilla"
+        type="text"
+        placeholder="Your district"
+      >
 
     </div>
 
     <label>Email</label>
-    <input id="email" type="email" placeholder="Email">
+
+    <input
+      id="email"
+      type="email"
+      placeholder="Enter your email"
+    >
 
     <label>Password</label>
-    <input id="password" type="password" placeholder="Password">
 
-    <button class="btn" style="width:100%" onclick="authAction()" id="authBtn">
+    <input
+      id="password"
+      type="password"
+      placeholder="Enter your password"
+    >
+
+    <button
+      class="btn"
+      id="authBtn"
+      onclick="authAction()"
+      style="width:100%"
+    >
       Login
     </button>
 
     <p style="text-align:center;margin-top:18px">
-      <span id="switchText">Don't have an account?</span>
-      <span class="switch" onclick="toggleAuth()" id="switchBtn"> Sign Up</span>
+
+      <span id="switchText">
+        Don't have an account?
+      </span>
+
+      <span
+        class="switch"
+        id="switchBtn"
+        onclick="toggleAuth()"
+      >
+        Sign Up
+      </span>
+
     </p>
 
   </div>
+
 </div>
 
+
+<!-- ================= MAIN APP ================= -->
 
 <div id="app" class="hidden">
 
 <header class="header">
-  <div class="logo">📚 PCM Tracker</div>
-  <button class="btn btn-danger" onclick="logout()">Logout</button>
+
+  <div class="logo">
+    📚 PCM Tracker
+  </div>
+
+  <button
+    class="btn btn-danger"
+    onclick="logout()"
+  >
+    Logout
+  </button>
+
 </header>
+
 
 <div class="container">
 
+
+<!-- DASHBOARD -->
+
 <div class="card">
-  <h2>Dashboard</h2>
+
+  <h2>📊 Dashboard</h2>
+
   <p id="welcome"></p>
 
   <div class="stats">
+
     <div class="stat">
       Overall
       <b id="overall">0%</b>
     </div>
 
     <div class="stat">
-      Done
+      Completed
       <b id="doneCount">0</b>
     </div>
 
     <div class="stat">
-      Points
-      <b id="points">0</b>
+      7 Days
+      <b id="sevenDays">0</b>
     </div>
 
     <div class="stat">
-      Reward
-      <b id="reward">৳0</b>
+      30 Days
+      <b id="thirtyDays">0</b>
     </div>
+
   </div>
 
   <br>
 
   <div class="progress-wrap">
-    <div class="progress-bar" id="overallBar"></div>
+    <div
+      class="progress-bar"
+      id="overallBar"
+    ></div>
   </div>
+
 </div>
 
+
+<!-- GPA -->
 
 <div class="card">
-<h2>📊 Progress</h2>
 
-<div class="stats">
+  <h2>🧮 GPA Calculator</h2>
 
-<div class="stat">
-7 Days
-<b id="sevenDays">0</b>
+  <div class="gpa-grid">
+
+    <div>
+      <label>Bangla</label>
+      <input
+        id="gBangla"
+        type="number"
+        min="0"
+        max="5"
+        step="0.01"
+        placeholder="0 - 5"
+      >
+    </div>
+
+    <div>
+      <label>English</label>
+      <input
+        id="gEnglish"
+        type="number"
+        min="0"
+        max="5"
+        step="0.01"
+        placeholder="0 - 5"
+      >
+    </div>
+
+    <div>
+      <label>ICT</label>
+      <input
+        id="gICT"
+        type="number"
+        min="0"
+        max="5"
+        step="0.01"
+        placeholder="0 - 5"
+      >
+    </div>
+
+    <div>
+      <label>Physics</label>
+      <input
+        id="gPhysics"
+        type="number"
+        min="0"
+        max="5"
+        step="0.01"
+        placeholder="0 - 5"
+      >
+    </div>
+
+    <div>
+      <label>Chemistry</label>
+      <input
+        id="gChemistry"
+        type="number"
+        min="0"
+        max="5"
+        step="0.01"
+        placeholder="0 - 5"
+      >
+    </div>
+
+    <div>
+      <label>Higher Math</label>
+      <input
+        id="gMath"
+        type="number"
+        min="0"
+        max="5"
+        step="0.01"
+        placeholder="0 - 5"
+      >
+    </div>
+
+    <div>
+      <label>Biology (Optional)</label>
+      <input
+        id="gBiology"
+        type="number"
+        min="0"
+        max="5"
+        step="0.01"
+        placeholder="0 - 5"
+      >
+    </div>
+
+  </div>
+
+  <button
+    class="btn"
+    onclick="calculateGPA()"
+  >
+    Calculate GPA
+  </button>
+
+  <h2 id="gpaResult"></h2>
+
 </div>
 
-<div class="stat">
-30 Days
-<b id="thirtyDays">0</b>
-</div>
 
-<div class="stat">
-Total Chapters
-<b>51</b>
-</div>
-
-<div class="stat">
-Completed
-<b id="completed2">0</b>
-</div>
-
-</div>
-</div>
-
+<!-- SYLLABUS -->
 
 <div class="card">
-<h2>💰 Rewards</h2>
 
-<div class="reward-box card">
+  <h2>📚 Syllabus Progress</h2>
 
-<p>
-Every completed chapter = <b>10 points</b>
-</p>
-
-<p>
-200 points = <b>৳20</b>
-</p>
-
-<p>
-1000 points = <b>৳100</b>
-</p>
-
-<p>
-Available reward:
-<b id="availableReward">৳0</b>
-</p>
-
-<label>bKash Number</label>
-<input id="bkash" placeholder="01XXXXXXXXX">
-
-<button class="btn btn-green" onclick="claimReward()">
-Claim Reward
-</button>
-
-<p id="claimMessage"></p>
+  <div id="syllabus"></div>
 
 </div>
 
-<div id="claims"></div>
-</div>
 
+<!-- PROFILE -->
 
 <div class="card">
-<h2>🧮 GPA Calculator</h2>
 
-<div class="gpa-grid">
+  <h2>👤 Profile</h2>
 
-<div>
-<label>Bangla</label>
-<input class="gpa" id="gBangla" type="number" min="0" max="5" step=".01">
-</div>
+  <p>
+    <b>Email:</b>
+    <span id="profileEmail"></span>
+  </p>
 
-<div>
-<label>English</label>
-<input class="gpa" id="gEnglish" type="number" min="0" max="5" step=".01">
-</div>
+  <p>
+    <b>HSC Batch:</b>
+    <span id="profileBatch"></span>
+  </p>
 
-<div>
-<label>ICT</label>
-<input class="gpa" id="gICT" type="number" min="0" max="5" step=".01">
-</div>
+  <p>
+    <b>College:</b>
+    <span id="profileCollege"></span>
+  </p>
 
-<div>
-<label>Physics</label>
-<input class="gpa" id="gPhysics" type="number" min="0" max="5" step=".01">
-</div>
-
-<div>
-<label>Chemistry</label>
-<input class="gpa" id="gChemistry" type="number" min="0" max="5" step=".01">
-</div>
-
-<div>
-<label>Higher Math</label>
-<input class="gpa" id="gMath" type="number" min="0" max="5" step=".01">
-</div>
-
-<div>
-<label>Biology (Optional)</label>
-<input class="gpa" id="gBiology" type="number" min="0" max="5" step=".01">
-</div>
+  <p>
+    <b>Zilla:</b>
+    <span id="profileZilla"></span>
+  </p>
 
 </div>
 
-<button class="btn" onclick="calculateGPA()">Calculate GPA</button>
-
-<h2 id="gpaResult"></h2>
-</div>
-
-
-<div class="card">
-<h2>📚 Syllabus</h2>
-<div id="syllabus"></div>
-</div>
-
-
-<div class="card">
-<h2>👤 Profile</h2>
-
-<p><b>Email:</b> <span id="profileEmail"></span></p>
-<p><b>HSC Batch:</b> <span id="profileBatch"></span></p>
-<p><b>College:</b> <span id="profileCollege"></span></p>
-<p><b>Zilla:</b> <span id="profileZilla"></span></p>
-
-</div>
 
 </div>
 </div>
@@ -385,661 +524,867 @@ import {
   getDoc,
   setDoc,
   updateDoc,
-  collection,
-  addDoc,
-  query,
-  where,
-  getDocs,
-  orderBy,
   serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 
+/* ================= FIREBASE ================= */
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAXA1F0cKY7wPxyrayCIJdKzYhdFmGSpUc",
-  authDomain: "pcm-track-8d23d.firebaseapp.com",
-  projectId: "pcm-track-8d23d",
-  storageBucket: "pcm-track-8d23d.firebasestorage.app",
-  messagingSenderId: "659196460512",
-  appId: "1:659196460512:web:2b7d05a8c61037919d7f85",
-  measurementId: "G-2GDKE7R4BJ"
+
+  apiKey:
+  "AIzaSyAXA1F0cKY7wPxyrayCIJdKzYhdFmGSpUc",
+
+  authDomain:
+  "pcm-track-8d23d.firebaseapp.com",
+
+  projectId:
+  "pcm-track-8d23d",
+
+  storageBucket:
+  "pcm-track-8d23d.firebasestorage.app",
+
+  messagingSenderId:
+  "659196460512",
+
+  appId:
+  "1:659196460512:web:2b7d05a8c61037919d7f85",
+
+  measurementId:
+  "G-2GDKE7R4BJ"
 };
 
-const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
-const db = getFirestore(app);
+const app =
+initializeApp(firebaseConfig);
 
-const ADMIN_EMAIL = "encore.26@email.com";
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
+
+
+/* ================= VARIABLES ================= */
 
 let signupMode = false;
 let currentUser = null;
 let userData = null;
 
 
+/* ================= SYLLABUS ================= */
+
 const syllabus = {
 
-Physics:{
-"1st Paper":[
-"ভৌত জগৎ ও পরিমাপ",
-"ভেক্টর",
-"গতিবিদ্যা",
-"নিউটনিয়ান বলবিদ্যা",
-"কাজ, শক্তি ও ক্ষমতা",
-"মহাকর্ষ ও অভিকর্ষ",
-"পদার্থের গাঠনিক ধর্ম",
-"পর্যায়বৃত্ত গতি",
-"তরঙ্গ",
-"আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব"
-],
-"2nd Paper":[
-"তাপগতিবিদ্যা",
-"স্থির তড়িৎ",
-"চল তড়িৎ",
-"তড়িৎ প্রবাহের চৌম্বক ক্রিয়া ও চুম্বকত্ব",
-"তড়িৎচৌম্বকীয় আবেশ ও পরিবর্তী প্রবাহ",
-"জ্যামিতিক আলোকবিজ্ঞান",
-"ভৌত আলোকবিজ্ঞান",
-"আধুনিক পদার্থবিজ্ঞানের সূচনা",
-"পরমাণু ও নিউক্লিয়াসের পদার্থবিজ্ঞান",
-"সেমিকন্ডাক্টর ও ইলেকট্রনিক্স",
-"জ্যোতির্বিজ্ঞান"
-]
-},
+  Physics: {
 
-Chemistry:{
-"1st Paper":[
-"ল্যাবরেটরির নিরাপদ ব্যবহার",
-"গুণগত রসায়ন",
-"মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন",
-"রাসায়নিক পরিবর্তন",
-"কর্মমুখী রসায়ন"
-],
-"2nd Paper":[
-"পরিবেশ রসায়ন",
-"জৈব রসায়ন",
-"পরিমাণগত রসায়ন",
-"তড়িৎ রসায়ন",
-"অর্থনৈতিক ও শিল্প রসায়ন"
-]
-},
+    "1st Paper":[
+      "ভৌত জগৎ ও পরিমাপ",
+      "ভেক্টর",
+      "গতিবিদ্যা",
+      "নিউটনিয়ান বলবিদ্যা",
+      "কাজ, শক্তি ও ক্ষমতা",
+      "মহাকর্ষ ও অভিকর্ষ",
+      "পদার্থের গাঠনিক ধর্ম",
+      "পর্যায়বৃত্ত গতি",
+      "তরঙ্গ",
+      "আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব"
+    ],
 
-"Higher Math":{
-"1st Paper":[
-"ম্যাট্রিক্স ও নির্ণায়ক",
-"ভেক্টর",
-"সরল রেখা",
-"বৃত্ত",
-"বিন্যাস ও সমাবেশ",
-"ত্রিকোণমিতিক অনুপাত",
-"সংযুক্ত কোণের ত্রিকোণমিতিক অনুপাত",
-"ফাংশন ও ফাংশনের লেখচিত্র",
-"অন্তরীকরণ",
-"যোগজীকরণ"
-],
+    "2nd Paper":[
+      "তাপগতিবিদ্যা",
+      "স্থির তড়িৎ",
+      "চল তড়িৎ",
+      "তড়িৎ প্রবাহের চৌম্বক ক্রিয়া ও চুম্বকত্ব",
+      "তড়িৎচৌম্বকীয় আবেশ ও পরিবর্তী প্রবাহ",
+      "জ্যামিতিক আলোকবিজ্ঞান",
+      "ভৌত আলোকবিজ্ঞান",
+      "আধুনিক পদার্থবিজ্ঞানের সূচনা",
+      "পরমাণু ও নিউক্লিয়াসের পদার্থবিজ্ঞান",
+      "সেমিকন্ডাক্টর ও ইলেকট্রনিক্স",
+      "জ্যোতির্বিজ্ঞান"
+    ]
 
-"2nd Paper":[
-"বাস্তব সংখ্যা ও অসমতা",
-"যোগাশ্রয়ী প্রোগ্রাম",
-"জটিল সংখ্যা",
-"বহুপদী ও বহুপদী সমীকরণ",
-"দ্বিপদী বিস্তৃতি",
-"কণিক",
-"বিপরীত ত্রিকোণমিতিক ফাংশন ও ত্রিকোণমিতিক সমীকরণ",
-"স্থিতিবিদ্যা",
-"কণার গতিবিদ্যা",
-"সম্ভাব্যতা"
-]
-}
+  },
+
+
+  Chemistry: {
+
+    "1st Paper":[
+      "ল্যাবরেটরির নিরাপদ ব্যবহার",
+      "গুণগত রসায়ন",
+      "মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন",
+      "রাসায়নিক পরিবর্তন",
+      "কর্মমুখী রসায়ন"
+    ],
+
+    "2nd Paper":[
+      "পরিবেশ রসায়ন",
+      "জৈব রসায়ন",
+      "পরিমাণগত রসায়ন",
+      "তড়িৎ রসায়ন",
+      "অর্থনৈতিক ও শিল্প রসায়ন"
+    ]
+
+  },
+
+
+  "Higher Math": {
+
+    "1st Paper":[
+      "ম্যাট্রিক্স ও নির্ণায়ক",
+      "ভেক্টর",
+      "সরল রেখা",
+      "বৃত্ত",
+      "বিন্যাস ও সমাবেশ",
+      "ত্রিকোণমিতিক অনুপাত",
+      "সংযুক্ত কোণের ত্রিকোণমিতিক অনুপাত",
+      "ফাংশন ও ফাংশনের লেখচিত্র",
+      "অন্তরীকরণ",
+      "যোগজীকরণ"
+    ],
+
+    "2nd Paper":[
+      "বাস্তব সংখ্যা ও অসমতা",
+      "যোগাশ্রয়ী প্রোগ্রাম",
+      "জটিল সংখ্যা",
+      "বহুপদী ও বহুপদী সমীকরণ",
+      "দ্বিপদী বিস্তৃতি",
+      "কণিক",
+      "বিপরীত ত্রিকোণমিতিক ফাংশন ও ত্রিকোণমিতিক সমীকরণ",
+      "স্থিতিবিদ্যা",
+      "কণার গতিবিদ্যা",
+      "সম্ভাব্যতা"
+    ]
+
+  }
 
 };
 
+
+/* ================= MESSAGE ================= */
+
+function showMessage(text,type="error"){
+
+  const box =
+  document.getElementById("authMessage");
+
+  box.className =
+  type==="success" ? "success" : "error";
+
+  box.textContent = text;
+
+}
+
+
+/* ================= LOGIN / SIGNUP TOGGLE ================= */
 
 window.toggleAuth = function(){
 
-signupMode = !signupMode;
+  signupMode = !signupMode;
 
-document.getElementById("authTitle").textContent =
-signupMode ? "Create Account" : "Login";
+  document.getElementById("authTitle").textContent =
+  signupMode ? "Create Account" : "Login";
 
-document.getElementById("authBtn").textContent =
-signupMode ? "Sign Up" : "Login";
+  document.getElementById("authBtn").textContent =
+  signupMode ? "Sign Up" : "Login";
 
-document.getElementById("signupFields").classList.toggle(
-"hidden",
-!signupMode
-);
+  document
+  .getElementById("signupFields")
+  .classList
+  .toggle("hidden",!signupMode);
 
-document.getElementById("switchText").textContent =
-signupMode ? "Already have an account?" : "Don't have an account?";
+  document.getElementById("switchText").textContent =
+  signupMode
+  ? "Already have an account?"
+  : "Don't have an account?";
 
-document.getElementById("switchBtn").textContent =
-signupMode ? " Login" : " Sign Up";
+  document.getElementById("switchBtn").textContent =
+  signupMode
+  ? " Login"
+  : " Sign Up";
+
+  document.getElementById("authMessage").textContent="";
 
 };
 
+
+/* ================= LOGIN / SIGNUP ================= */
 
 window.authAction = async function(){
 
-const email =
-document.getElementById("email").value.trim();
+  const email =
+  document.getElementById("email").value.trim();
 
-const password =
-document.getElementById("password").value;
+  const password =
+  document.getElementById("password").value;
 
-const message =
-document.getElementById("authMessage");
+  if(!email || !password){
 
-if(!email || !password){
-message.textContent = "Email and password required.";
-return;
-}
+    showMessage(
+      "Email and password required."
+    );
 
-try{
+    return;
+  }
 
-if(signupMode){
 
-const batch =
-document.getElementById("batch").value;
+  try{
 
-const college =
-document.getElementById("college").value.trim();
+    if(signupMode){
 
-const zilla =
-document.getElementById("zilla").value.trim();
+      const batch =
+      document.getElementById("batch").value;
 
-if(!college || !zilla){
-message.textContent =
-"College and Zilla required.";
-return;
-}
+      const college =
+      document.getElementById("college").value.trim();
 
-const result =
-await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
+      const zilla =
+      document.getElementById("zilla").value.trim();
 
-await setDoc(
-doc(db,"users",result.user.uid),
-{
-uid:result.user.uid,
-email:email,
-batch:batch,
-college:college,
-zilla:zilla,
-points:0,
-progress:{},
-history:[],
-createdAt:serverTimestamp()
-}
-);
 
-message.textContent = "Account created!";
+      if(!college || !zilla){
 
-}else{
+        showMessage(
+          "College and Zilla required."
+        );
 
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
+        return;
+      }
 
-}
 
-}catch(error){
+      const result =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-message.textContent =
-error.message.replace("Firebase:","");
 
-}
+      await setDoc(
+        doc(db,"users",result.user.uid),
+        {
+
+          uid:result.user.uid,
+
+          email:email,
+
+          batch:batch,
+
+          college:college,
+
+          zilla:zilla,
+
+          progress:{},
+
+          history:[],
+
+          createdAt:
+          serverTimestamp()
+
+        }
+      );
+
+
+      showMessage(
+        "Account created successfully!",
+        "success"
+      );
+
+
+    }else{
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    }
+
+
+  }catch(error){
+
+    let msg = error.code || error.message;
+
+    if(error.code==="auth/invalid-credential"){
+      msg="Wrong email or password.";
+    }
+
+    else if(error.code==="auth/email-already-in-use"){
+      msg="This email is already registered.";
+    }
+
+    else if(error.code==="auth/weak-password"){
+      msg="Password should be at least 6 characters.";
+    }
+
+    else if(error.code==="auth/invalid-email"){
+      msg="Invalid email address.";
+    }
+
+    showMessage(msg);
+
+  }
 
 };
 
 
-onAuthStateChanged(auth, async user => {
+/* ================= AUTH STATE ================= */
 
-if(!user){
+onAuthStateChanged(
+  auth,
+  async user=>{
 
-document.getElementById("authPage")
-.classList.remove("hidden");
+    if(!user){
 
-document.getElementById("app")
-.classList.add("hidden");
+      currentUser=null;
+      userData=null;
 
-return;
-}
+      document
+      .getElementById("authPage")
+      .classList
+      .remove("hidden");
 
-currentUser = user;
+      document
+      .getElementById("app")
+      .classList
+      .add("hidden");
 
-const ref =
-doc(db,"users",user.uid);
+      return;
+    }
 
-const snap = await getDoc(ref);
 
-if(!snap.exists()){
+    currentUser=user;
 
-await setDoc(ref,{
-uid:user.uid,
-email:user.email,
-batch:"HSC 27",
-college:"",
-zilla:"",
-points:0,
-progress:{},
-history:[],
-createdAt:serverTimestamp()
-});
 
-}
+    try{
 
-const latest =
-await getDoc(ref);
+      const ref =
+      doc(db,"users",user.uid);
 
-userData = latest.data();
+      const snap =
+      await getDoc(ref);
 
-document.getElementById("authPage")
-.classList.add("hidden");
 
-document.getElementById("app")
-.classList.remove("hidden");
+      if(!snap.exists()){
 
-renderProfile();
-renderSyllabus();
-updateDashboard();
-loadClaims();
+        await setDoc(
+          ref,
+          {
 
-});
+            uid:user.uid,
 
+            email:user.email,
+
+            batch:"HSC 27",
+
+            college:"",
+
+            zilla:"",
+
+            progress:{},
+
+            history:[],
+
+            createdAt:
+            serverTimestamp()
+
+          }
+        );
+
+        userData={
+          uid:user.uid,
+          email:user.email,
+          batch:"HSC 27",
+          college:"",
+          zilla:"",
+          progress:{},
+          history:[]
+        };
+
+      }else{
+
+        userData=snap.data();
+
+      }
+
+
+      document
+      .getElementById("authPage")
+      .classList
+      .add("hidden");
+
+      document
+      .getElementById("app")
+      .classList
+      .remove("hidden");
+
+
+      renderProfile();
+
+      renderSyllabus();
+
+      updateDashboard();
+
+
+    }catch(error){
+
+      showMessage(
+        "Firebase error: "+error.message
+      );
+
+      console.error(error);
+
+    }
+
+  }
+);
+
+
+/* ================= LOGOUT ================= */
 
 window.logout = async function(){
-await signOut(auth);
+
+  await signOut(auth);
+
 };
 
+
+/* ================= PROFILE ================= */
 
 function renderProfile(){
 
-document.getElementById("welcome").textContent =
-"Welcome, " + currentUser.email;
+  document
+  .getElementById("welcome")
+  .textContent =
+  "Welcome, "+currentUser.email;
 
-document.getElementById("profileEmail").textContent =
-currentUser.email;
+  document
+  .getElementById("profileEmail")
+  .textContent =
+  currentUser.email;
 
-document.getElementById("profileBatch").textContent =
-userData.batch || "";
+  document
+  .getElementById("profileBatch")
+  .textContent =
+  userData.batch || "";
 
-document.getElementById("profileCollege").textContent =
-userData.college || "";
+  document
+  .getElementById("profileCollege")
+  .textContent =
+  userData.college || "";
 
-document.getElementById("profileZilla").textContent =
-userData.zilla || "";
+  document
+  .getElementById("profileZilla")
+  .textContent =
+  userData.zilla || "";
 
 }
 
+
+/* ================= RENDER SYLLABUS ================= */
 
 function renderSyllabus(){
 
-const box =
-document.getElementById("syllabus");
+  const box =
+  document.getElementById("syllabus");
 
-box.innerHTML = "";
+  box.innerHTML="";
 
-Object.entries(syllabus).forEach(
-([subject,papers])=>{
 
-const subjectBox =
-document.createElement("div");
+  Object.entries(syllabus)
+  .forEach(
+    ([subject,papers])=>{
 
-subjectBox.className="subject";
+      const subjectBox =
+      document.createElement("div");
 
-subjectBox.innerHTML =
-`<h2>${subject}</h2>`;
+      subjectBox.className="subject";
 
-Object.entries(papers).forEach(
-([paper,chapters])=>{
 
-const paperTitle =
-document.createElement("h3");
+      const subjectTitle =
+      document.createElement("h2");
 
-paperTitle.textContent =
-paper;
+      subjectTitle.textContent=
+      subject;
 
-subjectBox.appendChild(paperTitle);
+      subjectBox.appendChild(subjectTitle);
 
-chapters.forEach(
-(chapter,index)=>{
 
-const key =
-subject+"|"+paper+"|"+index;
+      Object.entries(papers)
+      .forEach(
+        ([paper,chapters])=>{
 
-const row =
-document.createElement("div");
+          const paperBox =
+          document.createElement("div");
 
-row.className="chapter";
+          paperBox.className="paper";
 
-const name =
-document.createElement("div");
 
-name.className="chapter-name";
+          const paperTitle =
+          document.createElement("h3");
 
-name.textContent =
-(index+1)+". "+chapter;
+          paperTitle.textContent=
+          paper;
 
-const select =
-document.createElement("select");
+          paperBox.appendChild(paperTitle);
 
-select.innerHTML=`
-<option value="not_started">Not Started</option>
-<option value="running">Running</option>
-<option value="done">Done</option>
-`;
 
-select.value =
-userData.progress?.[key] || "not_started";
+          chapters.forEach(
+            (chapter,index)=>{
 
-select.onchange =
-()=>changeProgress(key,select.value);
+              const key =
+              subject+"|"+paper+"|"+index;
 
-row.appendChild(name);
-row.appendChild(select);
 
-subjectBox.appendChild(row);
+              const row =
+              document.createElement("div");
 
-});
+              row.className="chapter";
 
-});
 
-box.appendChild(subjectBox);
+              const name =
+              document.createElement("div");
 
-});
+              name.className="chapter-name";
+
+              name.textContent=
+              (index+1)+". "+chapter;
+
+
+              const select =
+              document.createElement("select");
+
+              select.innerHTML=`
+
+                <option value="not_started">
+                  Not Started
+                </option>
+
+                <option value="running">
+                  Running
+                </option>
+
+                <option value="done">
+                  Done
+                </option>
+
+              `;
+
+
+              select.value =
+              userData.progress?.[key]
+              || "not_started";
+
+
+              select.onchange =
+              ()=>{
+                changeProgress(
+                  key,
+                  select.value
+                );
+              };
+
+
+              row.appendChild(name);
+
+              row.appendChild(select);
+
+              paperBox.appendChild(row);
+
+            }
+          );
+
+
+          subjectBox.appendChild(paperBox);
+
+        }
+      );
+
+
+      box.appendChild(subjectBox);
+
+    }
+  );
 
 }
 
 
-async function changeProgress(key,status){
+/* ================= CHANGE PROGRESS ================= */
 
-const old =
-userData.progress?.[key] || "not_started";
+async function changeProgress(
+  key,
+  status
+){
 
-if(old === "done" && status !== "done"){
+  const old =
+  userData.progress?.[key]
+  || "not_started";
 
-alert("Completed chapter cannot be undone from this version.");
 
-renderSyllabus();
-return;
+  userData.progress =
+  userData.progress || {};
+
+  userData.history =
+  userData.history || [];
+
+
+  /*
+    Completion history:
+    Every time a chapter becomes Done,
+    save the date.
+  */
+
+  if(
+    old!=="done" &&
+    status==="done"
+  ){
+
+    userData.history.push({
+      time:Date.now(),
+      key:key
+    });
+
+  }
+
+
+  userData.progress[key]=status;
+
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      ),
+      {
+
+        progress:
+        userData.progress,
+
+        history:
+        userData.history
+
+      }
+    );
+
+
+    updateDashboard();
+
+  }catch(error){
+
+    alert(
+      "Could not save progress.\n\n"+
+      error.message
+    );
+
+    renderSyllabus();
+
+  }
 
 }
 
-if(old !== "done" && status === "done"){
 
-userData.points =
-(userData.points || 0)+10;
-
-userData.history =
-userData.history || [];
-
-userData.history.push({
-time:Date.now(),
-key:key
-});
-
-}
-
-userData.progress =
-userData.progress || {};
-
-userData.progress[key]=status;
-
-await updateDoc(
-doc(db,"users",currentUser.uid),
-{
-progress:userData.progress,
-points:userData.points,
-history:userData.history
-}
-);
-
-updateDashboard();
-
-}
-
+/* ================= DASHBOARD ================= */
 
 function updateDashboard(){
 
-let total=0;
-let done=0;
+  let total=0;
 
-Object.values(syllabus).forEach(papers=>{
-Object.values(papers).forEach(chapters=>{
-total+=chapters.length;
-});
-});
-
-Object.values(userData.progress || {})
-.forEach(status=>{
-if(status==="done") done++;
-});
-
-const percent =
-Math.round(done/total*100);
-
-document.getElementById("overall")
-.textContent=percent+"%";
-
-document.getElementById("overallBar")
-.style.width=percent+"%";
-
-document.getElementById("doneCount")
-.textContent=done;
-
-document.getElementById("completed2")
-.textContent=done;
-
-document.getElementById("points")
-.textContent=userData.points || 0;
-
-const reward =
-Math.floor((userData.points||0)/10);
-
-document.getElementById("reward")
-.textContent="৳"+reward;
-
-document.getElementById("availableReward")
-.textContent="৳"+reward;
-
-const now=Date.now();
-
-const history=userData.history||[];
-
-const seven =
-history.filter(x=>
-now-x.time<=7*24*60*60*1000
-).length;
-
-const thirty =
-history.filter(x=>
-now-x.time<=30*24*60*60*1000
-).length;
-
-document.getElementById("sevenDays")
-.textContent=seven;
-
-document.getElementById("thirtyDays")
-.textContent=thirty;
-
-}
+  let done=0;
 
 
-window.claimReward = async function(){
+  Object.values(syllabus)
+  .forEach(papers=>{
 
-const number =
-document.getElementById("bkash")
-.value.trim();
+    Object.values(papers)
+    .forEach(chapters=>{
 
-const msg =
-document.getElementById("claimMessage");
+      total+=chapters.length;
 
-if(!/^01[3-9]\d{8}$/.test(number)){
+    });
 
-msg.textContent =
-"Enter a valid Bangladeshi bKash number.";
+  });
 
-return;
-}
 
-const points =
-Math.floor((userData.points||0)/200)*200;
+  Object.values(
+    userData.progress || {}
+  )
+  .forEach(status=>{
 
-if(points<200){
+    if(status==="done"){
+      done++;
+    }
 
-msg.textContent =
-"You need at least 200 points.";
+  });
 
-return;
-}
 
-const amount =
-points/10;
+  const percent =
+  total
+  ? Math.round(done/total*100)
+  : 0;
 
-try{
 
-await addDoc(
-collection(db,"rewardRequests"),
-{
-uid:currentUser.uid,
-email:currentUser.email,
-bkash:number,
-points:points,
-amount:amount,
-status:"pending",
-createdAt:serverTimestamp()
-}
-);
+  document
+  .getElementById("overall")
+  .textContent =
+  percent+"%";
 
-userData.points -= points;
 
-await updateDoc(
-doc(db,"users",currentUser.uid),
-{
-points:userData.points
-}
-);
+  document
+  .getElementById("overallBar")
+  .style.width =
+  percent+"%";
 
-msg.textContent =
-"Reward request submitted successfully!";
 
-document.getElementById("bkash").value="";
+  document
+  .getElementById("doneCount")
+  .textContent =
+  done;
 
-updateDashboard();
-loadClaims();
 
-}catch(error){
+  const now=Date.now();
 
-msg.textContent=error.message;
+
+  const history =
+  userData.history || [];
+
+
+  const seven =
+  history.filter(
+    x =>
+    now-x.time <=
+    7*24*60*60*1000
+  ).length;
+
+
+  const thirty =
+  history.filter(
+    x =>
+    now-x.time <=
+    30*24*60*60*1000
+  ).length;
+
+
+  document
+  .getElementById("sevenDays")
+  .textContent =
+  seven;
+
+
+  document
+  .getElementById("thirtyDays")
+  .textContent =
+  thirty;
 
 }
 
-};
 
-
-async function loadClaims(){
-
-const box =
-document.getElementById("claims");
-
-box.innerHTML="<h3>Reward Requests</h3>";
-
-const q =
-query(
-collection(db,"rewardRequests"),
-where("uid","==",currentUser.uid)
-);
-
-const snap =
-await getDocs(q);
-
-if(snap.empty){
-
-box.innerHTML +=
-"<p>No reward requests yet.</p>";
-
-return;
-}
-
-snap.forEach(d=>{
-
-const x=d.data();
-
-box.innerHTML += `
-<div class="card">
-<b>৳${x.amount}</b>
-<br>
-bKash: ${x.bkash}
-<br>
-Status:
-<b>${x.status}</b>
-</div>
-`;
-
-});
-
-}
-
+/* ================= GPA ================= */
 
 window.calculateGPA=function(){
 
-const ids=[
-"gBangla",
-"gEnglish",
-"gICT",
-"gPhysics",
-"gChemistry",
-"gMath"
-];
+  const ids=[
+    "gBangla",
+    "gEnglish",
+    "gICT",
+    "gPhysics",
+    "gChemistry",
+    "gMath"
+  ];
 
-const values =
-ids.map(id=>
-Number(document.getElementById(id).value)
-);
 
-if(values.some(x=>x<0 || x>5 || isNaN(x))){
+  const values =
+  ids.map(
+    id =>
+    Number(
+      document
+      .getElementById(id)
+      .value
+    )
+  );
 
-document.getElementById("gpaResult")
-.textContent=
-"Enter all main subject GPAs.";
 
-return;
+  if(
+    values.some(
+      x =>
+      isNaN(x) ||
+      x<0 ||
+      x>5
+    )
+  ){
 
-}
+    document
+    .getElementById("gpaResult")
+    .textContent =
+    "Enter all 6 main subject GPAs.";
 
-let total =
-values.reduce((a,b)=>a+b,0);
+    return;
 
-const biology =
-Number(document.getElementById("gBiology").value);
+  }
 
-if(!isNaN(biology) && biology>2){
 
-total += biology-2;
+  let total =
+  values.reduce(
+    (a,b)=>a+b,
+    0
+  );
 
-}
 
-let gpa =
-total/6;
+  const biology =
+  Number(
+    document
+    .getElementById("gBiology")
+    .value
+  );
 
-gpa=Math.min(5,gpa);
 
-gpa=Math.round(gpa*100)/100;
+  /*
+    Optional Biology:
+    If Biology GPA > 2,
+    bonus = Biology GPA - 2
+  */
 
-document.getElementById("gpaResult")
-.textContent=
-"Your GPA: "+gpa+"/5";
+  if(
+    !isNaN(biology) &&
+    biology>2
+  ){
+
+    total +=
+    biology-2;
+
+  }
+
+
+  let gpa =
+  total/6;
+
+
+  gpa =
+  Math.min(
+    5,
+    gpa
+  );
+
+
+  gpa =
+  Math.round(
+    gpa*100
+  )/100;
+
+
+  document
+  .getElementById("gpaResult")
+  .textContent =
+  "Your GPA: "+gpa+"/5";
 
 };
 
 </script>
 
 </body>
-    </html>
+</html>
