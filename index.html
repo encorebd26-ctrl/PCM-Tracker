@@ -16,7 +16,11 @@ body{
 }
 
 button,input,select{font:inherit}
-button{cursor:pointer;border:0}
+
+button{
+  cursor:pointer;
+  border:0;
+}
 
 .header{
   background:#111827;
@@ -95,20 +99,23 @@ input:focus,select:focus{
   font-weight:700;
 }
 
-.error{
-  color:#dc2626;
-  background:#fef2f2;
+.message{
+  padding:11px;
   border-radius:10px;
-  padding:10px;
   margin-bottom:12px;
+  display:none;
 }
 
-.success{
+.message.error{
+  display:block;
+  color:#991b1b;
+  background:#fef2f2;
+}
+
+.message.success{
+  display:block;
   color:#166534;
   background:#f0fdf4;
-  border-radius:10px;
-  padding:10px;
-  margin-bottom:12px;
 }
 
 .stats{
@@ -161,7 +168,7 @@ input:focus,select:focus{
   border:1px solid #e5e7eb;
   border-radius:12px;
   margin:8px 0;
-  background:#fff;
+  background:white;
 }
 
 .chapter-name{
@@ -177,6 +184,11 @@ input:focus,select:focus{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:10px;
+}
+
+.loading{
+  text-align:center;
+  padding:40px;
 }
 
 @media(max-width:700px){
@@ -204,7 +216,7 @@ input:focus,select:focus{
 
 <body>
 
-<!-- ================= LOGIN / SIGNUP ================= -->
+<!-- ================= AUTH ================= -->
 
 <div id="authPage">
 
@@ -212,9 +224,10 @@ input:focus,select:focus{
 
     <h1 id="authTitle">Login</h1>
 
-    <div id="authMessage"></div>
+    <div id="authMessage" class="message"></div>
 
-    <!-- SIGNUP ONLY -->
+    <!-- SIGNUP FIELDS -->
+
     <div id="signupFields" class="hidden">
 
       <label>HSC Batch</label>
@@ -226,6 +239,7 @@ input:focus,select:focus{
       </select>
 
       <label>College Name</label>
+
       <input
         id="college"
         type="text"
@@ -233,6 +247,7 @@ input:focus,select:focus{
       >
 
       <label>Zilla</label>
+
       <input
         id="zilla"
         type="text"
@@ -246,7 +261,8 @@ input:focus,select:focus{
     <input
       id="email"
       type="email"
-      placeholder="Enter your email"
+      placeholder="Enter email"
+      autocomplete="email"
     >
 
     <label>Password</label>
@@ -254,7 +270,8 @@ input:focus,select:focus{
     <input
       id="password"
       type="password"
-      placeholder="Enter your password"
+      placeholder="Enter password"
+      autocomplete="current-password"
     >
 
     <button
@@ -287,7 +304,7 @@ input:focus,select:focus{
 </div>
 
 
-<!-- ================= MAIN APP ================= -->
+<!-- ================= APP ================= -->
 
 <div id="app" class="hidden">
 
@@ -309,361 +326,330 @@ input:focus,select:focus{
 
 <div class="container">
 
+  <!-- DASHBOARD -->
 
-<!-- DASHBOARD -->
+  <div class="card">
 
-<div class="card">
+    <h2>📊 Dashboard</h2>
 
-  <h2>📊 Dashboard</h2>
+    <p id="welcome"></p>
 
-  <p id="welcome"></p>
+    <div class="stats">
 
-  <div class="stats">
+      <div class="stat">
+        Overall
+        <b id="overall">0%</b>
+      </div>
 
-    <div class="stat">
-      Overall
-      <b id="overall">0%</b>
+      <div class="stat">
+        Completed
+        <b id="doneCount">0</b>
+      </div>
+
+      <div class="stat">
+        7 Days
+        <b id="sevenDays">0</b>
+      </div>
+
+      <div class="stat">
+        30 Days
+        <b id="thirtyDays">0</b>
+      </div>
+
     </div>
 
-    <div class="stat">
-      Completed
-      <b id="doneCount">0</b>
-    </div>
+    <br>
 
-    <div class="stat">
-      7 Days
-      <b id="sevenDays">0</b>
-    </div>
-
-    <div class="stat">
-      30 Days
-      <b id="thirtyDays">0</b>
-    </div>
-
-  </div>
-
-  <br>
-
-  <div class="progress-wrap">
-    <div
-      class="progress-bar"
-      id="overallBar"
-    ></div>
-  </div>
-
-</div>
-
-
-<!-- GPA -->
-
-<div class="card">
-
-  <h2>🧮 GPA Calculator</h2>
-
-  <div class="gpa-grid">
-
-    <div>
-      <label>Bangla</label>
-      <input
-        id="gBangla"
-        type="number"
-        min="0"
-        max="5"
-        step="0.01"
-        placeholder="0 - 5"
-      >
-    </div>
-
-    <div>
-      <label>English</label>
-      <input
-        id="gEnglish"
-        type="number"
-        min="0"
-        max="5"
-        step="0.01"
-        placeholder="0 - 5"
-      >
-    </div>
-
-    <div>
-      <label>ICT</label>
-      <input
-        id="gICT"
-        type="number"
-        min="0"
-        max="5"
-        step="0.01"
-        placeholder="0 - 5"
-      >
-    </div>
-
-    <div>
-      <label>Physics</label>
-      <input
-        id="gPhysics"
-        type="number"
-        min="0"
-        max="5"
-        step="0.01"
-        placeholder="0 - 5"
-      >
-    </div>
-
-    <div>
-      <label>Chemistry</label>
-      <input
-        id="gChemistry"
-        type="number"
-        min="0"
-        max="5"
-        step="0.01"
-        placeholder="0 - 5"
-      >
-    </div>
-
-    <div>
-      <label>Higher Math</label>
-      <input
-        id="gMath"
-        type="number"
-        min="0"
-        max="5"
-        step="0.01"
-        placeholder="0 - 5"
-      >
-    </div>
-
-    <div>
-      <label>Biology (Optional)</label>
-      <input
-        id="gBiology"
-        type="number"
-        min="0"
-        max="5"
-        step="0.01"
-        placeholder="0 - 5"
-      >
+    <div class="progress-wrap">
+      <div
+        class="progress-bar"
+        id="overallBar"
+      ></div>
     </div>
 
   </div>
 
-  <button
-    class="btn"
-    onclick="calculateGPA()"
-  >
-    Calculate GPA
-  </button>
 
-  <h2 id="gpaResult"></h2>
+  <!-- GPA -->
+
+  <div class="card">
+
+    <h2>🧮 GPA Calculator</h2>
+
+    <div class="gpa-grid">
+
+      <div>
+        <label>Bangla</label>
+        <input
+          id="gBangla"
+          type="number"
+          min="0"
+          max="5"
+          step="0.01"
+          placeholder="0 - 5"
+        >
+      </div>
+
+      <div>
+        <label>English</label>
+        <input
+          id="gEnglish"
+          type="number"
+          min="0"
+          max="5"
+          step="0.01"
+          placeholder="0 - 5"
+        >
+      </div>
+
+      <div>
+        <label>ICT</label>
+        <input
+          id="gICT"
+          type="number"
+          min="0"
+          max="5"
+          step="0.01"
+          placeholder="0 - 5"
+        >
+      </div>
+
+      <div>
+        <label>Physics</label>
+        <input
+          id="gPhysics"
+          type="number"
+          min="0"
+          max="5"
+          step="0.01"
+          placeholder="0 - 5"
+        >
+      </div>
+
+      <div>
+        <label>Chemistry</label>
+        <input
+          id="gChemistry"
+          type="number"
+          min="0"
+          max="5"
+          step="0.01"
+          placeholder="0 - 5"
+        >
+      </div>
+
+      <div>
+        <label>Higher Math</label>
+        <input
+          id="gMath"
+          type="number"
+          min="0"
+          max="5"
+          step="0.01"
+          placeholder="0 - 5"
+        >
+      </div>
+
+      <div>
+        <label>Biology (Optional)</label>
+        <input
+          id="gBiology"
+          type="number"
+          min="0"
+          max="5"
+          step="0.01"
+          placeholder="0 - 5"
+        >
+      </div>
+
+    </div>
+
+    <button
+      class="btn"
+      onclick="calculateGPA()"
+    >
+      Calculate GPA
+    </button>
+
+    <h2 id="gpaResult"></h2>
+
+  </div>
+
+
+  <!-- SYLLABUS -->
+
+  <div class="card">
+
+    <h2>📚 Syllabus Progress</h2>
+
+    <div id="syllabus"></div>
+
+  </div>
+
+
+  <!-- PROFILE -->
+
+  <div class="card">
+
+    <h2>👤 Profile</h2>
+
+    <p>
+      <b>Email:</b>
+      <span id="profileEmail"></span>
+    </p>
+
+    <p>
+      <b>HSC Batch:</b>
+      <span id="profileBatch"></span>
+    </p>
+
+    <p>
+      <b>College:</b>
+      <span id="profileCollege"></span>
+    </p>
+
+    <p>
+      <b>Zilla:</b>
+      <span id="profileZilla"></span>
+    </p>
+
+  </div>
+
+</div>
 
 </div>
 
 
-<!-- SYLLABUS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<div class="card">
+<script>
 
-  <h2>📚 Syllabus Progress</h2>
+/* =====================================================
+   SUPABASE
+===================================================== */
 
-  <div id="syllabus"></div>
+const SUPABASE_URL =
+"https://plivkdymhqusssmcbxvs.supabase.co";
 
-</div>
+const SUPABASE_KEY =
+"sb_publishable_vaDXie6lMrKp7JYj9dn59A_BIsdojsj";
 
-
-<!-- PROFILE -->
-
-<div class="card">
-
-  <h2>👤 Profile</h2>
-
-  <p>
-    <b>Email:</b>
-    <span id="profileEmail"></span>
-  </p>
-
-  <p>
-    <b>HSC Batch:</b>
-    <span id="profileBatch"></span>
-  </p>
-
-  <p>
-    <b>College:</b>
-    <span id="profileCollege"></span>
-  </p>
-
-  <p>
-    <b>Zilla:</b>
-    <span id="profileZilla"></span>
-  </p>
-
-</div>
-
-
-</div>
-</div>
-
-
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut
-}
-from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-  serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
-
-
-/* ================= FIREBASE ================= */
-
-const firebaseConfig = {
-
-  apiKey:
-  "AIzaSyAXA1F0cKY7wPxyrayCIJdKzYhdFmGSpUc",
-
-  authDomain:
-  "pcm-track-8d23d.firebaseapp.com",
-
-  projectId:
-  "pcm-track-8d23d",
-
-  storageBucket:
-  "pcm-track-8d23d.firebasestorage.app",
-
-  messagingSenderId:
-  "659196460512",
-
-  appId:
-  "1:659196460512:web:2b7d05a8c61037919d7f85",
-
-  measurementId:
-  "G-2GDKE7R4BJ"
-};
-
-
-const app =
-initializeApp(firebaseConfig);
-
-const auth =
-getAuth(app);
+const { createClient } =
+supabase;
 
 const db =
-getFirestore(app);
+createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 
-/* ================= VARIABLES ================= */
+/* =====================================================
+   VARIABLES
+===================================================== */
 
 let signupMode = false;
+
 let currentUser = null;
+
 let userData = null;
 
 
-/* ================= SYLLABUS ================= */
+/* =====================================================
+   SYLLABUS
+===================================================== */
 
 const syllabus = {
 
-  Physics: {
+Physics:{
 
-    "1st Paper":[
-      "ভৌত জগৎ ও পরিমাপ",
-      "ভেক্টর",
-      "গতিবিদ্যা",
-      "নিউটনিয়ান বলবিদ্যা",
-      "কাজ, শক্তি ও ক্ষমতা",
-      "মহাকর্ষ ও অভিকর্ষ",
-      "পদার্থের গাঠনিক ধর্ম",
-      "পর্যায়বৃত্ত গতি",
-      "তরঙ্গ",
-      "আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব"
-    ],
+"1st Paper":[
+"ভৌত জগৎ ও পরিমাপ",
+"ভেক্টর",
+"গতিবিদ্যা",
+"নিউটনিয়ান বলবিদ্যা",
+"কাজ, শক্তি ও ক্ষমতা",
+"মহাকর্ষ ও অভিকর্ষ",
+"পদার্থের গাঠনিক ধর্ম",
+"পর্যায়বৃত্ত গতি",
+"তরঙ্গ",
+"আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব"
+],
 
-    "2nd Paper":[
-      "তাপগতিবিদ্যা",
-      "স্থির তড়িৎ",
-      "চল তড়িৎ",
-      "তড়িৎ প্রবাহের চৌম্বক ক্রিয়া ও চুম্বকত্ব",
-      "তড়িৎচৌম্বকীয় আবেশ ও পরিবর্তী প্রবাহ",
-      "জ্যামিতিক আলোকবিজ্ঞান",
-      "ভৌত আলোকবিজ্ঞান",
-      "আধুনিক পদার্থবিজ্ঞানের সূচনা",
-      "পরমাণু ও নিউক্লিয়াসের পদার্থবিজ্ঞান",
-      "সেমিকন্ডাক্টর ও ইলেকট্রনিক্স",
-      "জ্যোতির্বিজ্ঞান"
-    ]
+"2nd Paper":[
+"তাপগতিবিদ্যা",
+"স্থির তড়িৎ",
+"চল তড়িৎ",
+"তড়িৎ প্রবাহের চৌম্বক ক্রিয়া ও চুম্বকত্ব",
+"তড়িৎচৌম্বকীয় আবেশ ও পরিবর্তী প্রবাহ",
+"জ্যামিতিক আলোকবিজ্ঞান",
+"ভৌত আলোকবিজ্ঞান",
+"আধুনিক পদার্থবিজ্ঞানের সূচনা",
+"পরমাণু ও নিউক্লিয়াসের পদার্থবিজ্ঞান",
+"সেমিকন্ডাক্টর ও ইলেকট্রনিক্স",
+"জ্যোতির্বিজ্ঞান"
+]
 
-  },
-
-
-  Chemistry: {
-
-    "1st Paper":[
-      "ল্যাবরেটরির নিরাপদ ব্যবহার",
-      "গুণগত রসায়ন",
-      "মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন",
-      "রাসায়নিক পরিবর্তন",
-      "কর্মমুখী রসায়ন"
-    ],
-
-    "2nd Paper":[
-      "পরিবেশ রসায়ন",
-      "জৈব রসায়ন",
-      "পরিমাণগত রসায়ন",
-      "তড়িৎ রসায়ন",
-      "অর্থনৈতিক ও শিল্প রসায়ন"
-    ]
-
-  },
+},
 
 
-  "Higher Math": {
+Chemistry:{
 
-    "1st Paper":[
-      "ম্যাট্রিক্স ও নির্ণায়ক",
-      "ভেক্টর",
-      "সরল রেখা",
-      "বৃত্ত",
-      "বিন্যাস ও সমাবেশ",
-      "ত্রিকোণমিতিক অনুপাত",
-      "সংযুক্ত কোণের ত্রিকোণমিতিক অনুপাত",
-      "ফাংশন ও ফাংশনের লেখচিত্র",
-      "অন্তরীকরণ",
-      "যোগজীকরণ"
-    ],
+"1st Paper":[
+"ল্যাবরেটরির নিরাপদ ব্যবহার",
+"গুণগত রসায়ন",
+"মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন",
+"রাসায়নিক পরিবর্তন",
+"কর্মমুখী রসায়ন"
+],
 
-    "2nd Paper":[
-      "বাস্তব সংখ্যা ও অসমতা",
-      "যোগাশ্রয়ী প্রোগ্রাম",
-      "জটিল সংখ্যা",
-      "বহুপদী ও বহুপদী সমীকরণ",
-      "দ্বিপদী বিস্তৃতি",
-      "কণিক",
-      "বিপরীত ত্রিকোণমিতিক ফাংশন ও ত্রিকোণমিতিক সমীকরণ",
-      "স্থিতিবিদ্যা",
-      "কণার গতিবিদ্যা",
-      "সম্ভাব্যতা"
-    ]
+"2nd Paper":[
+"পরিবেশ রসায়ন",
+"জৈব রসায়ন",
+"পরিমাণগত রসায়ন",
+"তড়িৎ রসায়ন",
+"অর্থনৈতিক ও শিল্প রসায়ন"
+]
 
-  }
+},
+
+
+"Higher Math":{
+
+"1st Paper":[
+"ম্যাট্রিক্স ও নির্ণায়ক",
+"ভেক্টর",
+"সরল রেখা",
+"বৃত্ত",
+"বিন্যাস ও সমাবেশ",
+"ত্রিকোণমিতিক অনুপাত",
+"সংযুক্ত কোণের ত্রিকোণমিতিক অনুপাত",
+"ফাংশন ও ফাংশনের লেখচিত্র",
+"অন্তরীকরণ",
+"যোগজীকরণ"
+],
+
+"2nd Paper":[
+"বাস্তব সংখ্যা ও অসমতা",
+"যোগাশ্রয়ী প্রোগ্রাম",
+"জটিল সংখ্যা",
+"বহুপদী ও বহুপদী সমীকরণ",
+"দ্বিপদী বিস্তৃতি",
+"কণিক",
+"বিপরীত ত্রিকোণমিতিক ফাংশন ও ত্রিকোণমিতিক সমীকরণ",
+"স্থিতিবিদ্যা",
+"কণার গতিবিদ্যা",
+"সম্ভাব্যতা"
+]
+
+}
 
 };
 
 
-/* ================= MESSAGE ================= */
+/* =====================================================
+   MESSAGE
+===================================================== */
 
 function showMessage(text,type="error"){
 
@@ -671,54 +657,78 @@ function showMessage(text,type="error"){
   document.getElementById("authMessage");
 
   box.className =
-  type==="success" ? "success" : "error";
+  "message "+type;
 
-  box.textContent = text;
+  box.textContent =
+  text;
 
 }
 
 
-/* ================= LOGIN / SIGNUP TOGGLE ================= */
+/* =====================================================
+   LOGIN / SIGNUP SWITCH
+===================================================== */
 
-window.toggleAuth = function(){
+window.toggleAuth=function(){
 
-  signupMode = !signupMode;
+  signupMode =
+  !signupMode;
 
-  document.getElementById("authTitle").textContent =
-  signupMode ? "Create Account" : "Login";
+  document.getElementById("authTitle")
+  .textContent =
+  signupMode
+  ? "Create Account"
+  : "Login";
 
-  document.getElementById("authBtn").textContent =
-  signupMode ? "Sign Up" : "Login";
+  document.getElementById("authBtn")
+  .textContent =
+  signupMode
+  ? "Sign Up"
+  : "Login";
 
-  document
-  .getElementById("signupFields")
+  document.getElementById("signupFields")
   .classList
-  .toggle("hidden",!signupMode);
+  .toggle(
+    "hidden",
+    !signupMode
+  );
 
-  document.getElementById("switchText").textContent =
+  document.getElementById("switchText")
+  .textContent =
   signupMode
   ? "Already have an account?"
   : "Don't have an account?";
 
-  document.getElementById("switchBtn").textContent =
+  document.getElementById("switchBtn")
+  .textContent =
   signupMode
   ? " Login"
   : " Sign Up";
 
-  document.getElementById("authMessage").textContent="";
+  document.getElementById("authMessage")
+  .className="message";
+
+  document.getElementById("authMessage")
+  .textContent="";
 
 };
 
 
-/* ================= LOGIN / SIGNUP ================= */
+/* =====================================================
+   SIGNUP / LOGIN
+===================================================== */
 
-window.authAction = async function(){
+window.authAction=async function(){
 
   const email =
-  document.getElementById("email").value.trim();
+  document.getElementById("email")
+  .value
+  .trim();
 
   const password =
-  document.getElementById("password").value;
+  document.getElementById("password")
+  .value;
+
 
   if(!email || !password){
 
@@ -730,116 +740,332 @@ window.authAction = async function(){
   }
 
 
+  if(password.length<6){
+
+    showMessage(
+      "Password must be at least 6 characters."
+    );
+
+    return;
+  }
+
+
   try{
+
+    /* ================= SIGNUP ================= */
 
     if(signupMode){
 
       const batch =
-      document.getElementById("batch").value;
+      document.getElementById("batch")
+      .value;
 
       const college =
-      document.getElementById("college").value.trim();
+      document.getElementById("college")
+      .value
+      .trim();
 
       const zilla =
-      document.getElementById("zilla").value.trim();
+      document.getElementById("zilla")
+      .value
+      .trim();
 
 
       if(!college || !zilla){
 
         showMessage(
-          "College and Zilla required."
+          "College and Zilla are required."
         );
 
         return;
       }
 
 
-      const result =
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const {
+        data,
+        error
+      } =
+      await db.auth.signUp({
+
+        email:email,
+
+        password:password
+
+      });
 
 
-      await setDoc(
-        doc(db,"users",result.user.uid),
-        {
-
-          uid:result.user.uid,
-
-          email:email,
-
-          batch:batch,
-
-          college:college,
-
-          zilla:zilla,
-
-          progress:{},
-
-          history:[],
-
-          createdAt:
-          serverTimestamp()
-
-        }
-      );
+      if(error)
+        throw error;
 
 
-      showMessage(
-        "Account created successfully!",
-        "success"
-      );
+      if(data.session){
+
+        await saveProfile(
+          data.user,
+          batch,
+          college,
+          zilla
+        );
+
+        showMessage(
+          "Account created successfully!",
+          "success"
+        );
+
+      }else{
+
+        showMessage(
+          "Account created. Please verify your email, then Login.",
+          "success"
+        );
+
+      }
 
 
-    }else{
+    }
 
-      await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+    /* ================= LOGIN ================= */
+
+    else{
+
+      const {
+        data,
+        error
+      } =
+      await db.auth.signInWithPassword({
+
+        email:email,
+
+        password:password
+
+      });
+
+
+      if(error)
+        throw error;
+
+
+      if(data.user){
+
+        await loadUser(
+          data.user
+        );
+
+      }
 
     }
 
 
   }catch(error){
 
-    let msg = error.code || error.message;
+    console.error(error);
 
-    if(error.code==="auth/invalid-credential"){
-      msg="Wrong email or password.";
+    let message =
+    error.message || "Something went wrong.";
+
+    if(
+      message
+      .toLowerCase()
+      .includes("invalid login credentials")
+    ){
+
+      message =
+      "Wrong email or password.";
+
     }
 
-    else if(error.code==="auth/email-already-in-use"){
-      msg="This email is already registered.";
+    else if(
+      message
+      .toLowerCase()
+      .includes("already registered")
+    ){
+
+      message =
+      "This email is already registered. Please Login.";
+
     }
 
-    else if(error.code==="auth/weak-password"){
-      msg="Password should be at least 6 characters.";
-    }
-
-    else if(error.code==="auth/invalid-email"){
-      msg="Invalid email address.";
-    }
-
-    showMessage(msg);
+    showMessage(message);
 
   }
 
 };
 
 
-/* ================= AUTH STATE ================= */
+/* =====================================================
+   SAVE PROFILE
+===================================================== */
 
-onAuthStateChanged(
-  auth,
-  async user=>{
+async function saveProfile(
+  user,
+  batch,
+  college,
+  zilla
+){
 
-    if(!user){
+  const profile={
+
+    id:user.id,
+
+    email:user.email,
+
+    batch:batch,
+
+    college:college,
+
+    zilla:zilla,
+
+    progress:{},
+
+    history:[]
+
+  };
+
+
+  const {
+    error
+  } =
+  await db
+  .from("profiles")
+  .upsert(
+    profile,
+    {
+      onConflict:"id"
+    }
+  );
+
+
+  if(error)
+    throw error;
+
+
+  userData =
+  profile;
+
+}
+
+
+/* =====================================================
+   LOAD USER
+===================================================== */
+
+async function loadUser(user){
+
+  currentUser =
+  user;
+
+
+  let {
+    data,
+    error
+  } =
+  await db
+  .from("profiles")
+  .select("*")
+  .eq("id",user.id)
+  .maybeSingle();
+
+
+  if(error)
+    throw error;
+
+
+  /* If profile doesn't exist */
+
+  if(!data){
+
+    const newProfile={
+
+      id:user.id,
+
+      email:user.email,
+
+      batch:"HSC 27",
+
+      college:"",
+
+      zilla:"",
+
+      progress:{},
+
+      history:[]
+
+    };
+
+
+    const result =
+    await db
+    .from("profiles")
+    .insert(newProfile)
+    .select()
+    .single();
+
+
+    if(result.error)
+      throw result.error;
+
+
+    data =
+    result.data;
+
+  }
+
+
+  userData =
+  data;
+
+
+  document
+  .getElementById("authPage")
+  .classList
+  .add("hidden");
+
+
+  document
+  .getElementById("app")
+  .classList
+  .remove("hidden");
+
+
+  renderProfile();
+
+  renderSyllabus();
+
+  updateDashboard();
+
+}
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+db.auth.onAuthStateChange(
+  async(event,session)=>{
+
+    if(session){
+
+      try{
+
+        await loadUser(
+          session.user
+        );
+
+      }catch(error){
+
+        console.error(error);
+
+        showMessage(
+          "Could not load your profile: "+
+          error.message
+        );
+
+      }
+
+    }else{
 
       currentUser=null;
+
       userData=null;
 
       document
@@ -852,129 +1078,53 @@ onAuthStateChanged(
       .classList
       .add("hidden");
 
-      return;
-    }
-
-
-    currentUser=user;
-
-
-    try{
-
-      const ref =
-      doc(db,"users",user.uid);
-
-      const snap =
-      await getDoc(ref);
-
-
-      if(!snap.exists()){
-
-        await setDoc(
-          ref,
-          {
-
-            uid:user.uid,
-
-            email:user.email,
-
-            batch:"HSC 27",
-
-            college:"",
-
-            zilla:"",
-
-            progress:{},
-
-            history:[],
-
-            createdAt:
-            serverTimestamp()
-
-          }
-        );
-
-        userData={
-          uid:user.uid,
-          email:user.email,
-          batch:"HSC 27",
-          college:"",
-          zilla:"",
-          progress:{},
-          history:[]
-        };
-
-      }else{
-
-        userData=snap.data();
-
-      }
-
-
-      document
-      .getElementById("authPage")
-      .classList
-      .add("hidden");
-
-      document
-      .getElementById("app")
-      .classList
-      .remove("hidden");
-
-
-      renderProfile();
-
-      renderSyllabus();
-
-      updateDashboard();
-
-
-    }catch(error){
-
-      showMessage(
-        "Firebase error: "+error.message
-      );
-
-      console.error(error);
-
     }
 
   }
 );
 
 
-/* ================= LOGOUT ================= */
+/* =====================================================
+   LOGOUT
+===================================================== */
 
-window.logout = async function(){
+window.logout=async function(){
 
-  await signOut(auth);
+  await db.auth.signOut();
 
 };
 
 
-/* ================= PROFILE ================= */
+/* =====================================================
+   PROFILE
+===================================================== */
 
 function renderProfile(){
 
   document
   .getElementById("welcome")
   .textContent =
-  "Welcome, "+currentUser.email;
+  "Welcome, "+
+  currentUser.email;
+
 
   document
   .getElementById("profileEmail")
   .textContent =
   currentUser.email;
 
+
   document
   .getElementById("profileBatch")
   .textContent =
   userData.batch || "";
 
+
   document
   .getElementById("profileCollege")
   .textContent =
   userData.college || "";
+
 
   document
   .getElementById("profileZilla")
@@ -984,7 +1134,9 @@ function renderProfile(){
 }
 
 
-/* ================= RENDER SYLLABUS ================= */
+/* =====================================================
+   RENDER SYLLABUS
+===================================================== */
 
 function renderSyllabus(){
 
@@ -1001,16 +1153,17 @@ function renderSyllabus(){
       const subjectBox =
       document.createElement("div");
 
-      subjectBox.className="subject";
+      subjectBox.className=
+      "subject";
 
 
-      const subjectTitle =
+      const title =
       document.createElement("h2");
 
-      subjectTitle.textContent=
+      title.textContent=
       subject;
 
-      subjectBox.appendChild(subjectTitle);
+      subjectBox.appendChild(title);
 
 
       Object.entries(papers)
@@ -1020,7 +1173,8 @@ function renderSyllabus(){
           const paperBox =
           document.createElement("div");
 
-          paperBox.className="paper";
+          paperBox.className=
+          "paper";
 
 
           const paperTitle =
@@ -1029,33 +1183,44 @@ function renderSyllabus(){
           paperTitle.textContent=
           paper;
 
-          paperBox.appendChild(paperTitle);
+          paperBox.appendChild(
+            paperTitle
+          );
 
 
           chapters.forEach(
             (chapter,index)=>{
 
               const key =
-              subject+"|"+paper+"|"+index;
+              subject+
+              "|"+
+              paper+
+              "|"+
+              index;
 
 
               const row =
               document.createElement("div");
 
-              row.className="chapter";
+              row.className=
+              "chapter";
 
 
               const name =
               document.createElement("div");
 
-              name.className="chapter-name";
+              name.className=
+              "chapter-name";
 
               name.textContent=
-              (index+1)+". "+chapter;
+              (index+1)+
+              ". "+
+              chapter;
 
 
               const select =
               document.createElement("select");
+
 
               select.innerHTML=`
 
@@ -1076,11 +1241,11 @@ function renderSyllabus(){
 
               select.value =
               userData.progress?.[key]
-              || "not_started";
+              ||
+              "not_started";
 
 
-              select.onchange =
-              ()=>{
+              select.onchange=()=>{
                 changeProgress(
                   key,
                   select.value
@@ -1098,13 +1263,17 @@ function renderSyllabus(){
           );
 
 
-          subjectBox.appendChild(paperBox);
+          subjectBox.appendChild(
+            paperBox
+          );
 
         }
       );
 
 
-      box.appendChild(subjectBox);
+      box.appendChild(
+        subjectBox
+      );
 
     }
   );
@@ -1112,16 +1281,17 @@ function renderSyllabus(){
 }
 
 
-/* ================= CHANGE PROGRESS ================= */
+/* =====================================================
+   CHANGE PROGRESS
+===================================================== */
 
 async function changeProgress(
   key,
   status
 ){
 
-  const old =
-  userData.progress?.[key]
-  || "not_started";
+  if(!userData)
+    return;
 
 
   userData.progress =
@@ -1131,11 +1301,13 @@ async function changeProgress(
   userData.history || [];
 
 
-  /*
-    Completion history:
-    Every time a chapter becomes Done,
-    save the date.
-  */
+  const old =
+  userData.progress[key]
+  ||
+  "not_started";
+
+
+  /* Record completion */
 
   if(
     old!=="done" &&
@@ -1143,53 +1315,66 @@ async function changeProgress(
   ){
 
     userData.history.push({
-      time:Date.now(),
+
+      time:
+      Date.now(),
+
       key:key
+
     });
 
   }
 
 
-  userData.progress[key]=status;
+  userData.progress[key]=
+  status;
 
 
-  try{
+  const {
+    error
+  } =
+  await db
+  .from("profiles")
+  .update({
 
-    await updateDoc(
-      doc(
-        db,
-        "users",
-        currentUser.uid
-      ),
-      {
+    progress:
+    userData.progress,
 
-        progress:
-        userData.progress,
+    history:
+    userData.history,
 
-        history:
-        userData.history
+    updated_at:
+    new Date().toISOString()
 
-      }
-    );
+  })
+  .eq(
+    "id",
+    currentUser.id
+  );
 
 
-    updateDashboard();
-
-  }catch(error){
+  if(error){
 
     alert(
-      "Could not save progress.\n\n"+
+      "Progress could not be saved:\n\n"+
       error.message
     );
 
     renderSyllabus();
 
+    return;
+
   }
+
+
+  updateDashboard();
 
 }
 
 
-/* ================= DASHBOARD ================= */
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
 function updateDashboard(){
 
@@ -1204,7 +1389,8 @@ function updateDashboard(){
     Object.values(papers)
     .forEach(chapters=>{
 
-      total+=chapters.length;
+      total +=
+      chapters.length;
 
     });
 
@@ -1216,16 +1402,17 @@ function updateDashboard(){
   )
   .forEach(status=>{
 
-    if(status==="done"){
+    if(status==="done")
       done++;
-    }
 
   });
 
 
   const percent =
   total
-  ? Math.round(done/total*100)
+  ? Math.round(
+      done/total*100
+    )
   : 0;
 
 
@@ -1247,7 +1434,8 @@ function updateDashboard(){
   done;
 
 
-  const now=Date.now();
+  const now =
+  Date.now();
 
 
   const history =
@@ -1256,16 +1444,18 @@ function updateDashboard(){
 
   const seven =
   history.filter(
-    x =>
-    now-x.time <=
+    item =>
+    now-item.time
+    <=
     7*24*60*60*1000
   ).length;
 
 
   const thirty =
   history.filter(
-    x =>
-    now-x.time <=
+    item =>
+    now-item.time
+    <=
     30*24*60*60*1000
   ).length;
 
@@ -1284,17 +1474,21 @@ function updateDashboard(){
 }
 
 
-/* ================= GPA ================= */
+/* =====================================================
+   GPA
+===================================================== */
 
 window.calculateGPA=function(){
 
   const ids=[
+
     "gBangla",
     "gEnglish",
     "gICT",
     "gPhysics",
     "gChemistry",
     "gMath"
+
   ];
 
 
@@ -1311,10 +1505,10 @@ window.calculateGPA=function(){
 
   if(
     values.some(
-      x =>
-      isNaN(x) ||
-      x<0 ||
-      x>5
+      value =>
+      isNaN(value) ||
+      value<0 ||
+      value>5
     )
   ){
 
@@ -1343,11 +1537,7 @@ window.calculateGPA=function(){
   );
 
 
-  /*
-    Optional Biology:
-    If Biology GPA > 2,
-    bonus = Biology GPA - 2
-  */
+  /* Optional Biology bonus */
 
   if(
     !isNaN(biology) &&
@@ -1380,11 +1570,44 @@ window.calculateGPA=function(){
   document
   .getElementById("gpaResult")
   .textContent =
-  "Your GPA: "+gpa+"/5";
+  "Your GPA: "+
+  gpa+
+  "/5";
 
 };
+
+
+/* =====================================================
+   CHECK EXISTING SESSION
+===================================================== */
+
+(async function(){
+
+  try{
+
+    const {
+      data
+    } =
+    await db.auth.getSession();
+
+
+    if(data.session){
+
+      await loadUser(
+        data.session.user
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+})();
 
 </script>
 
 </body>
-</html>
+  </html>
