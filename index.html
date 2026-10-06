@@ -2,271 +2,421 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PCM Tracker</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+*{box-sizing:border-box}
 body{
+  margin:0;
   font-family:Arial,"Noto Sans Bengali",sans-serif;
-  background:#f5f5f5;
-  color:#111;
+  background:#f4f5f7;
+  color:#101114
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+/* LOGIN */
+.auth{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:#101114;
+  color:white
+}
+.authbox{
+  width:min(440px,100%);
+  background:#181a1f;
+  border:1px solid #2c2f36;
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 25px 70px #0007
+}
+.logo{
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:-1px
+}
+.logo span{color:#8bff65}
+.authbox h1{
+  font-size:34px;
+  margin:35px 0 8px
+}
+.muted{color:#8e939d}
+.field{margin:15px 0}
+.field label{
+  display:block;
+  font-size:12px;
+  color:#aeb2bb;
+  margin-bottom:7px
+}
+.field input,
+.field select{
+  width:100%;
+  padding:13px 14px;
+  border-radius:11px;
+  border:1px solid #343841;
+  background:#101216;
+  color:white;
+  outline:none
+}
+.primary{
+  width:100%;
+  border:0;
+  background:#8bff65;
+  color:#101114;
+  padding:14px;
+  border-radius:11px;
+  font-weight:900;
+  margin-top:10px
+}
+.switch{
+  margin-top:18px;
+  text-align:center;
+  font-size:13px
+}
+.switch button{
+  border:0;
+  background:none;
+  color:#8bff65
+}
+.error{
+  color:#ff7474;
+  font-size:12px;
+  margin-top:10px
 }
 
-header{
-  background:#111;
-  color:white;
-  padding:18px 6%;
+/* APP */
+.app{min-height:100vh}
+
+.top{
+  height:70px;
+  background:#fff;
+  border-bottom:1px solid #e2e4e8;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
+  padding:0 5%;
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:20
 }
+.top .logo{color:#101114}
 
-.logo{
-  font-size:22px;
-  font-weight:800;
-  letter-spacing:1px;
+.userpill{
+  display:flex;
+  align-items:center;
+  gap:10px
 }
-
-select{
-  padding:9px 12px;
-  border-radius:8px;
-  border:none;
-  font-weight:bold;
+.avatar{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#101114;
+  color:#8bff65;
+  display:grid;
+  place-items:center;
+  font-weight:900
 }
-
-.hero{
-  padding:55px 6% 35px;
+.logout{
+  border:1px solid #ddd;
   background:white;
+  padding:8px 11px;
+  border-radius:9px;
+  font-size:12px
 }
 
-.hero small{
-  color:#777;
-  font-weight:bold;
-  letter-spacing:2px;
+.wrap{
+  max-width:1180px;
+  margin:auto;
+  padding:35px 20px 70px
 }
 
-.hero h1{
-  font-size:clamp(38px,7vw,70px);
-  margin-top:12px;
-  line-height:1;
-}
-
-.hero h1 span{
-  color:#777;
-}
-
-.hero p{
-  color:#666;
-  max-width:600px;
-  margin-top:18px;
-  line-height:1.6;
-}
-
-.progress-area{
-  padding:25px 6%;
-  background:#111;
-  color:white;
-}
-
-.progress-text{
+.welcome{
   display:flex;
   justify-content:space-between;
-  margin-bottom:10px;
+  gap:20px;
+  align-items:end
 }
 
-.progress-bar{
+.welcome h1{
+  font-size:clamp(35px,6vw,62px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  margin:8px 0
+}
+
+.welcome h1 span{color:#8a8f98}
+
+.batchbadge{
+  background:#101114;
+  color:white;
+  padding:10px 14px;
+  border-radius:12px;
+  font-weight:800
+}
+
+/* OVERALL */
+.overall{
+  margin:30px 0;
+  background:#101114;
+  color:white;
+  border-radius:22px;
+  padding:25px
+}
+.overalltop{
+  display:flex;
+  justify-content:space-between;
+  align-items:end
+}
+.overalltop b{font-size:42px}
+
+.bar{
   height:12px;
-  background:#333;
+  background:#2d3036;
   border-radius:20px;
   overflow:hidden;
+  margin-top:18px
 }
-
-.progress-fill{
+.fill{
   height:100%;
-  width:0%;
+  background:#8bff65;
+  width:0;
+  transition:.3s
+}
+
+/* SUBJECT CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px
+}
+.card{
   background:white;
-  transition:.3s;
+  border:1px solid #e1e3e7;
+  border-radius:17px;
+  padding:18px
 }
-
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:30px 20px 60px;
+.card h3{margin:0 0 10px}
+.card .big{
+  font-size:27px;
+  font-weight:900
 }
-
-.tabs{
-  display:flex;
-  gap:10px;
-  margin-bottom:15px;
+.mini{
+  height:7px;
+  background:#eceef1;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:12px
 }
-
-button{
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.tab{
-  padding:12px 20px;
-  border-radius:9px;
-  background:#ddd;
-}
-
-.tab.active{
+.mini div{
+  height:100%;
   background:#111;
+  width:0
+}
+
+/* SUBJECT */
+.subjectnav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:30px 0 12px
+}
+.subjectnav button,
+.paper button,
+.filter button{
+  border:1px solid #ddd;
+  background:white;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:800
+}
+.subjectnav button.active,
+.paper button.active,
+.filter button.active{
+  background:#101114;
   color:white;
+  border-color:#101114
 }
 
 .paper{
   display:flex;
-  gap:8px;
-  margin-bottom:25px;
+  gap:7px;
+  margin-bottom:22px
 }
 
-.paper button{
-  padding:9px 15px;
-  border-radius:8px;
-  background:white;
-  border:1px solid #ddd;
-}
-
-.paper button.active{
-  background:#222;
-  color:white;
-}
-
-.section-title{
+.sectionhead{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  margin:20px 0;
+  align-items:end;
+  gap:15px
 }
-
-.section-title h2{
+.sectionhead h2{
   font-size:30px;
+  margin:0 0 5px
 }
 
-.reset{
-  background:transparent;
-  color:#b00020;
-  border:1px solid #b00020;
-  padding:8px 12px;
-  border-radius:7px;
+.filter{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap
 }
 
-.chapter{
+/* CHAPTER */
+.units{
+  margin-top:15px;
+  display:grid;
+  gap:9px
+}
+
+.unit{
   background:white;
-  padding:18px;
-  margin-bottom:10px;
-  border-radius:12px;
+  border:1px solid #e0e2e6;
+  border-radius:14px;
+  padding:16px;
   display:flex;
   align-items:center;
-  gap:15px;
-  border:2px solid transparent;
-  transition:.2s;
+  gap:15px
 }
 
-.chapter:hover{
-  transform:translateY(-2px);
+.unit.done{
+  background:#effcef;
+  border-color:#a9dba9
 }
 
-.number{
-  width:42px;
-  height:42px;
-  background:#eee;
+.unit.progress{
+  background:#fff9e6;
+  border-color:#e4cf78
+}
+
+.num{
+  width:40px;
+  height:40px;
   border-radius:10px;
+  background:#f0f1f3;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:#777
+}
+
+.utext{flex:1}
+
+.utext b{
+  display:block;
+  font-family:"Noto Sans Bengali",Arial;
+  font-size:16px
+}
+
+.utext small{color:#8b9098}
+
+.actions{
   display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:bold;
-  color:#777;
+  gap:5px
 }
 
-.chapter-info{
-  flex:1;
+.actions button{
+  width:34px;
+  height:34px;
+  border:1px solid #ddd;
+  background:#f7f7f8;
+  border-radius:8px
 }
 
-.chapter-info h3{
-  font-size:17px;
-  margin-bottom:4px;
-}
-
-.chapter-info p{
-  font-size:12px;
-  color:#888;
-}
-
-.status{
-  display:flex;
-  gap:5px;
-}
-
-.status button{
-  width:35px;
-  height:35px;
-  border-radius:8px;
-  background:#eee;
-  color:#777;
-}
-
-.status button.active{
-  background:#111;
+.actions .on{
+  background:#101114;
   color:white;
+  border-color:#101114
 }
 
-.chapter.done{
-  border-color:#8bc48b;
-  background:#f0fff0;
+/* PROFILE */
+.profile{
+  margin-top:30px;
+  background:white;
+  border:1px solid #e1e3e7;
+  border-radius:17px;
+  padding:20px
 }
 
-.chapter.progress{
-  border-color:#e2c45a;
-  background:#fffbed;
+.profilegrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:15px
 }
 
-footer{
-  text-align:center;
-  padding:30px;
-  color:#888;
-  border-top:1px solid #ddd;
+.profileitem{
+  background:#f5f6f7;
+  padding:14px;
+  border-radius:11px
 }
 
-@media(max-width:600px){
+.profileitem small{
+  display:block;
+  color:#777;
+  font-size:11px
+}
 
-  header{
-    padding:15px;
+.profileitem b{
+  display:block;
+  margin-top:4px
+}
+
+.danger{
+  margin-top:15px;
+  border:1px solid #e5b2b2;
+  background:#fff5f5;
+  color:#a52222;
+  padding:10px 13px;
+  border-radius:9px
+}
+
+@media(max-width:700px){
+
+  .top{padding:0 15px}
+
+  .wrap{
+    padding:25px 14px 55px
   }
 
-  .hero{
-    padding:40px 20px 30px;
+  .welcome{
+    display:block
   }
 
-  .container{
-    padding:25px 15px 50px;
+  .batchbadge{
+    display:inline-block;
+    margin-top:10px
   }
 
-  .chapter{
+  .cards{
+    grid-template-columns:1fr
+  }
+
+  .sectionhead{
+    display:block
+  }
+
+  .filter{
+    margin-top:14px
+  }
+
+  .unit{
     display:grid;
-    grid-template-columns:40px 1fr;
+    grid-template-columns:40px 1fr
   }
 
-  .status{
-    grid-column:2;
+  .actions{
+    grid-column:2
   }
 
-  .status button{
-    width:40px;
-    height:40px;
+  .profilegrid{
+    grid-template-columns:1fr 1fr
+  }
+
+  .userpill .email{
+    display:none
   }
 }
 </style>
@@ -274,503 +424,1358 @@ footer{
 
 <body>
 
-<header>
+<!-- ================= LOGIN / SIGNUP ================= -->
 
-  <div class="logo">
-    PCM TRACKER
-  </div>
+<div id="auth" class="auth">
 
-  <select id="batch">
+<div class="authbox">
 
-    <option>HSC 26</option>
-    <option>HSC 27</option>
-    <option>HSC 28</option>
-    <option>HSC 29</option>
-    <option>HSC 30</option>
-
-  </select>
-
-</header>
+<div class="logo">
+PCM <span>TRACKER</span>
+</div>
 
 
-<section class="hero">
+<!-- LOGIN -->
 
-  <small>HSC 26 — 30</small>
+<div id="loginForm">
 
-  <h1>
-    Track your<br>
-    <span>PCM syllabus.</span>
-  </h1>
+<h1>Welcome back.</h1>
 
-  <p>
-    Physics & Chemistry syllabus tracker.
-    কোন chapter পড়া হয়েছে, কোনটা চলছে আর কোনটা বাকি—
-    সবকিছু এক জায়গায় track করো।
-  </p>
+<p class="muted">
+Login to continue your PCM journey.
+</p>
 
-</section>
+<div class="field">
 
+<label>Email</label>
 
-<section class="progress-area">
-
-  <div class="progress-text">
-
-    <span>
-      Current Paper Progress
-    </span>
-
-    <b id="percent">
-      0%
-    </b>
-
-  </div>
-
-  <div class="progress-bar">
-
-    <div
-      class="progress-fill"
-      id="progressFill">
-    </div>
-
-  </div>
-
-</section>
-
-
-<div class="container">
-
-  <div class="tabs">
-
-    <button
-      class="tab active"
-      onclick="changeSubject('Physics',this)">
-
-      Physics
-
-    </button>
-
-    <button
-      class="tab"
-      onclick="changeSubject('Chemistry',this)">
-
-      Chemistry
-
-    </button>
-
-  </div>
-
-
-  <div class="paper">
-
-    <button
-      class="active"
-      onclick="changePaper('1st Paper',this)">
-
-      1st Paper
-
-    </button>
-
-    <button
-      onclick="changePaper('2nd Paper',this)">
-
-      2nd Paper
-
-    </button>
-
-  </div>
-
-
-  <div class="section-title">
-
-    <div>
-
-      <h2 id="subjectTitle">
-        Physics
-      </h2>
-
-      <small id="paperTitle">
-        1st Paper
-      </small>
-
-    </div>
-
-    <button
-      class="reset"
-      onclick="resetProgress()">
-
-      Reset
-
-    </button>
-
-  </div>
-
-
-  <div id="chapters"></div>
+<input
+id="lemail"
+type="email"
+placeholder="you@example.com">
 
 </div>
 
 
-<footer>
+<div class="field">
 
-  <b>PCM TRACKER</b>
+<label>Password</label>
 
-  <br>
+<input
+id="lpass"
+type="password"
+placeholder="••••••••">
 
-  HSC 26–30
+</div>
 
-</footer>
+
+<button
+class="primary"
+onclick="login()">
+
+Login
+
+</button>
+
+
+<div id="lerr" class="error"></div>
+
+
+<div class="switch">
+
+New here?
+
+<button onclick="showSignup()">
+Create account
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SIGNUP -->
+
+<div id="signupForm" class="hidden">
+
+<h1>Create account.</h1>
+
+<p class="muted">
+Set up your HSC profile.
+</p>
+
+
+<div class="field">
+
+<label>Email</label>
+
+<input
+id="semail"
+type="email"
+placeholder="you@example.com">
+
+</div>
+
+
+<div class="field">
+
+<label>Password</label>
+
+<input
+id="spass"
+type="password"
+placeholder="Minimum 6 characters">
+
+</div>
+
+
+<div class="field">
+
+<label>HSC Batch</label>
+
+<select id="sbatch">
+
+<option>HSC 26</option>
+<option>HSC 27</option>
+<option>HSC 28</option>
+<option>HSC 29</option>
+<option>HSC 30</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>College Name</label>
+
+<input
+id="college"
+placeholder="Your college">
+
+</div>
+
+
+<div class="field">
+
+<label>Zilla</label>
+
+<select id="zilla"></select>
+
+</div>
+
+
+<button
+class="primary"
+onclick="signup()">
+
+Create Account
+
+</button>
+
+
+<div id="serr" class="error"></div>
+
+
+<div class="switch">
+
+Already have an account?
+
+<button onclick="showLogin()">
+Login
+</button>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- ================= APP ================= -->
+
+<div id="app" class="app hidden">
+
+<header class="top">
+
+<div class="logo">
+PCM <span>TRACKER</span>
+</div>
+
+
+<div class="userpill">
+
+<div
+class="avatar"
+id="avatar">
+P
+</div>
+
+<span
+class="email"
+id="userEmail">
+</span>
+
+<button
+class="logout"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
+</header>
+
+
+<main class="wrap">
+
+
+<!-- WELCOME -->
+
+<section class="welcome">
+
+<div>
+
+<div class="muted">
+YOUR HSC JOURNEY
+</div>
+
+<h1>
+Study. Track.<br>
+<span>Finish PCM.</span>
+</h1>
+
+</div>
+
+
+<div
+class="batchbadge"
+id="batchBadge">
+</div>
+
+</section>
+
+
+<!-- OVERALL PCM -->
+
+<section class="overall">
+
+<div class="overalltop">
+
+<div>
+
+<div class="muted">
+OVERALL PCM PROGRESS
+</div>
+
+<div
+style="margin-top:8px"
+id="totalText">
+
+0 / 0 chapters
+
+</div>
+
+</div>
+
+
+<b id="overallPct">
+0%
+</b>
+
+</div>
+
+
+<div class="bar">
+
+<div
+class="fill"
+id="overallFill">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SUBJECT CARDS -->
+
+<section
+class="cards"
+id="subjectCards">
+</section>
+
+
+<!-- SUBJECT NAV -->
+
+<div class="subjectnav">
+
+<button
+class="active"
+onclick="setSubject('Physics',this)">
+
+⚡ Physics
+
+</button>
+
+
+<button
+onclick="setSubject('Chemistry',this)">
+
+🧪 Chemistry
+
+</button>
+
+
+<button
+onclick="setSubject('Higher Math',this)">
+
+📐 Higher Math
+
+</button>
+
+</div>
+
+
+<!-- PAPER -->
+
+<div
+class="paper"
+id="paperNav">
+</div>
+
+
+<!-- CHAPTER -->
+
+<section class="sectionhead">
+
+<div>
+
+<div
+class="muted"
+id="crumb">
+PHYSICS · 1ST PAPER
+</div>
+
+<h2 id="sectionTitle">
+Syllabus
+</h2>
+
+</div>
+
+
+<div class="filter">
+
+<button
+class="active"
+onclick="setFilter('all',this)">
+All
+</button>
+
+<button
+onclick="setFilter('none',this)">
+Remaining
+</button>
+
+<button
+onclick="setFilter('progress',this)">
+Running
+</button>
+
+<button
+onclick="setFilter('done',this)">
+Done
+</button>
+
+</div>
+
+</section>
+
+
+<section
+class="units"
+id="units">
+</section>
+
+
+<!-- PROFILE -->
+
+<section class="profile">
+
+<div class="muted">
+PROFILE
+</div>
+
+
+<div class="profilegrid">
+
+<div class="profileitem">
+
+<small>Email</small>
+
+<b id="pEmail"></b>
+
+</div>
+
+
+<div class="profileitem">
+
+<small>HSC Batch</small>
+
+<b id="pBatch"></b>
+
+</div>
+
+
+<div class="profileitem">
+
+<small>College</small>
+
+<b id="pCollege"></b>
+
+</div>
+
+
+<div class="profileitem">
+
+<small>Zilla</small>
+
+<b id="pZilla"></b>
+
+</div>
+
+</div>
+
+
+<button
+class="danger"
+onclick="resetAll()">
+
+Reset my PCM progress
+
+</button>
+
+</section>
+
+</main>
+
+</div>
 
 
 <script>
 
-const syllabus = {
+/* ================= DISTRICTS ================= */
 
-  Physics: {
+const districts=[
 
-    "1st Paper":[
+"Bagerhat",
+"Bandarban",
+"Barguna",
+"Barishal",
+"Bhola",
+"Bogura",
+"Brahmanbaria",
+"Chandpur",
+"Chattogram",
+"Chuadanga",
+"Cox's Bazar",
+"Cumilla",
+"Dhaka",
+"Dinajpur",
+"Faridpur",
+"Feni",
+"Gaibandha",
+"Gazipur",
+"Gopalganj",
+"Habiganj",
+"Jamalpur",
+"Jashore",
+"Jhalokathi",
+"Jhenaidah",
+"Joypurhat",
+"Khagrachhari",
+"Khulna",
+"Kishoreganj",
+"Kurigram",
+"Kushtia",
+"Lakshmipur",
+"Lalmonirhat",
+"Madaripur",
+"Magura",
+"Manikganj",
+"Meherpur",
+"Moulvibazar",
+"Munshiganj",
+"Mymensingh",
+"Naogaon",
+"Narail",
+"Narayanganj",
+"Narsingdi",
+"Natore",
+"Netrokona",
+"Nilphamari",
+"Noakhali",
+"Pabna",
+"Panchagarh",
+"Patuakhali",
+"Pirojpur",
+"Rajbari",
+"Rajshahi",
+"Rangamati",
+"Rangpur",
+"Satkhira",
+"Shariatpur",
+"Sherpur",
+"Sirajganj",
+"Sunamganj",
+"Sylhet",
+"Tangail",
+"Thakurgaon"
 
-      "ভৌত জগৎ ও পরিমাপ",
-      "ভেক্টর",
-      "গতিবিদ্যা",
-      "নিউটনিয়ান বলবিদ্যা",
-      "কাজ, শক্তি ও ক্ষমতা",
-      "মহাকর্ষ ও অভিকর্ষ",
-      "পদার্থের গাঠনিক ধর্ম",
-      "পর্যায়বৃত্ত গতি",
-      "তরঙ্গ",
-      "আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব"
-
-    ],
-
-    "2nd Paper":[
-
-      "তাপগতিবিদ্যা",
-      "স্থির তড়িৎ",
-      "চল তড়িৎ",
-      "তড়িৎ প্রবাহের চৌম্বক ক্রিয়া ও চুম্বকত্ব",
-      "তড়িৎচৌম্বকীয় আবেশ ও পরিবর্তী প্রবাহ",
-      "জ্যামিতিক আলোকবিজ্ঞান",
-      "ভৌত আলোকবিজ্ঞান",
-      "আধুনিক পদার্থবিজ্ঞানের সূচনা",
-      "পরমাণু ও নিউক্লিয়াসের পদার্থবিজ্ঞান",
-      "সেমিকন্ডাক্টর ও ইলেকট্রনিক্স"
-
-    ]
-
-  },
+];
 
 
-  Chemistry: {
+const zilla=
+document.getElementById("zilla");
 
-    "1st Paper":[
 
-      "ল্যাবরেটরির নিরাপদ ব্যবহার",
-      "গুণগত রসায়ন",
-      "মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন",
-      "রাসায়নিক পরিবর্তন",
-      "কর্মমুখী রসায়ন"
+districts.forEach(x=>{
 
-    ],
+let option=
+document.createElement("option");
 
-    "2nd Paper":[
+option.textContent=x;
 
-      "পরিবেশ রসায়ন",
-      "জৈব রসায়ন",
-      "পরিমাণগত রসায়ন",
-      "তড়িৎ রসায়ন",
-      "অর্থনৈতিক ও শিল্প রসায়ন"
+zilla.appendChild(option);
 
-    ]
+});
 
-  }
+
+/* ================= SYLLABUS ================= */
+
+const syllabus={
+
+
+Physics:{
+
+"1st Paper":[
+
+"ভৌত জগৎ ও পরিমাপ",
+"ভেক্টর",
+"গতিবিদ্যা",
+"নিউটনিয়ান বলবিদ্যা",
+"কাজ, শক্তি ও ক্ষমতা",
+"মহাকর্ষ ও অভিকর্ষ",
+"পদার্থের গাঠনিক ধর্ম",
+"পর্যায়বৃত্ত গতি",
+"তরঙ্গ",
+"আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব"
+
+],
+
+"2nd Paper":[
+
+"তাপগতিবিদ্যা",
+"স্থির তড়িৎ",
+"চল তড়িৎ",
+"তড়িৎ প্রবাহের চৌম্বক ক্রিয়া ও চুম্বকত্ব",
+"তড়িৎচৌম্বকীয় আবেশ ও পরিবর্তী প্রবাহ",
+"জ্যামিতিক আলোকবিজ্ঞান",
+"ভৌত আলোকবিজ্ঞান",
+"আধুনিক পদার্থবিজ্ঞানের সূচনা",
+"পরমাণু ও নিউক্লিয়াসের পদার্থবিজ্ঞান",
+"সেমিকন্ডাক্টর ও ইলেকট্রনিক্স",
+"জ্যোতির্বিজ্ঞান"
+
+]
+
+},
+
+
+Chemistry:{
+
+"1st Paper":[
+
+"ল্যাবরেটরির নিরাপদ ব্যবহার",
+"গুণগত রসায়ন",
+"মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন",
+"রাসায়নিক পরিবর্তন",
+"কর্মমুখী রসায়ন"
+
+],
+
+"2nd Paper":[
+
+"পরিবেশ রসায়ন",
+"জৈব রসায়ন",
+"পরিমাণগত রসায়ন",
+"তড়িৎ রসায়ন",
+"অর্থনৈতিক ও শিল্প রসায়ন"
+
+]
+
+},
+
+
+"Higher Math":{
+
+"1st Paper":[
+
+"ম্যাট্রিক্স ও নির্ণায়ক",
+"ভেক্টর",
+"সরলরেখা",
+"বৃত্ত",
+"বিন্যাস ও সমাবেশ",
+"ত্রিকোণমিতিক অনুপাত",
+"সংযুক্ত কোণের ত্রিকোণমিতিক অনুপাত",
+"ফাংশন ও ফাংশনের লেখচিত্র",
+"অন্তরীকরণ",
+"যোগজীকরণ"
+
+],
+
+"2nd Paper":[
+
+"জটিল সংখ্যা",
+"বহুপদী ও বহুপদী সমীকরণ",
+"কনিক",
+"বিপরীত ত্রিকোণমিতিক ফাংশন ও ত্রিকোণমিতিক সমীকরণ",
+"স্থিতিবিদ্যা",
+"সমতলে বস্তুকণার গতি",
+"বস্তুর দ্বিমাত্রিক গতি",
+"সম্ভাবনা",
+"বিস্তার পরিমাপ",
+"পরিসংখ্যান"
+
+]
+
+}
 
 };
 
+
+/* ================= STATE ================= */
+
+let currentUser=null;
 
 let currentSubject="Physics";
 
 let currentPaper="1st Paper";
 
-
-function storageKey(){
-
-  const batch=
-    document.getElementById("batch").value;
-
-  return "pcm-"+batch+"-"+
-    currentSubject+"-"+
-    currentPaper;
-
-}
+let currentFilter="all";
 
 
-function getData(){
+/* ================= AUTH ================= */
 
-  return JSON.parse(
-    localStorage.getItem(storageKey()) || "{}"
-  );
+function users(){
+
+return JSON.parse(
+localStorage.getItem("pcm-users") || "{}"
+);
 
 }
 
 
-function saveData(data){
+function showSignup(){
 
-  localStorage.setItem(
-    storageKey(),
-    JSON.stringify(data)
-  );
+loginForm.classList.add("hidden");
+
+signupForm.classList.remove("hidden");
 
 }
 
+
+function showLogin(){
+
+signupForm.classList.add("hidden");
+
+loginForm.classList.remove("hidden");
+
+}
+
+
+function signup(){
+
+const email=
+semail.value.trim().toLowerCase();
+
+const pass=
+spass.value;
+
+const collegeName=
+college.value.trim();
+
+const batch=
+sbatch.value;
+
+const z=
+zilla.value;
+
+
+if(
+!email ||
+!pass ||
+!collegeName
+){
+
+serr.textContent=
+"Please fill all required fields.";
+
+return;
+
+}
+
+
+if(pass.length<6){
+
+serr.textContent=
+"Password must be at least 6 characters.";
+
+return;
+
+}
+
+
+const u=users();
+
+
+if(u[email]){
+
+serr.textContent=
+"Account already exists.";
+
+return;
+
+}
+
+
+u[email]={
+
+password:pass,
+
+email:email,
+
+batch:batch,
+
+college:collegeName,
+
+zilla:z,
+
+progress:{}
+
+};
+
+
+localStorage.setItem(
+"pcm-users",
+JSON.stringify(u)
+);
+
+
+currentUser=u[email];
+
+localStorage.setItem(
+"pcm-current",
+email
+);
+
+
+openApp();
+
+}
+
+
+function login(){
+
+const email=
+lemail.value.trim().toLowerCase();
+
+const pass=
+lpass.value;
+
+const u=users();
+
+
+if(
+!u[email] ||
+u[email].password!==pass
+){
+
+lerr.textContent=
+"Wrong email or password.";
+
+return;
+
+}
+
+
+currentUser=u[email];
+
+localStorage.setItem(
+"pcm-current",
+email
+);
+
+
+openApp();
+
+}
+
+
+function logout(){
+
+localStorage.removeItem(
+"pcm-current"
+);
+
+location.reload();
+
+}
+
+
+function openApp(){
+
+auth.classList.add("hidden");
+
+app.classList.remove("hidden");
+
+
+userEmail.textContent=
+currentUser.email;
+
+
+avatar.textContent=
+currentUser.email[0].toUpperCase();
+
+
+batchBadge.textContent=
+currentUser.batch;
+
+
+pEmail.textContent=
+currentUser.email;
+
+pBatch.textContent=
+currentUser.batch;
+
+pCollege.textContent=
+currentUser.college;
+
+pZilla.textContent=
+currentUser.zilla;
+
+
+render();
+
+}
+
+
+function saveUser(){
+
+let u=users();
+
+u[currentUser.email]=
+currentUser;
+
+localStorage.setItem(
+"pcm-users",
+JSON.stringify(u)
+);
+
+}
+
+
+/* ================= TRACKING ================= */
+
+function pkey(subject,paper,index){
+
+return subject+
+"|" +
+paper+
+"|" +
+index;
+
+}
+
+
+function allUnits(){
+
+let arr=[];
+
+
+for(
+const subject in syllabus
+){
+
+for(
+const paper in syllabus[subject]
+){
+
+syllabus[subject][paper]
+.forEach((name,index)=>{
+
+arr.push([
+subject,
+paper,
+index,
+name
+]);
+
+});
+
+}
+
+}
+
+
+return arr;
+
+}
+
+
+function progressFor(subject){
+
+let total=0;
+
+let done=0;
+
+
+for(
+const paper in syllabus[subject]
+){
+
+syllabus[subject][paper]
+.forEach((_,index)=>{
+
+total++;
+
+
+if(
+currentUser.progress[
+pkey(subject,paper,index)
+]==="done"
+){
+
+done++;
+
+}
+
+});
+
+}
+
+
+return [
+done,
+total
+];
+
+}
+
+
+/* ================= RENDER ================= */
 
 function render(){
 
-  const chapters=
-    document.getElementById("chapters");
-
-  chapters.innerHTML="";
-
-  const data=getData();
-
-  const list=
-    syllabus[currentSubject][currentPaper];
+const all=
+allUnits();
 
 
-  list.forEach((name,index)=>{
-
-    const status=
-      data[index] || "none";
-
-
-    const div=
-      document.createElement("div");
+let done=
+all.filter(x=>
+currentUser.progress[
+pkey(x[0],x[1],x[2])
+]==="done"
+).length;
 
 
-    div.className=
-      "chapter "+
-      (
-        status==="done"
-        ? "done"
-        : status==="progress"
-        ? "progress"
-        : ""
-      );
+const overall=
+Math.round(
+done/all.length*100
+);
 
 
-    div.innerHTML=`
-
-      <div class="number">
-
-        ${String(index+1).padStart(2,"0")}
-
-      </div>
+overallPct.textContent=
+overall+"%";
 
 
-      <div class="chapter-info">
-
-        <h3>
-          ${name}
-        </h3>
-
-        <p>
-
-          ${
-            status==="done"
-            ? "✓ Completed"
-            : status==="progress"
-            ? "◐ In Progress"
-            : "○ Not Started"
-          }
-
-        </p>
-
-      </div>
+overallFill.style.width=
+overall+"%";
 
 
-      <div class="status">
-
-        <button
-          class="${
-            status==="none" ? "active" : ""
-          }"
-          onclick="setStatus(${index},'none')">
-
-          ○
-
-        </button>
+totalText.textContent=
+done+" / "+
+all.length+
+" chapters";
 
 
-        <button
-          class="${
-            status==="progress" ? "active" : ""
-          }"
-          onclick="setStatus(${index},'progress')">
+/* SUBJECT CARDS */
 
-          ◐
+subjectCards.innerHTML=
+[
 
-        </button>
+"Physics",
+"Chemistry",
+"Higher Math"
 
+].map(subject=>{
 
-        <button
-          class="${
-            status==="done" ? "active" : ""
-          }"
-          onclick="setStatus(${index},'done')">
-
-          ✓
-
-        </button>
-
-      </div>
-
-    `;
+let [d,t]=
+progressFor(subject);
 
 
-    chapters.appendChild(div);
+let percent=
+Math.round(d/t*100);
 
-  });
+
+let icon=
+subject==="Physics"
+?"⚡"
+:subject==="Chemistry"
+?"🧪"
+:"📐";
 
 
-  updateProgress();
+return `
+
+<div class="card">
+
+<h3>
+${icon} ${subject}
+</h3>
+
+<div class="big">
+${d}/${t}
+</div>
+
+<div class="muted">
+${percent}% completed
+</div>
+
+<div class="mini">
+
+<div
+style="width:${percent}%">
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+
+/* PAPER */
+
+paperNav.innerHTML=
+Object.keys(
+syllabus[currentSubject]
+)
+.map(p=>`
+
+<button
+class="${p===currentPaper?"active":""}"
+onclick="setPaper('${p}',this)">
+
+${p}
+
+</button>
+
+`).join("");
+
+
+crumb.textContent=
+(
+currentSubject+
+" · "+
+currentPaper
+).toUpperCase();
+
+
+/* CHAPTERS */
+
+let list=
+syllabus[currentSubject][currentPaper];
+
+
+units.innerHTML=
+list.map((name,index)=>{
+
+let status=
+currentUser.progress[
+pkey(
+currentSubject,
+currentPaper,
+index
+)
+] || "none";
+
+
+if(
+currentFilter!=="all" &&
+status!==currentFilter
+){
+
+return "";
+
+}
+
+
+return `
+
+<div
+class="unit
+${
+status==="done"
+?"done"
+:
+status==="progress"
+?"progress"
+:""
+}">
+
+<div class="num">
+
+${String(index+1)
+.padStart(2,"0")}
+
+</div>
+
+
+<div class="utext">
+
+<b>
+${name}
+</b>
+
+<small>
+
+${
+status==="done"
+?"✓ Completed"
+:
+status==="progress"
+?"◐ In Progress"
+:"○ Not Started"
+}
+
+</small>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="${
+status==="none"
+?"on"
+:""
+}"
+onclick="
+setStatus(
+${index},
+'none'
+)">
+
+○
+
+</button>
+
+
+<button
+class="${
+status==="progress"
+?"on"
+:""
+}"
+onclick="
+setStatus(
+${index},
+'progress'
+)">
+
+◐
+
+</button>
+
+
+<button
+class="${
+status==="done"
+?"on"
+:""
+}"
+onclick="
+setStatus(
+${index},
+'done'
+)">
+
+✓
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/* ================= CONTROLS ================= */
+
+function setSubject(subject,button){
+
+currentSubject=
+subject;
+
+
+currentPaper=
+Object.keys(
+syllabus[subject]
+)[0];
+
+
+document
+.querySelectorAll(
+".subjectnav button"
+)
+.forEach(x=>
+x.classList.remove("active")
+);
+
+
+button.classList.add("active");
+
+
+currentFilter="all";
+
+
+render();
+
+}
+
+
+function setPaper(paper,button){
+
+currentPaper=
+paper;
+
+
+document
+.querySelectorAll(
+".paper button"
+)
+.forEach(x=>
+x.classList.remove("active")
+);
+
+
+button.classList.add("active");
+
+
+render();
+
+}
+
+
+function setFilter(filter,button){
+
+currentFilter=
+filter;
+
+
+document
+.querySelectorAll(
+".filter button"
+)
+.forEach(x=>
+x.classList.remove("active")
+);
+
+
+button.classList.add("active");
+
+
+render();
 
 }
 
 
 function setStatus(index,status){
 
-  const data=getData();
-
-  data[index]=status;
-
-  saveData(data);
-
-  render();
-
-}
+currentUser.progress[
+pkey(
+currentSubject,
+currentPaper,
+index
+)
+]=status;
 
 
-function updateProgress(){
-
-  const list=
-    syllabus[currentSubject][currentPaper];
-
-  const data=getData();
-
-  let done=0;
-
-
-  list.forEach((_,index)=>{
-
-    if(data[index]==="done"){
-
-      done++;
-
-    }
-
-  });
-
-
-  const percent=
-    Math.round(
-      (done/list.length)*100
-    );
-
-
-  document.getElementById("percent")
-    .innerText=percent+"%";
-
-
-  document.getElementById("progressFill")
-    .style.width=percent+"%";
-
-}
-
-
-function changeSubject(subject,button){
-
-  currentSubject=subject;
-
-
-  document
-    .querySelectorAll(".tab")
-    .forEach(btn=>{
-      btn.classList.remove("active");
-    });
-
-
-  button.classList.add("active");
-
-
-  document.getElementById(
-    "subjectTitle"
-  ).innerText=subject;
-
-
-  render();
-
-}
-
-
-function changePaper(paper,button){
-
-  currentPaper=paper;
-
-
-  document
-    .querySelectorAll(".paper button")
-    .forEach(btn=>{
-      btn.classList.remove("active");
-    });
-
-
-  button.classList.add("active");
-
-
-  document.getElementById(
-    "paperTitle"
-  ).innerText=paper;
-
-
-  render();
-
-}
-
-
-function resetProgress(){
-
-  const batch=
-    document.getElementById("batch").value;
-
-
-  const message=
-    batch+" — "+
-    currentSubject+" "+
-    currentPaper+
-    " এর progress reset করবেন?";
-
-
-  if(confirm(message)){
-
-    localStorage.removeItem(
-      storageKey()
-    );
-
-    render();
-
-  }
-
-}
-
-
-document
-  .getElementById("batch")
-  .addEventListener(
-    "change",
-    render
-  );
+saveUser();
 
 
 render();
+
+}
+
+
+function resetAll(){
+
+if(
+confirm(
+"Reset all your PCM progress?"
+)
+){
+
+currentUser.progress={};
+
+saveUser();
+
+render();
+
+}
+
+}
+
+
+/* ================= START ================= */
+
+const saved=
+localStorage.getItem(
+"pcm-current"
+);
+
+
+if(
+saved &&
+users()[saved]
+){
+
+currentUser=
+users()[saved];
+
+openApp();
+
+}else{
+
+auth.classList.remove(
+"hidden"
+);
+
+}
 
 </script>
 
