@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,1150 +7,420 @@
 
 <style>
 *{box-sizing:border-box}
-
 body{
-    margin:0;
-    font-family:Arial,"Noto Sans Bengali",sans-serif;
-    background:#f4f5f7;
-    color:#111;
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f7fb;
+  color:#111827;
+}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+
+.header{
+  background:#111827;
+  color:white;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{font-size:22px;font-weight:800}
+.container{max-width:1100px;margin:auto;padding:20px}
+
+.card{
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 4px 18px rgba(0,0,0,.06);
 }
 
-button,input,select{
-    font:inherit;
+h1,h2,h3{margin-top:0}
+
+input,select{
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  margin:6px 0 12px;
+  outline:none;
 }
 
-button{
-    cursor:pointer;
+input:focus,select:focus{
+  border-color:#2563eb;
 }
 
-.hidden{
-    display:none!important;
+.btn{
+  background:#2563eb;
+  color:white;
+  padding:12px 16px;
+  border-radius:10px;
+  font-weight:700;
 }
+.btn:hover{opacity:.9}
 
-/* ================= AUTH ================= */
+.btn-danger{background:#dc2626}
+.btn-green{background:#16a34a}
+.btn-gray{background:#6b7280}
+
+.hidden{display:none!important}
 
 .auth{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:#101114;
-}
-
-.auth-box{
-    width:100%;
-    max-width:430px;
-    background:#191b20;
-    color:white;
-    padding:28px;
-    border-radius:22px;
-}
-
-.logo{
-    font-size:24px;
-    font-weight:900;
-}
-
-.logo span{
-    color:#8bff65;
-}
-
-.auth-box h1{
-    font-size:34px;
-    margin:35px 0 8px;
-}
-
-.muted{
-    color:#858a94;
-}
-
-.field{
-    margin-top:16px;
-}
-
-.field label{
-    display:block;
-    font-size:12px;
-    color:#aaa;
-    margin-bottom:7px;
-}
-
-.field input,
-.field select{
-    width:100%;
-    padding:13px;
-    border:1px solid #363941;
-    border-radius:10px;
-    background:#101216;
-    color:white;
-    outline:none;
-}
-
-.primary{
-    width:100%;
-    border:0;
-    background:#8bff65;
-    padding:14px;
-    border-radius:10px;
-    font-weight:900;
-    margin-top:18px;
+  max-width:430px;
+  margin:60px auto;
 }
 
 .switch{
-    text-align:center;
-    margin-top:18px;
-    font-size:13px;
+  color:#2563eb;
+  cursor:pointer;
+  font-weight:700;
 }
 
-.switch button{
-    border:0;
-    background:none;
-    color:#8bff65;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.stat{
+  background:#f8fafc;
+  padding:18px;
+  border-radius:14px;
+  text-align:center;
+}
+.stat b{
+  display:block;
+  font-size:25px;
+  margin-top:5px;
 }
 
-.error{
-    color:#ff7373;
-    font-size:13px;
-    margin-top:10px;
+.progress-wrap{
+  height:13px;
+  background:#e5e7eb;
+  border-radius:20px;
+  overflow:hidden;
+}
+.progress-bar{
+  height:100%;
+  background:#2563eb;
+  width:0%;
 }
 
-/* ================= APP ================= */
-
-.app{
-    min-height:100vh;
+.subject{
+  margin-bottom:20px;
 }
-
-.navbar{
-    height:70px;
-    background:white;
-    border-bottom:1px solid #ddd;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 5%;
-    position:sticky;
-    top:0;
-    z-index:10;
-}
-
-.nav-logo{
-    font-size:23px;
-    font-weight:900;
-}
-
-.nav-logo span{
-    color:#70d84e;
-}
-
-.user{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.avatar{
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    background:#111;
-    color:#8bff65;
-    display:grid;
-    place-items:center;
-    font-weight:900;
-}
-
-.logout{
-    border:1px solid #ddd;
-    background:white;
-    padding:8px 12px;
-    border-radius:8px;
-}
-
-.container{
-    width:min(1150px,100%);
-    margin:auto;
-    padding:30px 18px 70px;
-}
-
-.hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    gap:20px;
-}
-
-.hero h1{
-    font-size:clamp(36px,6vw,60px);
-    line-height:.95;
-    margin:8px 0;
-    letter-spacing:-3px;
-}
-
-.hero h1 span{
-    color:#999;
-}
-
-.batch{
-    background:#111;
-    color:white;
-    padding:10px 14px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-/* ================= OVERALL ================= */
-
-.overall{
-    margin-top:28px;
-    background:#111;
-    color:white;
-    border-radius:20px;
-    padding:24px;
-}
-
-.overall-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-}
-
-.percent{
-    font-size:42px;
-    font-weight:900;
-}
-
-.bar{
-    height:11px;
-    background:#303238;
-    border-radius:20px;
-    margin-top:18px;
-    overflow:hidden;
-}
-
-.bar-fill{
-    height:100%;
-    width:0;
-    background:#8bff65;
-    transition:.3s;
-}
-
-/* ================= CARDS ================= */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-top:14px;
-}
-
-.card{
-    background:white;
-    border:1px solid #ddd;
-    border-radius:16px;
-    padding:18px;
-}
-
-.card h3{
-    margin:0 0 8px;
-}
-
-.big{
-    font-size:30px;
-    font-weight:900;
-}
-
-.mini-bar{
-    height:7px;
-    background:#eee;
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:12px;
-}
-
-.mini-fill{
-    height:100%;
-    background:#111;
-}
-
-/* ================= DASHBOARD ================= */
-
-.dashboard{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:14px;
-}
-
-.panel{
-    background:white;
-    border:1px solid #ddd;
-    border-radius:16px;
-    padding:20px;
-}
-
-.panel.dark{
-    background:#111;
-    color:white;
-}
-
-.points-number{
-    font-size:40px;
-    font-weight:900;
-    margin-top:7px;
-}
-
-.green{
-    color:#8bff65;
-}
-
-/* ================= TABS ================= */
-
-.tabs{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-    margin-top:28px;
-}
-
-.tabs button,
-.subject-btn,
-.paper-btn,
-.filter-btn{
-    border:1px solid #ddd;
-    background:white;
-    padding:10px 14px;
-    border-radius:9px;
-    font-weight:bold;
-}
-
-.tabs button.active,
-.subject-btn.active,
-.paper-btn.active,
-.filter-btn.active{
-    background:#111;
-    color:white;
-    border-color:#111;
-}
-
-/* ================= SYLLABUS ================= */
-
-.subjects{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    margin-top:15px;
-}
-
-.papers{
-    display:flex;
-    gap:7px;
-    margin-top:12px;
-}
-
-.chapter-head{
-    margin-top:25px;
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    align-items:end;
-}
-
-.chapter-head h2{
-    margin:4px 0;
-}
-
-.filters{
-    display:flex;
-    flex-wrap:wrap;
-    gap:5px;
-}
-
-.chapter-list{
-    display:grid;
-    gap:8px;
-    margin-top:14px;
-}
-
 .chapter{
-    background:white;
-    border:1px solid #ddd;
-    border-radius:13px;
-    padding:15px;
-    display:flex;
-    align-items:center;
-    gap:13px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  margin:8px 0;
 }
-
-.chapter.done{
-    background:#effced;
-    border-color:#a6d99e;
+.chapter-name{flex:1}
+.chapter select{
+  width:150px;
+  margin:0;
 }
-
-.chapter.running{
-    background:#fff9e5;
-    border-color:#dfcc78;
-}
-
-.chapter-number{
-    width:40px;
-    height:40px;
-    background:#f0f1f3;
-    border-radius:9px;
-    display:grid;
-    place-items:center;
-    font-weight:900;
-    flex-shrink:0;
-}
-
-.chapter-info{
-    flex:1;
-}
-
-.chapter-info b{
-    display:block;
-}
-
-.chapter-info small{
-    color:#888;
-}
-
-.chapter-actions{
-    display:flex;
-    gap:5px;
-}
-
-.chapter-actions button{
-    width:34px;
-    height:34px;
-    border:1px solid #ddd;
-    background:#f7f7f7;
-    border-radius:8px;
-}
-
-.chapter-actions button.active{
-    background:#111;
-    color:white;
-}
-
-/* ================= GPA ================= */
-
-.gpa-grid{
-    display:grid;
-    grid-template-columns:1fr 130px;
-    gap:8px;
-    margin-top:18px;
-}
-
-.gpa-label{
-    background:#f5f6f7;
-    padding:13px;
-    border-radius:9px;
-    font-weight:bold;
-}
-
-.gpa-input{
-    width:100%;
-    border:1px solid #ddd;
-    border-radius:9px;
-    padding:11px;
-}
-
-.gpa-result{
-    margin-top:15px;
-    padding:20px;
-    border-radius:14px;
-    background:#111;
-    color:white;
-    text-align:center;
-}
-
-.gpa-value{
-    font-size:48px;
-    font-weight:900;
-    color:#8bff65;
-}
-
-/* ================= PROGRESS ================= */
-
-.progress-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.progress-number{
-    font-size:42px;
-    font-weight:900;
-    margin-top:7px;
-}
-
-.history{
-    margin-top:15px;
-    display:grid;
-    gap:7px;
-}
-
-.history-item{
-    padding:12px;
-    background:#f5f6f7;
-    border-radius:9px;
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    font-size:13px;
-}
-
-/* ================= REWARD ================= */
 
 .reward-box{
-    margin-top:12px;
-    background:#f5f6f7;
-    padding:15px;
-    border-radius:12px;
+  background:#ecfdf5;
+  border:1px solid #bbf7d0;
 }
 
-.reward-box input{
-    width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:9px;
-    margin:8px 0;
+.gpa-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
-
-.claim-btn{
-    background:#111;
-    color:white;
-    border:0;
-    padding:11px 15px;
-    border-radius:9px;
-    font-weight:bold;
-}
-
-.claim-btn:disabled{
-    opacity:.4;
-    cursor:not-allowed;
-}
-
-/* ================= PROFILE ================= */
-
-.profile{
-    margin-top:25px;
-}
-
-.profile-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-    margin-top:12px;
-}
-
-.profile-item{
-    background:white;
-    border:1px solid #ddd;
-    border-radius:12px;
-    padding:14px;
-}
-
-.profile-item small{
-    color:#777;
-    display:block;
-}
-
-.profile-item b{
-    display:block;
-    margin-top:5px;
-}
-
-.reset{
-    margin-top:12px;
-    background:#fff3f3;
-    color:#a11;
-    border:1px solid #e4b5b5;
-    padding:10px 13px;
-    border-radius:8px;
-}
-
-/* ================= MOBILE ================= */
 
 @media(max-width:700px){
-
-    .navbar{
-        padding:0 14px;
-    }
-
-    .email{
-        display:none;
-    }
-
-    .hero{
-        display:block;
-    }
-
-    .batch{
-        display:inline-block;
-        margin-top:10px;
-    }
-
-    .cards,
-    .dashboard,
-    .progress-grid{
-        grid-template-columns:1fr;
-    }
-
-    .chapter-head{
-        display:block;
-    }
-
-    .filters{
-        margin-top:12px;
-    }
-
-    .chapter{
-        display:grid;
-        grid-template-columns:40px 1fr;
-    }
-
-    .chapter-actions{
-        grid-column:2;
-    }
-
-    .profile-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .gpa-grid{
-        grid-template-columns:1fr 100px;
-    }
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .chapter{flex-direction:column;align-items:stretch}
+  .chapter select{width:100%}
+  .gpa-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-                    AUTH
-===================================================== -->
+<div id="authPage">
+  <div class="auth card">
 
-<div id="authScreen" class="auth">
+    <h1 id="authTitle">Login</h1>
+    <p id="authMessage"></p>
 
-<div class="auth-box">
+    <div id="signupFields" class="hidden">
 
-<div class="logo">
-PCM <span>TRACKER</span>
+      <label>HSC Batch</label>
+      <select id="batch">
+        <option value="HSC 26">HSC 26</option>
+        <option value="HSC 27">HSC 27</option>
+        <option value="HSC 28">HSC 28</option>
+      </select>
+
+      <label>College Name</label>
+      <input id="college" placeholder="Your college name">
+
+      <label>Zilla</label>
+      <input id="zilla" placeholder="Your district">
+
+    </div>
+
+    <label>Email</label>
+    <input id="email" type="email" placeholder="Email">
+
+    <label>Password</label>
+    <input id="password" type="password" placeholder="Password">
+
+    <button class="btn" style="width:100%" onclick="authAction()" id="authBtn">
+      Login
+    </button>
+
+    <p style="text-align:center;margin-top:18px">
+      <span id="switchText">Don't have an account?</span>
+      <span class="switch" onclick="toggleAuth()" id="switchBtn"> Sign Up</span>
+    </p>
+
+  </div>
 </div>
 
 
-<!-- LOGIN -->
+<div id="app" class="hidden">
 
-<div id="loginBox">
-
-<h1>Welcome back.</h1>
-
-<p class="muted">
-Login to continue your HSC journey.
-</p>
-
-<div class="field">
-<label>Email</label>
-<input id="loginEmail" type="email" placeholder="you@example.com">
-</div>
-
-<div class="field">
-<label>Password</label>
-<input id="loginPassword" type="password" placeholder="Password">
-</div>
-
-<button id="loginButton" class="primary">
-Login
-</button>
-
-<div id="loginError" class="error"></div>
-
-<div class="switch">
-New here?
-<button id="showSignupButton">Create account</button>
-</div>
-
-</div>
-
-
-<!-- SIGNUP -->
-
-<div id="signupBox" class="hidden">
-
-<h1>Create account.</h1>
-
-<p class="muted">
-Create your PCM Tracker account.
-</p>
-
-<div class="field">
-<label>Email</label>
-<input id="signupEmail" type="email" placeholder="you@example.com">
-</div>
-
-<div class="field">
-<label>Password</label>
-<input id="signupPassword" type="password" placeholder="Minimum 6 characters">
-</div>
-
-<div class="field">
-<label>HSC Batch</label>
-
-<select id="signupBatch">
-<option>HSC 26</option>
-<option>HSC 27</option>
-<option>HSC 28</option>
-<option>HSC 29</option>
-<option>HSC 30</option>
-</select>
-
-</div>
-
-<div class="field">
-<label>College Name</label>
-<input id="signupCollege" placeholder="Your college">
-</div>
-
-<div class="field">
-<label>Zilla</label>
-
-<select id="signupZilla"></select>
-
-</div>
-
-<button id="signupButton" class="primary">
-Create Account
-</button>
-
-<div id="signupError" class="error"></div>
-
-<div class="switch">
-Already have an account?
-<button id="showLoginButton">Login</button>
-</div>
-
-</div>
-
-</div>
-</div>
-
-
-<!-- =====================================================
-                     APP
-===================================================== -->
-
-<div id="appScreen" class="app hidden">
-
-<header class="navbar">
-
-<div class="nav-logo">
-PCM <span>TRACKER</span>
-</div>
-
-<div class="user">
-
-<div id="avatar" class="avatar">P</div>
-
-<span id="navEmail" class="email"></span>
-
-<button id="logoutButton" class="logout">
-Logout
-</button>
-
-</div>
-
+<header class="header">
+  <div class="logo">📚 PCM Tracker</div>
+  <button class="btn btn-danger" onclick="logout()">Logout</button>
 </header>
 
+<div class="container">
 
-<main class="container">
+<div class="card">
+  <h2>Dashboard</h2>
+  <p id="welcome"></p>
 
+  <div class="stats">
+    <div class="stat">
+      Overall
+      <b id="overall">0%</b>
+    </div>
 
-<!-- HERO -->
+    <div class="stat">
+      Done
+      <b id="doneCount">0</b>
+    </div>
 
-<section class="hero">
+    <div class="stat">
+      Points
+      <b id="points">0</b>
+    </div>
 
-<div>
+    <div class="stat">
+      Reward
+      <b id="reward">৳0</b>
+    </div>
+  </div>
 
-<div class="muted">
-YOUR HSC JOURNEY
-</div>
+  <br>
 
-<h1>
-Study. Track.<br>
-<span>Finish PCM.</span>
-</h1>
-
-</div>
-
-<div id="batchBadge" class="batch"></div>
-
-</section>
-
-
-<!-- OVERALL -->
-
-<section class="overall">
-
-<div class="overall-top">
-
-<div>
-
-<div class="muted">
-OVERALL SYLLABUS PROGRESS
-</div>
-
-<div id="overallText">
-0 / 0 chapters
-</div>
-
-</div>
-
-<div id="overallPercent" class="percent">
-0%
-</div>
-
-</div>
-
-<div class="bar">
-<div id="overallFill" class="bar-fill"></div>
-</div>
-
-</section>
-
-
-<!-- SUBJECT CARDS -->
-
-<section id="subjectCards" class="cards"></section>
-
-
-<!-- POINTS + REWARD -->
-
-<section class="dashboard">
-
-<div class="panel dark">
-
-<div class="muted">
-MY POINTS
-</div>
-
-<div id="points" class="points-number">
-0
-</div>
-
-<div>
-Reward balance:
-<span id="rewardAmount" class="green">৳0</span>
-</div>
-
+  <div class="progress-wrap">
+    <div class="progress-bar" id="overallBar"></div>
+  </div>
 </div>
 
 
-<div class="panel">
+<div class="card">
+<h2>📊 Progress</h2>
 
-<h3>🎁 Reward System</h3>
+<div class="stats">
 
-<p class="muted">
-Complete a chapter to earn points.
+<div class="stat">
+7 Days
+<b id="sevenDays">0</b>
+</div>
+
+<div class="stat">
+30 Days
+<b id="thirtyDays">0</b>
+</div>
+
+<div class="stat">
+Total Chapters
+<b>51</b>
+</div>
+
+<div class="stat">
+Completed
+<b id="completed2">0</b>
+</div>
+
+</div>
+</div>
+
+
+<div class="card">
+<h2>💰 Rewards</h2>
+
+<div class="reward-box card">
+
+<p>
+Every completed chapter = <b>10 points</b>
 </p>
 
 <p>
-<strong>1 chapter = 10 points</strong>
+200 points = <b>৳20</b>
 </p>
 
 <p>
-<strong>200 points = ৳20</strong>
+1000 points = <b>৳100</b>
 </p>
 
-<div class="reward-box">
+<p>
+Available reward:
+<b id="availableReward">৳0</b>
+</p>
 
 <label>bKash Number</label>
+<input id="bkash" placeholder="01XXXXXXXXX">
 
-<input id="bkashNumber" type="tel" placeholder="01XXXXXXXXX">
-
-<button id="claimButton" class="claim-btn">
+<button class="btn btn-green" onclick="claimReward()">
 Claim Reward
 </button>
 
-<div id="claimMessage" class="muted"></div>
+<p id="claimMessage"></p>
 
 </div>
 
-</div>
-
-</section>
-
-
-<!-- MAIN TABS -->
-
-<div class="tabs">
-
-<button class="active" data-tab="syllabus">
-📚 Syllabus
-</button>
-
-<button data-tab="gpa">
-🧮 GPA Calculator
-</button>
-
-<button data-tab="progress">
-📈 7 / 30 Days
-</button>
-
+<div id="claims"></div>
 </div>
 
 
-<!-- =====================================================
-                    SYLLABUS TAB
-===================================================== -->
-
-<div id="syllabusTab">
-
-<div class="subjects">
-
-<button class="subject-btn active" data-subject="Physics">
-⚡ Physics
-</button>
-
-<button class="subject-btn" data-subject="Chemistry">
-🧪 Chemistry
-</button>
-
-<button class="subject-btn" data-subject="Higher Math">
-📐 Higher Math
-</button>
-
-</div>
-
-
-<div id="paperButtons" class="papers"></div>
-
-
-<section class="chapter-head">
-
-<div>
-
-<div id="chapterCrumb" class="muted">
-PHYSICS · 1ST PAPER
-</div>
-
-<h2>Syllabus</h2>
-
-</div>
-
-<div class="filters">
-
-<button class="filter-btn active" data-filter="all">
-All
-</button>
-
-<button class="filter-btn" data-filter="none">
-Remaining
-</button>
-
-<button class="filter-btn" data-filter="running">
-Running
-</button>
-
-<button class="filter-btn" data-filter="done">
-Done
-</button>
-
-</div>
-
-</section>
-
-
-<div id="chapterList" class="chapter-list"></div>
-
-</div>
-
-
-<!-- =====================================================
-                    GPA TAB
-===================================================== -->
-
-<div id="gpaTab" class="hidden">
-
-<div class="panel">
-
+<div class="card">
 <h2>🧮 GPA Calculator</h2>
-
-<p class="muted">
-Enter GPA directly. GPA must be between 0.00 and 5.00.
-</p>
-
 
 <div class="gpa-grid">
 
-<div class="gpa-label">Bangla</div>
-<input class="gpa-input" data-subject="Bangla" type="number" min="0" max="5" step=".01">
-
-<div class="gpa-label">English</div>
-<input class="gpa-input" data-subject="English" type="number" min="0" max="5" step=".01">
-
-<div class="gpa-label">ICT</div>
-<input class="gpa-input" data-subject="ICT" type="number" min="0" max="5" step=".01">
-
-<div class="gpa-label">Physics</div>
-<input class="gpa-input" data-subject="Physics" type="number" min="0" max="5" step=".01">
-
-<div class="gpa-label">Chemistry</div>
-<input class="gpa-input" data-subject="Chemistry" type="number" min="0" max="5" step=".01">
-
-<div class="gpa-label">Higher Math</div>
-<input class="gpa-input" data-subject="Higher Math" type="number" min="0" max="5" step=".01">
-
-<div class="gpa-label">Biology — Optional</div>
-<input class="gpa-input" data-subject="Biology" type="number" min="0" max="5" step=".01">
-
+<div>
+<label>Bangla</label>
+<input class="gpa" id="gBangla" type="number" min="0" max="5" step=".01">
 </div>
 
-
-<div class="gpa-result">
-
-<div class="muted">
-OVERALL GPA
+<div>
+<label>English</label>
+<input class="gpa" id="gEnglish" type="number" min="0" max="5" step=".01">
 </div>
 
-<div id="gpaResult" class="gpa-value">
-0.00
+<div>
+<label>ICT</label>
+<input class="gpa" id="gICT" type="number" min="0" max="5" step=".01">
 </div>
 
-<div id="gpaStatus">
-Enter your GPA
+<div>
+<label>Physics</label>
+<input class="gpa" id="gPhysics" type="number" min="0" max="5" step=".01">
+</div>
+
+<div>
+<label>Chemistry</label>
+<input class="gpa" id="gChemistry" type="number" min="0" max="5" step=".01">
+</div>
+
+<div>
+<label>Higher Math</label>
+<input class="gpa" id="gMath" type="number" min="0" max="5" step=".01">
+</div>
+
+<div>
+<label>Biology (Optional)</label>
+<input class="gpa" id="gBiology" type="number" min="0" max="5" step=".01">
 </div>
 
 </div>
 
-</div>
+<button class="btn" onclick="calculateGPA()">Calculate GPA</button>
 
-</div>
-
-
-<!-- =====================================================
-                    PROGRESS TAB
-===================================================== -->
-
-<div id="progressTab" class="hidden">
-
-<div class="progress-grid">
-
-<div class="panel">
-
-<h3>📅 Last 7 Days</h3>
-
-<div id="sevenDayCount" class="progress-number">
-0
-</div>
-
-<div class="muted">
-chapters completed
-</div>
-
+<h2 id="gpaResult"></h2>
 </div>
 
 
-<div class="panel">
-
-<h3>📆 Last 30 Days</h3>
-
-<div id="thirtyDayCount" class="progress-number">
-0
+<div class="card">
+<h2>📚 Syllabus</h2>
+<div id="syllabus"></div>
 </div>
 
-<div class="muted">
-chapters completed
-</div>
+
+<div class="card">
+<h2>👤 Profile</h2>
+
+<p><b>Email:</b> <span id="profileEmail"></span></p>
+<p><b>HSC Batch:</b> <span id="profileBatch"></span></p>
+<p><b>College:</b> <span id="profileCollege"></span></p>
+<p><b>Zilla:</b> <span id="profileZilla"></span></p>
 
 </div>
 
 </div>
-
-
-<div class="panel" style="margin-top:12px">
-
-<h3>Recent Activity</h3>
-
-<div id="historyList" class="history"></div>
-
-</div>
-
 </div>
 
 
-<!-- PROFILE -->
+<script type="module">
 
-<section class="profile">
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
-<div class="muted">
-PROFILE
-</div>
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+}
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 
-<div class="profile-grid">
-
-<div class="profile-item">
-<small>Email</small>
-<b id="profileEmail"></b>
-</div>
-
-<div class="profile-item">
-<small>HSC Batch</small>
-<b id="profileBatch"></b>
-</div>
-
-<div class="profile-item">
-<small>College</small>
-<b id="profileCollege"></b>
-</div>
-
-<div class="profile-item">
-<small>Zilla</small>
-<b id="profileZilla"></b>
-</div>
-
-</div>
-
-<button id="resetButton" class="reset">
-Reset my progress
-</button>
-
-</section>
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 
-</main>
-</div>
+const firebaseConfig = {
+  apiKey: "AIzaSyAXA1F0cKY7wPxyrayCIJdKzYhdFmGSpUc",
+  authDomain: "pcm-track-8d23d.firebaseapp.com",
+  projectId: "pcm-track-8d23d",
+  storageBucket: "pcm-track-8d23d.firebasestorage.app",
+  messagingSenderId: "659196460512",
+  appId: "1:659196460512:web:2b7d05a8c61037919d7f85",
+  measurementId: "G-2GDKE7R4BJ"
+};
 
+const app = initializeApp(firebaseConfig);
 
-<script>
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-/* =====================================================
-                    DATA
-===================================================== */
+const ADMIN_EMAIL = "encore.26@email.com";
 
-const districts = [
-"Bagerhat","Bandarban","Barguna","Barishal","Bhola",
-"Bogura","Brahmanbaria","Chandpur","Chattogram",
-"Chuadanga","Cox's Bazar","Cumilla","Dhaka","Dinajpur",
-"Faridpur","Feni","Gaibandha","Gazipur","Gopalganj",
-"Habiganj","Jamalpur","Jashore","Jhalokathi","Jhenaidah",
-"Joypurhat","Khagrachhari","Khulna","Kishoreganj",
-"Kurigram","Kushtia","Lakshmipur","Lalmonirhat",
-"Madaripur","Magura","Manikganj","Meherpur","Moulvibazar",
-"Munshiganj","Mymensingh","Naogaon","Narail","Narayanganj",
-"Narsingdi","Natore","Netrokona","Nilphamari","Noakhali",
-"Pabna","Panchagarh","Patuakhali","Pirojpur","Rajbari",
-"Rajshahi","Rangamati","Rangpur","Satkhira","Shariatpur",
-"Sherpur","Sirajganj","Sunamganj","Sylhet","Tangail",
-"Thakurgaon"
-];
+let signupMode = false;
+let currentUser = null;
+let userData = null;
 
 
 const syllabus = {
 
 Physics:{
-
 "1st Paper":[
 "ভৌত জগৎ ও পরিমাপ",
 "ভেক্টর",
@@ -1163,7 +433,6 @@ Physics:{
 "তরঙ্গ",
 "আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব"
 ],
-
 "2nd Paper":[
 "তাপগতিবিদ্যা",
 "স্থির তড়িৎ",
@@ -1177,11 +446,9 @@ Physics:{
 "সেমিকন্ডাক্টর ও ইলেকট্রনিক্স",
 "জ্যোতির্বিজ্ঞান"
 ]
-
 },
 
 Chemistry:{
-
 "1st Paper":[
 "ল্যাবরেটরির নিরাপদ ব্যবহার",
 "গুণগত রসায়ন",
@@ -1189,7 +456,6 @@ Chemistry:{
 "রাসায়নিক পরিবর্তন",
 "কর্মমুখী রসায়ন"
 ],
-
 "2nd Paper":[
 "পরিবেশ রসায়ন",
 "জৈব রসায়ন",
@@ -1197,11 +463,9 @@ Chemistry:{
 "তড়িৎ রসায়ন",
 "অর্থনৈতিক ও শিল্প রসায়ন"
 ]
-
 },
 
 "Higher Math":{
-
 "1st Paper":[
 "ম্যাট্রিক্স ও নির্ণায়ক",
 "ভেক্টর",
@@ -1221,1405 +485,561 @@ Chemistry:{
 "জটিল সংখ্যা",
 "বহুপদী ও বহুপদী সমীকরণ",
 "দ্বিপদী বিস্তৃতি",
-"কণিক — প্যারাবোলা, ইলিপ্স ও হাইপারবোলা",
+"কণিক",
 "বিপরীত ত্রিকোণমিতিক ফাংশন ও ত্রিকোণমিতিক সমীকরণ",
 "স্থিতিবিদ্যা",
 "কণার গতিবিদ্যা",
 "সম্ভাব্যতা"
 ]
+}
+
+};
+
+
+window.toggleAuth = function(){
+
+signupMode = !signupMode;
+
+document.getElementById("authTitle").textContent =
+signupMode ? "Create Account" : "Login";
+
+document.getElementById("authBtn").textContent =
+signupMode ? "Sign Up" : "Login";
+
+document.getElementById("signupFields").classList.toggle(
+"hidden",
+!signupMode
+);
+
+document.getElementById("switchText").textContent =
+signupMode ? "Already have an account?" : "Don't have an account?";
+
+document.getElementById("switchBtn").textContent =
+signupMode ? " Login" : " Sign Up";
+
+};
+
+
+window.authAction = async function(){
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+const message =
+document.getElementById("authMessage");
+
+if(!email || !password){
+message.textContent = "Email and password required.";
+return;
+}
+
+try{
+
+if(signupMode){
+
+const batch =
+document.getElementById("batch").value;
+
+const college =
+document.getElementById("college").value.trim();
+
+const zilla =
+document.getElementById("zilla").value.trim();
+
+if(!college || !zilla){
+message.textContent =
+"College and Zilla required.";
+return;
+}
+
+const result =
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+await setDoc(
+doc(db,"users",result.user.uid),
+{
+uid:result.user.uid,
+email:email,
+batch:batch,
+college:college,
+zilla:zilla,
+points:0,
+progress:{},
+history:[],
+createdAt:serverTimestamp()
+}
+);
+
+message.textContent = "Account created!";
+
+}else{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+}
+
+}catch(error){
+
+message.textContent =
+error.message.replace("Firebase:","");
 
 }
 
 };
 
 
-/* =====================================================
-                    DOM
-===================================================== */
+onAuthStateChanged(auth, async user => {
 
-const $ = id => document.getElementById(id);
+if(!user){
 
-const authScreen = $("authScreen");
-const appScreen = $("appScreen");
+document.getElementById("authPage")
+.classList.remove("hidden");
 
-const loginBox = $("loginBox");
-const signupBox = $("signupBox");
+document.getElementById("app")
+.classList.add("hidden");
 
-const loginEmail = $("loginEmail");
-const loginPassword = $("loginPassword");
-const loginError = $("loginError");
+return;
+}
 
-const signupEmail = $("signupEmail");
-const signupPassword = $("signupPassword");
-const signupBatch = $("signupBatch");
-const signupCollege = $("signupCollege");
-const signupZilla = $("signupZilla");
-const signupError = $("signupError");
+currentUser = user;
 
-const navEmail = $("navEmail");
-const avatar = $("avatar");
-const batchBadge = $("batchBadge");
+const ref =
+doc(db,"users",user.uid);
 
-const overallText = $("overallText");
-const overallPercent = $("overallPercent");
-const overallFill = $("overallFill");
+const snap = await getDoc(ref);
 
-const subjectCards = $("subjectCards");
-const paperButtons = $("paperButtons");
-const chapterList = $("chapterList");
-const chapterCrumb = $("chapterCrumb");
+if(!snap.exists()){
 
-const points = $("points");
-const rewardAmount = $("rewardAmount");
+await setDoc(ref,{
+uid:user.uid,
+email:user.email,
+batch:"HSC 27",
+college:"",
+zilla:"",
+points:0,
+progress:{},
+history:[],
+createdAt:serverTimestamp()
+});
 
-const bkashNumber = $("bkashNumber");
-const claimButton = $("claimButton");
-const claimMessage = $("claimMessage");
+}
 
-const gpaResult = $("gpaResult");
-const gpaStatus = $("gpaStatus");
+const latest =
+await getDoc(ref);
 
-const sevenDayCount = $("sevenDayCount");
-const thirtyDayCount = $("thirtyDayCount");
-const historyList = $("historyList");
+userData = latest.data();
 
+document.getElementById("authPage")
+.classList.add("hidden");
 
-/* =====================================================
-                    STATE
-===================================================== */
+document.getElementById("app")
+.classList.remove("hidden");
 
-let currentUser = null;
-
-let currentSubject = "Physics";
-let currentPaper = "1st Paper";
-let currentFilter = "all";
-
-
-/* =====================================================
-                    DISTRICTS
-===================================================== */
-
-districts.forEach(district => {
-
-    const option = document.createElement("option");
-
-    option.value = district;
-    option.textContent = district;
-
-    signupZilla.appendChild(option);
+renderProfile();
+renderSyllabus();
+updateDashboard();
+loadClaims();
 
 });
 
 
-/* =====================================================
-                    STORAGE
-===================================================== */
-
-function getUsers(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem("pcm_users") || "{}"
-        );
-
-    }catch(error){
-
-        return {};
-
-    }
-
-}
+window.logout = async function(){
+await signOut(auth);
+};
 
 
-function saveUsers(users){
+function renderProfile(){
 
-    localStorage.setItem(
-        "pcm_users",
-        JSON.stringify(users)
-    );
+document.getElementById("welcome").textContent =
+"Welcome, " + currentUser.email;
+
+document.getElementById("profileEmail").textContent =
+currentUser.email;
+
+document.getElementById("profileBatch").textContent =
+userData.batch || "";
+
+document.getElementById("profileCollege").textContent =
+userData.college || "";
+
+document.getElementById("profileZilla").textContent =
+userData.zilla || "";
 
 }
 
 
-function saveCurrentUser(){
+function renderSyllabus(){
 
-    const users = getUsers();
+const box =
+document.getElementById("syllabus");
 
-    users[currentUser.email] = currentUser;
+box.innerHTML = "";
 
-    saveUsers(users);
+Object.entries(syllabus).forEach(
+([subject,papers])=>{
 
-}
+const subjectBox =
+document.createElement("div");
 
+subjectBox.className="subject";
 
-/* =====================================================
-                    AUTH
-===================================================== */
+subjectBox.innerHTML =
+`<h2>${subject}</h2>`;
 
-$("showSignupButton").addEventListener("click",()=>{
+Object.entries(papers).forEach(
+([paper,chapters])=>{
 
-    loginBox.classList.add("hidden");
-    signupBox.classList.remove("hidden");
+const paperTitle =
+document.createElement("h3");
 
-    loginError.textContent="";
+paperTitle.textContent =
+paper;
+
+subjectBox.appendChild(paperTitle);
+
+chapters.forEach(
+(chapter,index)=>{
+
+const key =
+subject+"|"+paper+"|"+index;
+
+const row =
+document.createElement("div");
+
+row.className="chapter";
+
+const name =
+document.createElement("div");
+
+name.className="chapter-name";
+
+name.textContent =
+(index+1)+". "+chapter;
+
+const select =
+document.createElement("select");
+
+select.innerHTML=`
+<option value="not_started">Not Started</option>
+<option value="running">Running</option>
+<option value="done">Done</option>
+`;
+
+select.value =
+userData.progress?.[key] || "not_started";
+
+select.onchange =
+()=>changeProgress(key,select.value);
+
+row.appendChild(name);
+row.appendChild(select);
+
+subjectBox.appendChild(row);
 
 });
 
+});
 
-$("showLoginButton").addEventListener("click",()=>{
-
-    signupBox.classList.add("hidden");
-    loginBox.classList.remove("hidden");
-
-    signupError.textContent="";
+box.appendChild(subjectBox);
 
 });
 
-
-$("signupButton").addEventListener("click",signup);
-
-$("loginButton").addEventListener("click",login);
-
-$("logoutButton").addEventListener("click",logout);
-
-
-function signup(){
-
-    signupError.textContent="";
-
-    const email =
-        signupEmail.value.trim().toLowerCase();
-
-    const password =
-        signupPassword.value;
-
-    const batch =
-        signupBatch.value;
-
-    const college =
-        signupCollege.value.trim();
-
-    const zilla =
-        signupZilla.value;
-
-
-    if(!email || !password || !college){
-
-        signupError.textContent =
-            "Please fill all required fields.";
-
-        return;
-
-    }
-
-
-    if(password.length < 6){
-
-        signupError.textContent =
-            "Password must be at least 6 characters.";
-
-        return;
-
-    }
-
-
-    const users = getUsers();
-
-
-    if(users[email]){
-
-        signupError.textContent =
-            "This account already exists.";
-
-        return;
-
-    }
-
-
-    currentUser = {
-
-        email:email,
-
-        password:password,
-
-        batch:batch,
-
-        college:college,
-
-        zilla:zilla,
-
-        progress:{},
-
-        history:[],
-
-        points:0,
-
-        claims:[],
-
-        gpa:{}
-
-    };
-
-
-    users[email] = currentUser;
-
-    saveUsers(users);
-
-
-    localStorage.setItem(
-        "pcm_current_user",
-        email
-    );
-
-
-    openApp();
-
 }
 
 
-function login(){
+async function changeProgress(key,status){
 
-    loginError.textContent="";
+const old =
+userData.progress?.[key] || "not_started";
 
-    const email =
-        loginEmail.value.trim().toLowerCase();
+if(old === "done" && status !== "done"){
 
-    const password =
-        loginPassword.value;
+alert("Completed chapter cannot be undone from this version.");
 
-
-    if(!email || !password){
-
-        loginError.textContent =
-            "Enter your email and password.";
-
-        return;
-
-    }
-
-
-    const users = getUsers();
-
-    const user = users[email];
-
-
-    if(!user){
-
-        loginError.textContent =
-            "Account not found. Please create an account.";
-
-        return;
-
-    }
-
-
-    if(user.password !== password){
-
-        loginError.textContent =
-            "Incorrect password.";
-
-        return;
-
-    }
-
-
-    currentUser = user;
-
-    normalizeUser();
-
-
-    localStorage.setItem(
-        "pcm_current_user",
-        email
-    );
-
-
-    openApp();
+renderSyllabus();
+return;
 
 }
 
+if(old !== "done" && status === "done"){
 
-function normalizeUser(){
+userData.points =
+(userData.points || 0)+10;
 
-    if(!currentUser.progress)
-        currentUser.progress={};
+userData.history =
+userData.history || [];
 
-    if(!currentUser.history)
-        currentUser.history=[];
-
-    if(!currentUser.claims)
-        currentUser.claims=[];
-
-    if(!currentUser.gpa)
-        currentUser.gpa={};
-
-    if(typeof currentUser.points !== "number")
-        currentUser.points=0;
+userData.history.push({
+time:Date.now(),
+key:key
+});
 
 }
 
+userData.progress =
+userData.progress || {};
 
-/* =====================================================
-                    OPEN APP
-===================================================== */
+userData.progress[key]=status;
 
-function openApp(){
-
-    normalizeUser();
-
-    authScreen.classList.add("hidden");
-    appScreen.classList.remove("hidden");
-
-
-    navEmail.textContent =
-        currentUser.email;
-
-    avatar.textContent =
-        currentUser.email
-            .charAt(0)
-            .toUpperCase();
-
-    batchBadge.textContent =
-        currentUser.batch;
-
-
-    $("profileEmail").textContent =
-        currentUser.email;
-
-    $("profileBatch").textContent =
-        currentUser.batch;
-
-    $("profileCollege").textContent =
-        currentUser.college;
-
-    $("profileZilla").textContent =
-        currentUser.zilla;
-
-
-    renderAll();
-
+await updateDoc(
+doc(db,"users",currentUser.uid),
+{
+progress:userData.progress,
+points:userData.points,
+history:userData.history
 }
-
-
-function logout(){
-
-    localStorage.removeItem(
-        "pcm_current_user"
-    );
-
-    location.reload();
-
-}
-
-
-/* =====================================================
-                    PROGRESS
-===================================================== */
-
-function key(subject,paper,index){
-
-    return `${subject}|${paper}|${index}`;
-
-}
-
-
-function allChapters(){
-
-    const result=[];
-
-    for(const subject in syllabus){
-
-        for(const paper in syllabus[subject]){
-
-            syllabus[subject][paper]
-                .forEach((name,index)=>{
-
-                    result.push({
-                        subject,
-                        paper,
-                        index,
-                        name
-                    });
-
-                });
-
-        }
-
-    }
-
-    return result;
-
-}
-
-
-function getSubjectProgress(subject){
-
-    let total=0;
-    let done=0;
-
-    for(const paper in syllabus[subject]){
-
-        syllabus[subject][paper]
-            .forEach((_,index)=>{
-
-                total++;
-
-                if(
-                    currentUser.progress[
-                        key(subject,paper,index)
-                    ] === "done"
-                ){
-
-                    done++;
-
-                }
-
-            });
-
-    }
-
-    return {total,done};
-
-}
-
-
-function setChapterStatus(index,status){
-
-    const k =
-        key(
-            currentSubject,
-            currentPaper,
-            index
-        );
-
-
-    const old =
-        currentUser.progress[k] || "none";
-
-
-    /* Give points only once */
-
-    if(old !== "done" && status === "done"){
-
-        currentUser.points += 10;
-
-
-        currentUser.history.push({
-
-            time:Date.now(),
-
-            subject:currentSubject,
-
-            paper:currentPaper,
-
-            index:index
-
-        });
-
-    }
-
-
-    currentUser.progress[k]=status;
-
-
-    saveCurrentUser();
-
-    renderAll();
-
-}
-
-
-/* =====================================================
-                    RENDER
-===================================================== */
-
-function renderAll(){
-
-    renderOverall();
-
-    renderSubjectCards();
-
-    renderPapers();
-
-    renderChapters();
-
-    renderPoints();
-
-    renderGPA();
-
-    renderProgress();
-
-}
-
-
-/* ================= OVERALL ================= */
-
-function renderOverall(){
-
-    const all =
-        allChapters();
-
-    const done =
-        all.filter(chapter =>
-            currentUser.progress[
-                key(
-                    chapter.subject,
-                    chapter.paper,
-                    chapter.index
-                )
-            ] === "done"
-        ).length;
-
-
-    const percent =
-        all.length
-        ? Math.round(done/all.length*100)
-        : 0;
-
-
-    overallText.textContent =
-        `${done} / ${all.length} chapters`;
-
-    overallPercent.textContent =
-        percent+"%";
-
-    overallFill.style.width =
-        percent+"%";
-
-}
-
-
-/* ================= SUBJECT CARDS ================= */
-
-function renderSubjectCards(){
-
-    const subjects=[
-        ["Physics","⚡"],
-        ["Chemistry","🧪"],
-        ["Higher Math","📐"]
-    ];
-
-
-    subjectCards.innerHTML =
-        subjects.map(([subject,icon])=>{
-
-            const p =
-                getSubjectProgress(subject);
-
-            const percent =
-                p.total
-                ? Math.round(p.done/p.total*100)
-                : 0;
-
-
-            return `
-
-            <div class="card">
-
-                <h3>${icon} ${subject}</h3>
-
-                <div class="big">
-                    ${p.done}/${p.total}
-                </div>
-
-                <div class="muted">
-                    ${percent}% completed
-                </div>
-
-                <div class="mini-bar">
-                    <div
-                        class="mini-fill"
-                        style="width:${percent}%">
-                    </div>
-                </div>
-
-            </div>
-
-            `;
-
-        }).join("");
-
-}
-
-
-/* ================= PAPERS ================= */
-
-function renderPapers(){
-
-    paperButtons.innerHTML =
-        Object.keys(
-            syllabus[currentSubject]
-        ).map(paper=>`
-
-            <button
-                class="paper-btn ${
-                    paper===currentPaper
-                    ?"active":""
-                }"
-                data-paper="${paper}">
-                ${paper}
-            </button>
-
-        `).join("");
-
-
-    paperButtons
-        .querySelectorAll("button")
-        .forEach(button=>{
-
-            button.addEventListener(
-                "click",
-                ()=>{
-
-                    currentPaper =
-                        button.dataset.paper;
-
-                    currentFilter="all";
-
-                    renderAll();
-
-                }
-            );
-
-        });
-
-}
-
-
-/* ================= CHAPTERS ================= */
-
-function renderChapters(){
-
-    const chapters =
-        syllabus[currentSubject][currentPaper];
-
-
-    chapterCrumb.textContent =
-        `${currentSubject} · ${currentPaper}`
-            .toUpperCase();
-
-
-    chapterList.innerHTML="";
-
-
-    chapters.forEach((name,index)=>{
-
-        const status =
-            currentUser.progress[
-                key(
-                    currentSubject,
-                    currentPaper,
-                    index
-                )
-            ] || "none";
-
-
-        if(
-            currentFilter!=="all" &&
-            currentFilter!==status
-        ){
-
-            return;
-
-        }
-
-
-        const item =
-            document.createElement("div");
-
-
-        item.className =
-            "chapter " +
-            (
-                status==="done"
-                ?"done"
-                :
-                status==="running"
-                ?"running"
-                :""
-            );
-
-
-        item.innerHTML = `
-
-            <div class="chapter-number">
-                ${String(index+1).padStart(2,"0")}
-            </div>
-
-            <div class="chapter-info">
-
-                <b>${name}</b>
-
-                <small>
-                    ${
-                        status==="done"
-                        ?"✓ Completed · +10 points"
-                        :
-                        status==="running"
-                        ?"◐ In Progress"
-                        :
-                        "○ Not Started"
-                    }
-                </small>
-
-            </div>
-
-            <div class="chapter-actions">
-
-                <button
-                    class="${status==="none"?"active":""}"
-                    data-status="none">
-                    ○
-                </button>
-
-                <button
-                    class="${status==="running"?"active":""}"
-                    data-status="running">
-                    ◐
-                </button>
-
-                <button
-                    class="${status==="done"?"active":""}"
-                    data-status="done">
-                    ✓
-                </button>
-
-            </div>
-
-        `;
-
-
-        item
-            .querySelectorAll("button")
-            .forEach(button=>{
-
-                button.addEventListener(
-                    "click",
-                    ()=>{
-
-                        setChapterStatus(
-                            index,
-                            button.dataset.status
-                        );
-
-                    }
-                );
-
-            });
-
-
-        chapterList.appendChild(item);
-
-    });
-
-}
-
-
-/* ================= SUBJECT BUTTONS ================= */
-
-document
-    .querySelectorAll(".subject-btn")
-    .forEach(button=>{
-
-        button.addEventListener(
-            "click",
-            ()=>{
-
-                document
-                    .querySelectorAll(".subject-btn")
-                    .forEach(b =>
-                        b.classList.remove("active")
-                    );
-
-
-                button.classList.add("active");
-
-
-                currentSubject =
-                    button.dataset.subject;
-
-
-                currentPaper =
-                    Object.keys(
-                        syllabus[currentSubject]
-                    )[0];
-
-
-                currentFilter="all";
-
-
-                renderAll();
-
-            }
-        );
-
-    });
-
-
-/* ================= FILTERS ================= */
-
-document
-    .querySelectorAll(".filter-btn")
-    .forEach(button=>{
-
-        button.addEventListener(
-            "click",
-            ()=>{
-
-                document
-                    .querySelectorAll(".filter-btn")
-                    .forEach(b =>
-                        b.classList.remove("active")
-                    );
-
-
-                button.classList.add("active");
-
-
-                currentFilter =
-                    button.dataset.filter;
-
-
-                renderChapters();
-
-            }
-        );
-
-    });
-
-
-/* =====================================================
-                    TABS
-===================================================== */
-
-document
-    .querySelectorAll(".tabs button")
-    .forEach(button=>{
-
-        button.addEventListener(
-            "click",
-            ()=>{
-
-                document
-                    .querySelectorAll(".tabs button")
-                    .forEach(b =>
-                        b.classList.remove("active")
-                    );
-
-
-                button.classList.add("active");
-
-
-                document
-                    .querySelectorAll(
-                        "#syllabusTab,#gpaTab,#progressTab"
-                    )
-                    .forEach(tab =>
-                        tab.classList.add("hidden")
-                    );
-
-
-                const tab =
-                    button.dataset.tab;
-
-
-                if(tab==="syllabus")
-                    $("syllabusTab")
-                        .classList.remove("hidden");
-
-
-                if(tab==="gpa")
-                    $("gpaTab")
-                        .classList.remove("hidden");
-
-
-                if(tab==="progress")
-                    $("progressTab")
-                        .classList.remove("hidden");
-
-
-                renderAll();
-
-            }
-        );
-
-    });
-
-
-/* =====================================================
-                    POINTS
-===================================================== */
-
-function renderPoints(){
-
-    const total =
-        currentUser.points || 0;
-
-
-    const reward =
-        Math.floor(total/200)*20;
-
-
-    points.textContent =
-        total;
-
-
-    rewardAmount.textContent =
-        "৳"+reward;
-
-
-    claimButton.disabled =
-        total < 200;
-
-}
-
-
-/* =====================================================
-                    GPA
-===================================================== */
-
-document
-    .querySelectorAll(".gpa-input")
-    .forEach(input=>{
-
-        input.addEventListener(
-            "input",
-            ()=>{
-
-                let value =
-                    parseFloat(input.value);
-
-
-                if(isNaN(value)){
-
-                    delete currentUser.gpa[
-                        input.dataset.subject
-                    ];
-
-                }else{
-
-                    value =
-                        Math.max(
-                            0,
-                            Math.min(5,value)
-                        );
-
-
-                    input.value=value;
-
-
-                    currentUser.gpa[
-                        input.dataset.subject
-                    ]=value;
-
-                }
-
-
-                saveCurrentUser();
-
-                calculateGPA();
-
-            }
-        );
-
-    });
-
-
-function calculateGPA(){
-
-    const mainSubjects=[
-        "Bangla",
-        "English",
-        "ICT",
-        "Physics",
-        "Chemistry",
-        "Higher Math"
-    ];
-
-
-    let values=[];
-
-
-    mainSubjects.forEach(subject=>{
-
-        const value =
-            currentUser.gpa[subject];
-
-
-        if(
-            typeof value==="number"
-        ){
-
-            values.push(value);
-
-        }
-
-    });
-
-
-    const optional =
-        currentUser.gpa["Biology"];
-
-
-    if(values.length===0){
-
-        gpaResult.textContent="0.00";
-        gpaStatus.textContent=
-            "Enter your subject GPAs.";
-
-        return;
-
-    }
-
-
-    let total =
-        values.reduce(
-            (sum,value)=>sum+value,
-            0
-        );
-
-
-    /* Optional subject bonus */
-
-    if(
-        typeof optional==="number" &&
-        optional>2
-    ){
-
-        total += optional-2;
-
-    }
-
-
-    let result =
-        total/values.length;
-
-
-    result =
-        Math.min(5,result);
-
-
-    gpaResult.textContent =
-        result.toFixed(2);
-
-
-    if(result===5){
-
-        gpaStatus.textContent =
-            "A+ · Excellent";
-
-    }else if(result>=4){
-
-        gpaStatus.textContent =
-            "Very Good";
-
-    }else if(result>=3){
-
-        gpaStatus.textContent =
-            "Good";
-
-    }else if(result>=2){
-
-        gpaStatus.textContent =
-            "Pass Range";
-
-    }else{
-
-        gpaStatus.textContent =
-            "Needs Improvement";
-
-    }
-
-}
-
-
-function renderGPA(){
-
-    document
-        .querySelectorAll(".gpa-input")
-        .forEach(input=>{
-
-            const value =
-                currentUser.gpa[
-                    input.dataset.subject
-                ];
-
-
-            input.value =
-                typeof value==="number"
-                ?value
-                :"";
-
-        });
-
-
-    calculateGPA();
-
-}
-
-
-/* =====================================================
-                    7 / 30 DAYS
-===================================================== */
-
-function renderProgress(){
-
-    const now =
-        Date.now();
-
-
-    const seven =
-        7*24*60*60*1000;
-
-    const thirty =
-        30*24*60*60*1000;
-
-
-    const history =
-        currentUser.history || [];
-
-
-    const sevenCount =
-        history.filter(
-            item =>
-                now-item.time <= seven
-        ).length;
-
-
-    const thirtyCount =
-        history.filter(
-            item =>
-                now-item.time <= thirty
-        ).length;
-
-
-    sevenDayCount.textContent =
-        sevenCount;
-
-
-    thirtyDayCount.textContent =
-        thirtyCount;
-
-
-    const recent =
-        history
-            .slice()
-            .sort(
-                (a,b)=>b.time-a.time
-            )
-            .slice(0,20);
-
-
-    if(!recent.length){
-
-        historyList.innerHTML =
-            `<div class="muted">
-                No completed chapters yet.
-            </div>`;
-
-        return;
-
-    }
-
-
-    historyList.innerHTML =
-        recent.map(item=>{
-
-            const chapter =
-                syllabus[
-                    item.subject
-                ][
-                    item.paper
-                ][
-                    item.index
-                ];
-
-
-            const date =
-                new Date(
-                    item.time
-                ).toLocaleDateString(
-                    "en-GB"
-                );
-
-
-            return `
-
-                <div class="history-item">
-
-                    <span>
-                        ${item.subject}
-                        ·
-                        ${chapter}
-                    </span>
-
-                    <strong>
-                        +10 · ${date}
-                    </strong>
-
-                </div>
-
-            `;
-
-        }).join("");
-
-}
-
-
-/* =====================================================
-                    REWARD
-===================================================== */
-
-claimButton.addEventListener(
-    "click",
-    claimReward
 );
 
-
-function claimReward(){
-
-    const total =
-        currentUser.points || 0;
-
-
-    if(total<200){
-
-        claimMessage.textContent =
-            "Minimum 200 points required.";
-
-        return;
-
-    }
-
-
-    const number =
-        bkashNumber.value.trim();
-
-
-    if(
-        !/^01[3-9]\d{8}$/.test(number)
-    ){
-
-        claimMessage.textContent =
-            "Enter a valid bKash number.";
-
-        return;
-
-    }
-
-
-    const claimablePoints =
-        Math.floor(total/200)*200;
-
-
-    const amount =
-        claimablePoints/200*20;
-
-
-    currentUser.claims.push({
-
-        time:Date.now(),
-
-        number:number,
-
-        points:claimablePoints,
-
-        amount:amount,
-
-        status:"Pending"
-
-    });
-
-
-    currentUser.points -=
-        claimablePoints;
-
-
-    saveCurrentUser();
-
-
-    bkashNumber.value="";
-
-
-    claimMessage.textContent =
-        `Reward request submitted: ৳${amount}. Admin verification required.`;
-
-
-    renderPoints();
+updateDashboard();
 
 }
 
 
-/* =====================================================
-                    RESET
-===================================================== */
+function updateDashboard(){
 
-$("resetButton").addEventListener(
-    "click",
-    ()=>{
+let total=0;
+let done=0;
 
-        const confirmReset =
-            confirm(
-                "Are you sure? All progress and points will be deleted."
-            );
+Object.values(syllabus).forEach(papers=>{
+Object.values(papers).forEach(chapters=>{
+total+=chapters.length;
+});
+});
+
+Object.values(userData.progress || {})
+.forEach(status=>{
+if(status==="done") done++;
+});
+
+const percent =
+Math.round(done/total*100);
+
+document.getElementById("overall")
+.textContent=percent+"%";
+
+document.getElementById("overallBar")
+.style.width=percent+"%";
+
+document.getElementById("doneCount")
+.textContent=done;
+
+document.getElementById("completed2")
+.textContent=done;
+
+document.getElementById("points")
+.textContent=userData.points || 0;
+
+const reward =
+Math.floor((userData.points||0)/10);
+
+document.getElementById("reward")
+.textContent="৳"+reward;
+
+document.getElementById("availableReward")
+.textContent="৳"+reward;
+
+const now=Date.now();
+
+const history=userData.history||[];
+
+const seven =
+history.filter(x=>
+now-x.time<=7*24*60*60*1000
+).length;
+
+const thirty =
+history.filter(x=>
+now-x.time<=30*24*60*60*1000
+).length;
+
+document.getElementById("sevenDays")
+.textContent=seven;
+
+document.getElementById("thirtyDays")
+.textContent=thirty;
+
+}
 
 
-        if(!confirmReset)
-            return;
+window.claimReward = async function(){
 
+const number =
+document.getElementById("bkash")
+.value.trim();
 
-        currentUser.progress={};
-        currentUser.history=[];
-        currentUser.points=0;
-        currentUser.claims=[];
+const msg =
+document.getElementById("claimMessage");
 
+if(!/^01[3-9]\d{8}$/.test(number)){
 
-        saveCurrentUser();
+msg.textContent =
+"Enter a valid Bangladeshi bKash number.";
 
-        renderAll();
+return;
+}
 
-    }
+const points =
+Math.floor((userData.points||0)/200)*200;
+
+if(points<200){
+
+msg.textContent =
+"You need at least 200 points.";
+
+return;
+}
+
+const amount =
+points/10;
+
+try{
+
+await addDoc(
+collection(db,"rewardRequests"),
+{
+uid:currentUser.uid,
+email:currentUser.email,
+bkash:number,
+points:points,
+amount:amount,
+status:"pending",
+createdAt:serverTimestamp()
+}
 );
 
+userData.points -= points;
 
-/* =====================================================
-                    START
-===================================================== */
+await updateDoc(
+doc(db,"users",currentUser.uid),
+{
+points:userData.points
+}
+);
 
-const savedEmail =
-    localStorage.getItem(
-        "pcm_current_user"
-    );
+msg.textContent =
+"Reward request submitted successfully!";
 
+document.getElementById("bkash").value="";
 
-if(savedEmail){
+updateDashboard();
+loadClaims();
 
-    const users =
-        getUsers();
+}catch(error){
 
-
-    if(users[savedEmail]){
-
-        currentUser =
-            users[savedEmail];
-
-
-        openApp();
-
-    }else{
-
-        authScreen.classList.remove("hidden");
-
-    }
-
-}else{
-
-    authScreen.classList.remove("hidden");
+msg.textContent=error.message;
 
 }
+
+};
+
+
+async function loadClaims(){
+
+const box =
+document.getElementById("claims");
+
+box.innerHTML="<h3>Reward Requests</h3>";
+
+const q =
+query(
+collection(db,"rewardRequests"),
+where("uid","==",currentUser.uid)
+);
+
+const snap =
+await getDocs(q);
+
+if(snap.empty){
+
+box.innerHTML +=
+"<p>No reward requests yet.</p>";
+
+return;
+}
+
+snap.forEach(d=>{
+
+const x=d.data();
+
+box.innerHTML += `
+<div class="card">
+<b>৳${x.amount}</b>
+<br>
+bKash: ${x.bkash}
+<br>
+Status:
+<b>${x.status}</b>
+</div>
+`;
+
+});
+
+}
+
+
+window.calculateGPA=function(){
+
+const ids=[
+"gBangla",
+"gEnglish",
+"gICT",
+"gPhysics",
+"gChemistry",
+"gMath"
+];
+
+const values =
+ids.map(id=>
+Number(document.getElementById(id).value)
+);
+
+if(values.some(x=>x<0 || x>5 || isNaN(x))){
+
+document.getElementById("gpaResult")
+.textContent=
+"Enter all main subject GPAs.";
+
+return;
+
+}
+
+let total =
+values.reduce((a,b)=>a+b,0);
+
+const biology =
+Number(document.getElementById("gBiology").value);
+
+if(!isNaN(biology) && biology>2){
+
+total += biology-2;
+
+}
+
+let gpa =
+total/6;
+
+gpa=Math.min(5,gpa);
+
+gpa=Math.round(gpa*100)/100;
+
+document.getElementById("gpaResult")
+.textContent=
+"Your GPA: "+gpa+"/5";
+
+};
 
 </script>
 
 </body>
- </html>
+    </html>
