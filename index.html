@@ -3,839 +3,470 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>PCM Tracker</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-:root{
-  --blue:#2563eb;
-  --blue2:#1d4ed8;
-  --navy:#0f172a;
-  --bg:#f6f8fc;
-  --white:#fff;
-  --text:#111827;
-  --muted:#64748b;
-  --border:#e5e7eb;
-  --green:#16a34a;
-  --orange:#d97706;
-  --shadow:0 10px 35px rgba(15,23,42,.07);
-}
-
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  margin:0;
-  font-family:Inter,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  font-family:Inter,sans-serif;
+  background:#f5f7fb;
+  color:#111827;
 }
 
-button,input,select{font:inherit}
+button,input,select{font-family:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
 
-/* ================= AUTH ================= */
-
+/* AUTH */
 .auth-page{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:24px;
-  background:
-    radial-gradient(circle at 5% 5%,rgba(37,99,235,.15),transparent 30%),
-    radial-gradient(circle at 95% 95%,rgba(59,130,246,.10),transparent 30%),
-    #f8fafc;
+  padding:20px;
+  background:linear-gradient(135deg,#eff6ff,#f8fafc);
 }
 
-.auth-wrapper{
+.auth-card{
   width:100%;
-  max-width:1050px;
-  display:grid;
-  grid-template-columns:1.08fr .92fr;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:28px;
-  overflow:hidden;
-  box-shadow:0 25px 70px rgba(15,23,42,.11);
+  max-width:430px;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:22px;
+  padding:32px;
+  box-shadow:0 20px 60px rgba(15,23,42,.08);
 }
 
-.auth-brand-panel{
-  position:relative;
-  min-height:620px;
-  padding:55px;
-  display:flex;
-  align-items:center;
-  background:
-    radial-gradient(circle at 90% 10%,rgba(37,99,235,.35),transparent 25%),
-    linear-gradient(145deg,#0f172a,#172554);
-  color:white;
-  overflow:hidden;
-}
-
-.auth-brand-panel:before{
-  content:"";
-  position:absolute;
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  background:rgba(59,130,246,.12);
-  top:-120px;
-  right:-90px;
-}
-
-.auth-brand-panel:after{
-  content:"";
-  position:absolute;
-  width:230px;
-  height:230px;
-  border-radius:50%;
-  background:rgba(37,99,235,.12);
-  bottom:-110px;
-  left:-80px;
-}
-
-.auth-brand-content{
-  position:relative;
-  z-index:2;
-}
-
-.auth-logo{
-  width:60px;
-  height:60px;
-  border-radius:17px;
-  background:var(--blue);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:15px;
+.logo{
+  font-size:27px;
   font-weight:800;
-  box-shadow:0 12px 30px rgba(37,99,235,.3);
-  margin-bottom:28px;
-}
-
-.auth-brand-title{
-  margin:0 0 16px;
-  font-size:44px;
-  line-height:1.05;
-  letter-spacing:-1.8px;
-  font-weight:800;
-}
-
-.auth-brand-title span{color:#60a5fa}
-
-.auth-tagline{
-  max-width:440px;
-  margin:0 0 34px;
-  color:#cbd5e1;
-  font-size:15px;
-  line-height:1.75;
-}
-
-.auth-features{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-
-.auth-feature{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  color:#e2e8f0;
-  font-size:13px;
-}
-
-.auth-check{
-  width:23px;
-  height:23px;
-  border-radius:7px;
-  background:rgba(96,165,250,.14);
-  color:#60a5fa;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  font-weight:800;
-}
-
-/* ================= AUTH FORM ================= */
-
-.auth-form-panel{
-  padding:48px;
-  display:flex;
-  align-items:center;
-}
-
-.auth-box{width:100%}
-
-.auth-box h1{
-  margin:0 0 8px;
-  font-size:29px;
-  letter-spacing:-.6px;
-}
-
-.auth-desc{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-  margin-bottom:25px;
-}
-
-label{
-  display:block;
-  font-size:12px;
-  font-weight:700;
-  color:#334155;
+  color:#2563eb;
   margin-bottom:7px;
 }
 
-input,select{
-  width:100%;
-  border:1px solid var(--border);
-  background:#f8fafc;
-  color:var(--text);
-  padding:13px 14px;
-  border-radius:11px;
-  outline:none;
-  margin-bottom:15px;
+.auth-sub{
+  color:#64748b;
+  margin-bottom:25px;
+  font-size:14px;
 }
 
-input:focus,select:focus{
-  background:white;
-  border-color:var(--blue);
+.form-group{margin-bottom:15px}
+
+.form-group label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.form-group input,
+.form-group select{
+  width:100%;
+  padding:12px 13px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  outline:none;
+  background:#fff;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+  border-color:#2563eb;
   box-shadow:0 0 0 3px rgba(37,99,235,.1);
 }
 
 .primary-btn{
   width:100%;
   border:0;
-  color:white;
-  background:var(--blue);
-  padding:14px;
-  border-radius:11px;
+  background:#2563eb;
+  color:#fff;
+  padding:13px;
+  border-radius:10px;
   font-weight:700;
-  font-size:13px;
-  transition:.2s;
-  box-shadow:0 8px 20px rgba(37,99,235,.18);
 }
 
-.primary-btn:hover{background:var(--blue2)}
+.primary-btn:hover{background:#1d4ed8}
 
-.auth-switch{
+.switch-auth{
   text-align:center;
-  color:var(--muted);
+  margin-top:17px;
   font-size:13px;
-  margin-top:21px;
+  color:#64748b;
 }
 
-.auth-switch span:last-child{
-  color:var(--blue);
+.switch-auth span{
+  color:#2563eb;
   font-weight:700;
   cursor:pointer;
-  margin-left:4px;
 }
 
-.message{
-  display:none;
-  padding:11px 13px;
-  border-radius:10px;
-  font-size:12px;
-  margin-bottom:16px;
+.error,.success{
+  padding:10px;
+  border-radius:9px;
+  font-size:13px;
+  margin-bottom:14px;
 }
 
-.message.error{
-  display:block;
+.error{
   background:#fef2f2;
-  color:#991b1b;
+  color:#dc2626;
+  border:1px solid #fecaca;
 }
 
-.message.success{
-  display:block;
+.success{
   background:#f0fdf4;
-  color:#166534;
+  color:#15803d;
+  border:1px solid #bbf7d0;
 }
 
-/* ================= TOPBAR ================= */
+/* APP */
+.app{min-height:100vh;display:flex}
 
-.topbar{
-  height:70px;
-  background:white;
-  border-bottom:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 30px;
-  position:sticky;
+.sidebar{
+  width:250px;
+  background:#fff;
+  border-right:1px solid #e5e7eb;
+  padding:22px 14px;
+  position:fixed;
+  left:0;
   top:0;
+  bottom:0;
   z-index:20;
 }
 
-.top-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.sidebar-logo{
+  font-size:23px;
   font-weight:800;
+  color:#2563eb;
+  padding:0 12px 25px;
 }
 
-.top-logo{
-  width:37px;
-  height:37px;
-  background:var(--blue);
-  color:white;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-  font-weight:800;
-}
-
-.top-right{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.user-email{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.logout{
-  border:1px solid var(--border);
-  background:white;
-  color:var(--text);
-  padding:9px 14px;
-  border-radius:9px;
-  font-size:12px;
-  font-weight:600;
-}
-
-.logout:hover{background:#f8fafc}
-
-/* ================= LAYOUT ================= */
-
-.layout{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:220px 1fr;
-  gap:28px;
-  padding:28px;
-}
-
-.sidebar{
-  position:sticky;
-  top:98px;
-  height:max-content;
-}
-
-.nav{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:8px;
-}
-
-.nav-btn{
+.nav-item{
   width:100%;
   border:0;
   background:transparent;
-  color:var(--muted);
-  text-align:left;
-  padding:12px 13px;
+  padding:12px;
   border-radius:10px;
-  font-size:12px;
-  font-weight:700;
-  margin-bottom:3px;
-}
-
-.nav-btn.active{
-  background:#eff6ff;
-  color:var(--blue);
-}
-
-.content{min-width:0}
-
-/* ================= PAGE HEADER ================= */
-
-.page-header{margin-bottom:23px}
-
-.page-header h1{
-  margin:0 0 7px;
-  font-size:29px;
-  letter-spacing:-.6px;
-}
-
-.page-header p{
-  margin:0;
-  color:var(--muted);
-  font-size:13px;
-}
-
-/* ================= OVERVIEW ================= */
-
-.overview{
-  display:grid;
-  grid-template-columns:1.5fr 1fr 1fr 1fr;
-  gap:13px;
-  margin-bottom:18px;
-}
-
-.overview-card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:19px;
-}
-
-.overview-label{
-  color:var(--muted);
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.6px;
-  text-transform:uppercase;
-}
-
-.overview-number{
-  font-size:26px;
-  font-weight:800;
-  margin-top:7px;
-}
-
-.main-progress{
-  display:flex;
-  align-items:center;
-  gap:17px;
-}
-
-.progress-circle{
-  width:68px;
-  height:68px;
-  border-radius:50%;
-  background:conic-gradient(var(--blue) 0deg,#e5e7eb 0deg);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  flex-shrink:0;
-}
-
-.progress-circle:after{
-  content:"";
-  position:absolute;
-  width:53px;
-  height:53px;
-  background:white;
-  border-radius:50%;
-}
-
-.progress-circle span{
-  position:relative;
-  z-index:2;
-  font-size:13px;
-  font-weight:800;
-}
-
-/* ================= SUBJECT CARDS ================= */
-
-.subject-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:13px;
-  margin-bottom:24px;
-}
-
-.subject-card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:18px;
-}
-
-.subject-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:12px;
-}
-
-.subject-name{
+  text-align:left;
   font-size:14px;
-  font-weight:700;
+  font-weight:600;
+  color:#64748b;
+  margin-bottom:5px;
 }
 
-.subject-percent{
-  color:var(--blue);
+.nav-item:hover{
+  background:#f1f5f9;
+  color:#2563eb;
+}
+
+.nav-item.active{
+  background:#eff6ff;
+  color:#2563eb;
+}
+
+.main{
+  margin-left:250px;
+  width:calc(100% - 250px);
+  padding:28px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.page-title{
+  font-size:25px;
+  font-weight:800;
+}
+
+.user-pill{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  padding:9px 13px;
+  border-radius:10px;
+  font-size:13px;
+  color:#64748b;
+}
+
+/* DASHBOARD */
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.stat-card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:15px;
+  padding:20px;
+}
+
+.stat-label{
   font-size:12px;
-  font-weight:700;
+  color:#64748b;
+  margin-bottom:8px;
 }
 
-.bar{
-  width:100%;
-  height:7px;
-  background:#eef2f7;
-  border-radius:20px;
+.stat-value{
+  font-size:27px;
+  font-weight:800;
+}
+
+.progress-wrap{
+  margin-top:12px;
+  height:8px;
+  background:#e5e7eb;
+  border-radius:99px;
   overflow:hidden;
 }
 
-.bar-fill{
+.progress-bar{
   height:100%;
-  background:var(--blue);
-  border-radius:20px;
+  background:#2563eb;
+  border-radius:99px;
   transition:.3s;
 }
 
-.subject-meta{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:9px;
+.section{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:15px;
+  padding:20px;
+  margin-bottom:20px;
 }
 
-/* ================= SECTIONS ================= */
-
-.section{display:none}
-.section.active{display:block}
-
-.panel{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px;
-  margin-bottom:18px;
-}
-
-.panel-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
-}
-
-.panel-title h2{
-  margin:0;
+.section-title{
   font-size:17px;
+  font-weight:800;
+  margin-bottom:16px;
 }
 
-.panel-title span{
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* ================= SYLLABUS ================= */
-
-.subject-block{margin-bottom:25px}
-
-.subject-heading{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:11px;
-}
-
-.subject-heading h2{
-  margin:0;
-  font-size:18px;
-}
-
-.subject-heading .count{
-  color:var(--blue);
-  font-size:11px;
-  font-weight:700;
-}
-
-.paper{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:14px;
+/* SYLLABUS */
+.subject-block{
+  border:1px solid #e5e7eb;
+  border-radius:13px;
+  margin-bottom:15px;
   overflow:hidden;
-  margin-bottom:11px;
 }
 
-.paper-head{
+.subject-header{
+  padding:15px;
   background:#f8fafc;
-  padding:13px 15px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
+  font-weight:800;
 }
 
-.paper-title{
-  font-size:12px;
-  font-weight:700;
-}
-
-.paper-progress{
-  color:var(--muted);
-  font-size:10px;
-}
-
-.chapter{
+.chapter-row{
   display:flex;
   align-items:center;
   gap:12px;
-  padding:12px 15px;
-  border-top:1px solid var(--border);
-}
-
-.chapter-number{
-  width:28px;
-  height:28px;
-  border-radius:8px;
-  background:#f1f5f9;
-  color:#64748b;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:10px;
-  font-weight:800;
-  flex-shrink:0;
-}
-
-.chapter-info{
-  flex:1;
-  min-width:0;
+  padding:11px;
+  border-bottom:1px solid #f1f5f9;
 }
 
 .chapter-name{
-  font-size:12px;
-  font-weight:600;
-}
-
-.chapter-status{
-  color:var(--muted);
-  font-size:9px;
-  margin-top:4px;
+  flex:1;
+  font-size:13px;
 }
 
 .status-select{
-  width:135px;
-  margin:0;
-  padding:8px 9px;
-  border-radius:9px;
-  font-size:10px;
-  font-weight:600;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  padding:7px;
+  font-size:12px;
+  background:#fff;
 }
 
-/* ================= GPA ================= */
-
+/* GPA */
 .gpa-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:13px;
+  gap:14px;
 }
 
 .gpa-result{
   margin-top:20px;
-  padding:20px;
+  padding:18px;
   background:#eff6ff;
-  border:1px solid #dbeafe;
-  border-radius:14px;
+  border-radius:12px;
   text-align:center;
-}
-
-.gpa-result small{
-  display:block;
-  color:var(--muted);
-  font-size:11px;
 }
 
 .gpa-result strong{
   display:block;
-  color:var(--blue);
   font-size:35px;
-  margin-top:5px;
+  color:#2563eb;
 }
 
-/* ================= PROFILE ================= */
+/* QUESTION BANK */
+.question-toolbar{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr 1fr;
+  gap:10px;
+  margin-bottom:18px;
+}
 
+.question-toolbar input,
+.question-toolbar select{
+  padding:11px;
+  border:1px solid #d1d5db;
+  border-radius:9px;
+  background:#fff;
+  outline:none;
+}
+
+.question-card{
+  border:1px solid #e5e7eb;
+  border-radius:15px;
+  padding:20px;
+  margin-bottom:15px;
+}
+
+.question-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:13px;
+}
+
+.question-meta{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.badge{
+  padding:5px 8px;
+  border-radius:6px;
+  font-size:10px;
+  font-weight:700;
+  background:#f1f5f9;
+  color:#475569;
+}
+
+.bookmark-btn{
+  border:1px solid #d1d5db;
+  background:#fff;
+  border-radius:8px;
+  padding:7px 10px;
+}
+
+.question-text{
+  font-size:15px;
+  line-height:1.7;
+  font-weight:700;
+  margin-bottom:15px;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.option{
+  border:1px solid #e5e7eb;
+  background:#fff;
+  padding:12px;
+  border-radius:9px;
+  text-align:left;
+  font-size:13px;
+}
+
+.option:hover{
+  border-color:#2563eb;
+  background:#eff6ff;
+}
+
+.option.correct{
+  border-color:#16a34a;
+  background:#f0fdf4;
+}
+
+.option.wrong{
+  border-color:#dc2626;
+  background:#fef2f2;
+}
+
+.explanation{
+  margin-top:15px;
+  background:#f8fafc;
+  padding:13px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.practice-panel{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.practice-btn{
+  border:0;
+  background:#111827;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:9px;
+  font-weight:700;
+}
+
+/* PROFILE */
 .profile-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:13px;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
 }
 
-.profile-item{
-  padding:15px;
-  background:#f8fafc;
+.info-card{
+  border:1px solid #e5e7eb;
   border-radius:12px;
+  padding:16px;
 }
 
-.profile-item small{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
+.info-label{
+  font-size:11px;
+  color:#64748b;
   margin-bottom:5px;
 }
 
-.profile-item strong{font-size:13px}
+.info-value{font-weight:700}
 
-/* ================= SCIENTIFIC CALCULATOR ================= */
-
-.calculator-wrap{
-  display:flex;
-  justify-content:center;
-}
-
-.calculator{
-  width:100%;
-  max-width:540px;
-  background:#0f172a;
-  border:1px solid #1e293b;
-  border-radius:22px;
-  padding:18px;
-  box-shadow:0 20px 50px rgba(15,23,42,.15);
-}
-
-.calc-brand{
-  color:#cbd5e1;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.7px;
-  margin-bottom:10px;
-  text-align:center;
-}
-
-.calc-display{
-  background:#020617;
-  border:1px solid #1e293b;
-  border-radius:15px;
-  min-height:108px;
-  padding:15px;
-  margin-bottom:12px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  overflow:hidden;
-}
-
-.calc-expression{
-  color:#94a3b8;
-  font-size:13px;
-  min-height:20px;
-  text-align:right;
-  word-break:break-all;
-}
-
-.calc-result{
-  color:white;
-  font-size:30px;
-  font-weight:700;
-  text-align:right;
-  margin-top:7px;
-  word-break:break-all;
-}
-
-.calc-mode{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:7px;
-  margin-bottom:10px;
-}
-
-.calc-mode button{
-  border:1px solid #334155;
-  background:#1e293b;
-  color:#cbd5e1;
-  border-radius:8px;
-  padding:9px;
-  font-size:11px;
-  font-weight:700;
-}
-
-.calc-mode button.mode-active{
-  background:var(--blue);
-  border-color:var(--blue);
-  color:white;
-}
-
-.calc-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
-}
-
-.calc-grid button{
-  min-height:48px;
-  border:1px solid #334155;
-  background:#1e293b;
-  color:#f8fafc;
-  border-radius:9px;
-  font-size:12px;
-  font-weight:600;
-  transition:.15s;
-}
-
-.calc-grid button:hover{
-  background:#334155;
-}
-
-.calc-grid button.operator{
-  background:#172554;
-  color:#93c5fd;
-}
-
-.calc-grid button.equals{
-  background:var(--blue);
-  color:white;
-  border-color:var(--blue);
-  grid-column:span 2;
-}
-
-.calc-history{
-  margin-top:15px;
-  border-top:1px solid #1e293b;
-  padding-top:13px;
-}
-
-.calc-history-title{
-  color:#94a3b8;
-  font-size:10px;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.6px;
-  margin-bottom:8px;
-}
-
-#calcHistory{
-  color:#64748b;
-  font-size:11px;
-  max-height:130px;
-  overflow-y:auto;
-}
-
-.history-item{
-  padding:7px 0;
-  border-bottom:1px solid #1e293b;
-}
-
-.history-item strong{
-  color:#e2e8f0;
-}
-
-/* ================= MOBILE NAV ================= */
-
+/* MOBILE */
 .mobile-nav{display:none}
-
-/* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
 
-  .layout{
-    grid-template-columns:1fr;
-    padding:18px;
-  }
-
   .sidebar{display:none}
 
-  .overview{
-    grid-template-columns:repeat(2,1fr);
+  .main{
+    margin-left:0;
+    width:100%;
+    padding:17px;
+    padding-bottom:90px;
   }
 
-  .subject-grid{
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .question-toolbar{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .options{
     grid-template-columns:1fr;
   }
 
@@ -845,775 +476,457 @@ input:focus,select:focus{
     bottom:0;
     left:0;
     right:0;
-    min-height:65px;
-    background:white;
-    border-top:1px solid var(--border);
+    height:65px;
+    background:#fff;
+    border-top:1px solid #e5e7eb;
     z-index:50;
     justify-content:space-around;
-    padding:7px;
-    gap:3px;
+    padding:6px;
   }
 
   .mobile-nav button{
     border:0;
     background:transparent;
-    color:var(--muted);
-    font-size:9px;
+    font-size:10px;
+    color:#64748b;
     font-weight:700;
-    padding:6px 3px;
   }
 
-  .mobile-nav button.active{
-    color:var(--blue);
-  }
-
-  .content{padding-bottom:75px}
-}
-
-@media(max-width:800px){
-
-  .auth-wrapper{
-    display:block;
-    max-width:460px;
-  }
-
-  .auth-brand-panel{
-    min-height:auto;
-    padding:32px 28px;
-  }
-
-  .auth-brand-title{font-size:32px}
-
-  .auth-logo{
-    width:50px;
-    height:50px;
-    margin-bottom:18px;
-  }
-
-  .auth-tagline{
-    font-size:13px;
-    margin-bottom:0;
-  }
-
-  .auth-features{display:none}
-
-  .auth-form-panel{padding:30px 28px}
-}
-
-@media(max-width:600px){
-
-  .auth-page{padding:12px}
-
-  .auth-wrapper{border-radius:22px}
-
-  .auth-brand-panel{padding:28px 23px}
-
-  .auth-brand-title{font-size:29px}
-
-  .auth-form-panel{padding:27px 21px}
-
-  .topbar{
-    height:62px;
-    padding:0 16px;
-  }
-
-  .user-email{display:none}
-
-  .layout{padding:16px}
-
-  .page-header h1{font-size:25px}
-
-  .overview{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .main-progress{grid-column:span 2}
-
-  .overview-card{padding:15px}
-
-  .overview-number{font-size:22px}
-
-  .panel{padding:16px}
-
-  .chapter{
-    flex-wrap:wrap;
-    align-items:flex-start;
-  }
-
-  .status-select{
-    width:calc(100% - 40px);
-    margin-left:40px;
-  }
+  .mobile-nav button.active{color:#2563eb}
 
   .gpa-grid,
   .profile-grid{
     grid-template-columns:1fr;
   }
+}
 
-  .calculator{
-    padding:12px;
-    border-radius:18px;
+@media(max-width:500px){
+
+  .auth-card{padding:23px}
+
+  .question-toolbar{grid-template-columns:1fr}
+
+  .page-title{font-size:21px}
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
   }
 
-  .calc-grid{gap:5px}
+  .stat-card{padding:14px}
 
-  .calc-grid button{
-    min-height:45px;
-    font-size:10px;
-  }
-
-  .calc-result{font-size:25px}
+  .stat-value{font-size:22px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     AUTH
-===================================================== -->
+<!-- ================= AUTH ================= -->
 
 <div id="authPage" class="auth-page">
 
-  <div class="auth-wrapper">
+<div class="auth-card">
 
-    <div class="auth-brand-panel">
+<div class="logo">PCM Tracker</div>
 
-      <div class="auth-brand-content">
+<div class="auth-sub">
+HSC Physics • Chemistry • Higher Math
+</div>
 
-        <div class="auth-logo">PCM</div>
+<div id="authMessage"></div>
 
-        <h1 class="auth-brand-title">
-          PCM <span>Tracker</span>
-        </h1>
+<!-- LOGIN -->
 
-        <p class="auth-tagline">
-          A study companion for HSC & university admission aspirants.
-          Track your syllabus, monitor your progress and prepare with confidence.
-        </p>
+<div id="loginBox">
 
-        <div class="auth-features">
+<div class="form-group">
+<label>Email</label>
+<input id="loginEmail" type="email" placeholder="Enter email">
+</div>
 
-          <div class="auth-feature">
-            <div class="auth-check">✓</div>
-            Track your HSC syllabus
-          </div>
+<div class="form-group">
+<label>Password</label>
+<input id="loginPassword" type="password" placeholder="Enter password">
+</div>
 
-          <div class="auth-feature">
-            <div class="auth-check">✓</div>
-            Monitor your study progress
-          </div>
+<button class="primary-btn" onclick="login()">
+Login
+</button>
 
-          <div class="auth-feature">
-            <div class="auth-check">✓</div>
-            Calculate your GPA
-          </div>
+<div class="switch-auth">
+Don't have an account?
+<span onclick="showSignup()">Create account</span>
+</div>
 
-          <div class="auth-feature">
-            <div class="auth-check">✓</div>
-            Use a scientific calculator
-          </div>
+</div>
 
-        </div>
+<!-- SIGNUP -->
 
-      </div>
+<div id="signupBox" class="hidden">
 
-    </div>
+<div class="form-group">
+<label>Email</label>
+<input id="signupEmail" type="email" placeholder="Enter email">
+</div>
 
-    <div class="auth-form-panel">
+<div class="form-group">
+<label>Password</label>
+<input id="signupPassword" type="password" placeholder="Minimum 6 characters">
+</div>
 
-      <div class="auth-box">
+<div class="form-group">
+<label>HSC Batch</label>
+<select id="signupBatch">
+<option value="">Select batch</option>
+<option>HSC 26</option>
+<option>HSC 27</option>
+<option>HSC 28</option>
+</select>
+</div>
 
-        <h1 id="authTitle">Welcome back</h1>
+<div class="form-group">
+<label>College Name</label>
+<input id="signupCollege" type="text" placeholder="College name">
+</div>
 
-        <div id="authDesc" class="auth-desc">
-          Sign in to continue your study journey.
-        </div>
+<div class="form-group">
+<label>Zilla</label>
+<input id="signupZilla" type="text" placeholder="District">
+</div>
 
-        <div id="authMessage" class="message"></div>
+<button class="primary-btn" onclick="signup()">
+Create Account
+</button>
 
-        <div id="signupFields" class="hidden">
+<div class="switch-auth">
+Already have an account?
+<span onclick="showLogin()">Login</span>
+</div>
 
-          <label>HSC Batch</label>
+</div>
 
-          <select id="batch">
-            <option value="HSC 26">HSC 26</option>
-            <option value="HSC 27">HSC 27</option>
-            <option value="HSC 28">HSC 28</option>
-          </select>
+</div>
+</div>
 
-          <label>College</label>
 
-          <input
-            id="college"
-            type="text"
-            placeholder="Enter your college name"
-          >
+<!-- ================= APP ================= -->
 
-          <label>Zilla</label>
+<div id="app" class="app hidden">
 
-          <input
-            id="zilla"
-            type="text"
-            placeholder="Enter your district"
-          >
+<aside class="sidebar">
 
-        </div>
+<div class="sidebar-logo">
+PCM Tracker
+</div>
 
-        <label>Email</label>
+<button class="nav-item active" onclick="showPage('dashboard',this)">
+📊 Dashboard
+</button>
 
-        <input
-          id="email"
-          type="email"
-          placeholder="Enter your email"
-          autocomplete="email"
-        >
+<button class="nav-item" onclick="showPage('syllabus',this)">
+📚 Syllabus
+</button>
 
-        <label>Password</label>
+<button class="nav-item" onclick="showPage('questions',this)">
+📝 Question Bank
+</button>
 
-        <input
-          id="password"
-          type="password"
-          placeholder="Minimum 6 characters"
-          autocomplete="current-password"
-        >
+<button class="nav-item" onclick="showPage('gpa',this)">
+🧮 GPA Calculator
+</button>
 
-        <button
-          id="authBtn"
-          class="primary-btn"
-          onclick="authAction()"
-        >
-          Sign In
-        </button>
+<button class="nav-item" onclick="showPage('profile',this)">
+👤 Profile
+</button>
 
-        <div class="auth-switch">
+<button class="nav-item" onclick="logout()">
+🚪 Logout
+</button>
 
-          <span id="switchText">
-            Don't have an account?
-          </span>
+</aside>
 
-          <span
-            id="switchBtn"
-            onclick="toggleAuth()"
-          >
-            Create account
-          </span>
 
-        </div>
+<main class="main">
 
-      </div>
+<div class="topbar">
 
-    </div>
+<div class="page-title" id="pageTitle">
+Dashboard
+</div>
 
-  </div>
+<div id="userEmail" class="user-pill">
+Loading...
+</div>
 
 </div>
 
 
-<!-- =====================================================
-     APP
-===================================================== -->
+<!-- DASHBOARD -->
 
-<div id="app" class="hidden">
+<section id="dashboardPage">
 
-<header class="topbar">
+<div class="stats-grid">
 
-  <div class="top-brand">
+<div class="stat-card">
+<div class="stat-label">Overall Progress</div>
+<div id="overallProgressText" class="stat-value">0%</div>
 
-    <div class="top-logo">PCM</div>
+<div class="progress-wrap">
+<div id="overallProgressBar" class="progress-bar" style="width:0%"></div>
+</div>
+</div>
 
-    <span>PCM Tracker</span>
+<div class="stat-card">
+<div class="stat-label">7 Day Progress</div>
+<div id="weekProgress" class="stat-value">0%</div>
+</div>
 
-  </div>
+<div class="stat-card">
+<div class="stat-label">30 Day Progress</div>
+<div id="monthProgress" class="stat-value">0%</div>
+</div>
 
-  <div class="top-right">
+<div class="stat-card">
+<div class="stat-label">Completed Chapters</div>
+<div id="completedChapters" class="stat-value">0/51</div>
+</div>
 
-    <span id="userEmail" class="user-email"></span>
+</div>
 
-    <button class="logout" onclick="logout()">
-      Logout
-    </button>
+<div class="section">
 
-  </div>
+<div class="section-title">
+Subject Progress
+</div>
 
-</header>
+<div id="subjectProgress"></div>
 
+</div>
 
-<div class="layout">
+</section>
 
-  <!-- SIDEBAR -->
 
-  <aside class="sidebar">
+<!-- SYLLABUS -->
 
-    <div class="nav">
+<section id="syllabusPage" class="hidden">
 
-      <button
-        class="nav-btn active"
-        onclick="showSection('syllabus',this)"
-      >
-        Syllabus Track
-      </button>
+<div class="section">
 
-      <button
-        class="nav-btn"
-        onclick="showSection('gpa',this)"
-      >
-        GPA Calculator
-      </button>
+<div class="section-title">
+HSC PCM Syllabus
+</div>
 
-      <button
-        class="nav-btn"
-        onclick="showSection('calculator',this)"
-      >
-        Scientific Calculator
-      </button>
+<div id="syllabusContainer"></div>
 
-      <button
-        class="nav-btn"
-        onclick="showSection('profile',this)"
-      >
-        Profile
-      </button>
+</div>
 
-    </div>
+</section>
 
-  </aside>
 
+<!-- QUESTION BANK -->
 
-  <!-- CONTENT -->
+<section id="questionsPage" class="hidden">
 
-  <main class="content">
+<div class="section">
 
-    <!-- ================= SYLLABUS ================= -->
+<div class="practice-panel">
 
-    <section
-      id="syllabusSection"
-      class="section active"
-    >
+<div>
+<div class="section-title" style="margin-bottom:3px">
+Engineering MCQ Question Bank
+</div>
 
-      <div class="page-header">
+<small style="color:#64748b">
+HSC syllabus + Engineering admission standard
+</small>
+</div>
 
-        <h1>Syllabus Track</h1>
-
-        <p>
-          Track your HSC Physics, Chemistry and Higher Math progress.
-        </p>
-
-      </div>
-
-      <div class="overview">
-
-        <div class="overview-card main-progress">
-
-          <div id="progressCircle" class="progress-circle">
-
-            <span id="overallPercent">
-              0%
-            </span>
-
-          </div>
-
-          <div>
-
-            <div class="overview-label">
-              Overall Progress
-            </div>
-
-            <div
-              class="overview-number"
-              id="overallText"
-            >
-              0 / 51
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="overview-card">
-
-          <div class="overview-label">
-            Completed
-          </div>
-
-          <div
-            class="overview-number"
-            id="completedCount"
-          >
-            0
-          </div>
-
-        </div>
-
-        <div class="overview-card">
-
-          <div class="overview-label">
-            Last 7 Days
-          </div>
-
-          <div
-            class="overview-number"
-            id="sevenDays"
-          >
-            0
-          </div>
-
-        </div>
-
-        <div class="overview-card">
-
-          <div class="overview-label">
-            Last 30 Days
-          </div>
-
-          <div
-            class="overview-number"
-            id="thirtyDays"
-          >
-            0
-          </div>
-
-        </div>
-
-      </div>
-
-      <div id="subjectCards" class="subject-grid"></div>
-
-      <div id="syllabus"></div>
-
-    </section>
-
-
-    <!-- ================= GPA ================= -->
-
-    <section
-      id="gpaSection"
-      class="section"
-    >
-
-      <div class="page-header">
-
-        <h1>GPA Calculator</h1>
-
-        <p>
-          Enter your GPA for each subject from 0 to 5.
-        </p>
-
-      </div>
-
-      <div class="panel">
-
-        <div class="panel-title">
-
-          <h2>Main Subjects</h2>
-
-          <span>6 subjects</span>
-
-        </div>
-
-        <div class="gpa-grid">
-
-          <div>
-            <label>Bangla</label>
-            <input id="gBangla" type="number" min="0" max="5" step=".01" placeholder="0.00">
-          </div>
-
-          <div>
-            <label>English</label>
-            <input id="gEnglish" type="number" min="0" max="5" step=".01" placeholder="0.00">
-          </div>
-
-          <div>
-            <label>ICT</label>
-            <input id="gICT" type="number" min="0" max="5" step=".01" placeholder="0.00">
-          </div>
-
-          <div>
-            <label>Physics</label>
-            <input id="gPhysics" type="number" min="0" max="5" step=".01" placeholder="0.00">
-          </div>
-
-          <div>
-            <label>Chemistry</label>
-            <input id="gChemistry" type="number" min="0" max="5" step=".01" placeholder="0.00">
-          </div>
-
-          <div>
-            <label>Higher Math</label>
-            <input id="gMath" type="number" min="0" max="5" step=".01" placeholder="0.00">
-          </div>
-
-          <div>
-            <label>Biology — Optional</label>
-            <input id="gBiology" type="number" min="0" max="5" step=".01" placeholder="Optional">
-          </div>
-
-        </div>
-
-        <button
-          class="primary-btn"
-          onclick="calculateGPA()"
-          style="max-width:220px"
-        >
-          Calculate GPA
-        </button>
-
-        <div id="gpaResult" class="gpa-result hidden">
-
-          <small>Your calculated GPA</small>
-
-          <strong id="gpaValue">
-            0.00
-          </strong>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= CALCULATOR ================= -->
-
-    <section
-      id="calculatorSection"
-      class="section"
-    >
-
-      <div class="page-header">
-
-        <h1>Scientific Calculator</h1>
-
-        <p>
-          Advanced calculator for HSC Physics, Chemistry and Higher Math.
-        </p>
-
-      </div>
-
-      <div class="calculator-wrap">
-
-        <div class="calculator">
-
-          <div class="calc-brand">
-            PCM TRACK • SCIENTIFIC
-          </div>
-
-          <div class="calc-display">
-
-            <div
-              id="calcExpression"
-              class="calc-expression"
-            ></div>
-
-            <div
-              id="calcResult"
-              class="calc-result"
-            >
-              0
-            </div>
-
-          </div>
-
-          <div class="calc-mode">
-
-            <button
-              id="degreeBtn"
-              class="mode-active"
-              onclick="setAngleMode('DEG')"
-            >
-              DEG
-            </button>
-
-            <button
-              id="radianBtn"
-              onclick="setAngleMode('RAD')"
-            >
-              RAD
-            </button>
-
-            <button onclick="calcClear()">
-              AC
-            </button>
-
-          </div>
-
-          <div class="calc-grid">
-
-            <button onclick="calcInput('sin(')">sin</button>
-            <button onclick="calcInput('cos(')">cos</button>
-            <button onclick="calcInput('tan(')">tan</button>
-            <button onclick="calcInput('log(')">log</button>
-            <button onclick="calcInput('ln(')">ln</button>
-
-            <button onclick="calcInput('asin(')">sin⁻¹</button>
-            <button onclick="calcInput('acos(')">cos⁻¹</button>
-            <button onclick="calcInput('atan(')">tan⁻¹</button>
-            <button onclick="calcInput('√(')">√</button>
-            <button onclick="calcInput('^')">xʸ</button>
-
-            <button onclick="calcInput('π')">π</button>
-            <button onclick="calcInput('e')">e</button>
-            <button onclick="calcInput('(')">(</button>
-            <button onclick="calcInput(')')">)</button>
-            <button onclick="calcInput('!')">x!</button>
-
-            <button onclick="calcInput('7')">7</button>
-            <button onclick="calcInput('8')">8</button>
-            <button onclick="calcInput('9')">9</button>
-
-            <button
-              class="operator"
-              onclick="calcInput('÷')"
-            >
-              ÷
-            </button>
-
-            <button onclick="calcDelete()">DEL</button>
-
-            <button onclick="calcInput('4')">4</button>
-            <button onclick="calcInput('5')">5</button>
-            <button onclick="calcInput('6')">6</button>
-
-            <button
-              class="operator"
-              onclick="calcInput('×')"
-            >
-              ×
-            </button>
-
-            <button onclick="calcAns()">Ans</button>
-
-            <button onclick="calcInput('1')">1</button>
-            <button onclick="calcInput('2')">2</button>
-            <button onclick="calcInput('3')">3</button>
-
-            <button
-              class="operator"
-              onclick="calcInput('-')"
-            >
-              −
-            </button>
-
-            <button onclick="calcInput('%')">%</button>
-
-            <button onclick="calcInput('0')">0</button>
-            <button onclick="calcInput('.')">.</button>
-
-            <button
-              class="equals"
-              onclick="calculateScientific()"
-            >
-              =
-            </button>
-
-            <button
-              class="operator"
-              onclick="calcInput('+')"
-            >
-              +
-            </button>
-
-          </div>
-
-          <div class="calc-history">
-
-            <div class="calc-history-title">
-              Calculation History
-            </div>
-
-            <div id="calcHistory">
-              No calculations yet.
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= PROFILE ================= -->
-
-    <section
-      id="profileSection"
-      class="section"
-    >
-
-      <div class="page-header">
-
-        <h1>Profile</h1>
-
-        <p>
-          Your PCM Tracker account information.
-        </p>
-
-      </div>
-
-      <div class="panel">
-
-        <div class="profile-grid">
-
-          <div class="profile-item">
-            <small>Email</small>
-            <strong id="profileEmail">—</strong>
-          </div>
-
-          <div class="profile-item">
-            <small>HSC Batch</small>
-            <strong id="profileBatch">—</strong>
-          </div>
-
-          <div class="profile-item">
-            <small>College</small>
-            <strong id="profileCollege">—</strong>
-          </div>
-
-          <div class="profile-item">
-            <small>Zilla</small>
-            <strong id="profileZilla">—</strong>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
+<button class="practice-btn" onclick="startPractice()">
+🎯 Practice
+</button>
 
 </div>
 
 
-<!-- ================= MOBILE NAV ================= -->
+<div class="question-toolbar">
+
+<input
+id="questionSearch"
+placeholder="Search question..."
+oninput="filterQuestions()"
+>
+
+<select id="questionSubject" onchange="filterQuestions()">
+<option value="">All Subjects</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Higher Math</option>
+</select>
+
+<select id="questionChapter" onchange="filterQuestions()">
+<option value="">All Chapters</option>
+</select>
+
+<select id="questionDifficulty" onchange="filterQuestions()">
+<option value="">All Difficulty</option>
+<option>Easy</option>
+<option>Medium</option>
+<option>Hard</option>
+</select>
+
+<select id="questionView" onchange="filterQuestions()">
+<option value="">All Questions</option>
+<option value="bookmarked">Bookmarked</option>
+<option value="solved">Solved</option>
+<option value="unsolved">Unsolved</option>
+</select>
+
+</div>
+
+<div id="questionContainer">
+<div style="color:#64748b">
+Loading questions...
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GPA -->
+
+<section id="gpaPage" class="hidden">
+
+<div class="section">
+
+<div class="section-title">
+GPA Calculator
+</div>
+
+<p style="font-size:13px;color:#64748b;margin-bottom:18px">
+Enter GPA directly (0–5).
+</p>
+
+<div class="gpa-grid">
+
+<div class="form-group">
+<label>Bangla</label>
+<input id="gBangla" type="number" min="0" max="5" step=".01">
+</div>
+
+<div class="form-group">
+<label>English</label>
+<input id="gEnglish" type="number" min="0" max="5" step=".01">
+</div>
+
+<div class="form-group">
+<label>ICT</label>
+<input id="gICT" type="number" min="0" max="5" step=".01">
+</div>
+
+<div class="form-group">
+<label>Physics</label>
+<input id="gPhysics" type="number" min="0" max="5" step=".01">
+</div>
+
+<div class="form-group">
+<label>Chemistry</label>
+<input id="gChemistry" type="number" min="0" max="5" step=".01">
+</div>
+
+<div class="form-group">
+<label>Higher Math</label>
+<input id="gMath" type="number" min="0" max="5" step=".01">
+</div>
+
+<div class="form-group">
+<label>Biology Optional</label>
+<input id="gBiology" type="number" min="0" max="5" step=".01">
+</div>
+
+</div>
+
+<button class="primary-btn" onclick="calculateGPA()">
+Calculate GPA
+</button>
+
+<div id="gpaResult" class="gpa-result hidden">
+
+<div>Your GPA</div>
+<strong id="gpaValue">0.00</strong>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profilePage" class="hidden">
+
+<div class="section">
+
+<div class="section-title">
+Profile
+</div>
+
+<div class="profile-grid">
+
+<div class="info-card">
+<div class="info-label">Email</div>
+<div id="profileEmail" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">HSC Batch</div>
+<div id="profileBatch" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">College</div>
+<div id="profileCollege" class="info-value">-</div>
+</div>
+
+<div class="info-card">
+<div class="info-label">Zilla</div>
+<div id="profileZilla" class="info-value">-</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- MOBILE NAV -->
 
 <nav class="mobile-nav">
 
-  <button
-    class="active"
-    onclick="mobileNav('syllabus',this)"
-  >
-    Syllabus
-  </button>
+<button onclick="mobilePage('dashboard',this)">
+📊<br>Home
+</button>
 
-  <button
-    onclick="mobileNav('gpa',this)"
-  >
-    GPA
-  </button>
+<button onclick="mobilePage('syllabus',this)">
+📚<br>Syllabus
+</button>
 
-  <button
-    onclick="mobileNav('calculator',this)"
-  >
-    Calculator
-  </button>
+<button onclick="mobilePage('questions',this)">
+📝<br>MCQ
+</button>
 
-  <button
-    onclick="mobileNav('profile',this)"
-  >
-    Profile
-  </button>
+<button onclick="mobilePage('gpa',this)">
+🧮<br>GPA
+</button>
+
+<button onclick="mobilePage('profile',this)">
+👤<br>Profile
+</button>
 
 </nav>
 
@@ -1624,9 +937,7 @@ input:focus,select:focus{
 
 <script>
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+/* ================= SUPABASE ================= */
 
 const SUPABASE_URL =
 "https://plivkdymhqusssmcbxvs.supabase.co";
@@ -1634,30 +945,17 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_vaDXie6lMrKp7JYj9dn59A_BIsdojsj";
 
-const db =
-supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+const db = window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
-/* =====================================================
-   GLOBAL
-===================================================== */
-
-let signupMode=false;
-let currentUser=null;
-let userData=null;
-
-
-/* =====================================================
-   SYLLABUS
-===================================================== */
+/* ================= SYLLABUS ================= */
 
 const syllabus={
 
 Physics:{
-
 "1st Paper":[
 "ভৌত জগৎ ও পরিমাপ",
 "ভেক্টর",
@@ -1684,11 +982,9 @@ Physics:{
 "সেমিকন্ডাক্টর ও ইলেকট্রনিক্স",
 "জ্যোতির্বিজ্ঞান"
 ]
-
 },
 
 Chemistry:{
-
 "1st Paper":[
 "ল্যাবরেটরির নিরাপদ ব্যবহার",
 "গুণগত রসায়ন",
@@ -1704,11 +1000,9 @@ Chemistry:{
 "তড়িৎ রসায়ন",
 "অর্থনৈতিক ও শিল্প রসায়ন"
 ]
-
 },
 
 "Higher Math":{
-
 "1st Paper":[
 "ম্যাট্রিক্স ও নির্ণায়ক",
 "ভেক্টর",
@@ -1734,1287 +1028,1065 @@ Chemistry:{
 "কণার গতিবিদ্যা",
 "সম্ভাব্যতা"
 ]
-
 }
 
 };
 
 
-/* =====================================================
-   AUTH UI
-===================================================== */
+/* ================= VARIABLES ================= */
 
-window.toggleAuth=function(){
+let currentUser=null;
+let profileData=null;
+let progressData={};
 
-  signupMode=!signupMode;
+let allQuestions=[];
+let questionProgress={};
 
-  document.getElementById("authTitle").textContent =
-    signupMode
-    ? "Create your account"
-    : "Welcome back";
-
-  document.getElementById("authDesc").textContent =
-    signupMode
-    ? "Create your profile and start tracking your HSC preparation."
-    : "Sign in to continue your study journey.";
-
-  document.getElementById("authBtn").textContent =
-    signupMode
-    ? "Create Account"
-    : "Sign In";
-
-  document
-    .getElementById("signupFields")
-    .classList
-    .toggle("hidden",!signupMode);
-
-  document.getElementById("switchText").textContent =
-    signupMode
-    ? "Already have an account?"
-    : "Don't have an account?";
-
-  document.getElementById("switchBtn").textContent =
-    signupMode
-    ? "Sign in"
-    : "Create account";
-
-  clearMessage();
-
-};
+let practiceQuestions=[];
+let practiceIndex=0;
+let practiceScore=0;
 
 
-function showMessage(text,type="error"){
+/* ================= AUTH ================= */
 
-  const box=
-  document.getElementById("authMessage");
+function showSignup(){
 
-  box.className="message "+type;
-  box.textContent=text;
+document.getElementById("loginBox").classList.add("hidden");
+document.getElementById("signupBox").classList.remove("hidden");
+clearMessage();
 
 }
 
+function showLogin(){
+
+document.getElementById("signupBox").classList.add("hidden");
+document.getElementById("loginBox").classList.remove("hidden");
+clearMessage();
+
+}
+
+function showMessage(message,type="error"){
+
+document.getElementById("authMessage").innerHTML=
+`<div class="${type}">${message}</div>`;
+
+}
 
 function clearMessage(){
-
-  const box=
-  document.getElementById("authMessage");
-
-  box.className="message";
-  box.textContent="";
-
+document.getElementById("authMessage").innerHTML="";
 }
 
 
-/* =====================================================
-   LOGIN / SIGNUP
-===================================================== */
+/* ================= SIGNUP ================= */
 
-window.authAction=async function(){
+async function signup(){
 
-  clearMessage();
+clearMessage();
 
-  const email=
-  document.getElementById("email").value.trim();
+const email=document.getElementById("signupEmail").value.trim();
+const password=document.getElementById("signupPassword").value;
+const batch=document.getElementById("signupBatch").value;
+const college=document.getElementById("signupCollege").value.trim();
+const zilla=document.getElementById("signupZilla").value.trim();
 
-  const password=
-  document.getElementById("password").value;
-
-  if(!email||!password){
-
-    showMessage(
-      "Please enter your email and password."
-    );
-
-    return;
-  }
-
-  if(password.length<6){
-
-    showMessage(
-      "Password must contain at least 6 characters."
-    );
-
-    return;
-  }
-
-  try{
-
-    if(signupMode){
-
-      const batch=
-      document.getElementById("batch").value;
-
-      const college=
-      document.getElementById("college").value.trim();
-
-      const zilla=
-      document.getElementById("zilla").value.trim();
-
-      if(!college||!zilla){
-
-        showMessage(
-          "Please enter your college and zilla."
-        );
-
-        return;
-      }
-
-      const {data,error}=
-      await db.auth.signUp({
-
-        email,
-        password,
-
-        options:{
-          data:{
-            batch,
-            college,
-            zilla
-          }
-        }
-
-      });
-
-      if(error) throw error;
-
-      if(data.session){
-
-        await ensureProfile(data.user);
-
-        showMessage(
-          "Account created successfully.",
-          "success"
-        );
-
-      }else{
-
-        showMessage(
-          "Account created. Please confirm your email, then sign in.",
-          "success"
-        );
-
-      }
-
-    }else{
-
-      const {data,error}=
-      await db.auth.signInWithPassword({
-        email,
-        password
-      });
-
-      if(error) throw error;
-
-      await loadUser(data.user);
-
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-    let msg=
-    error.message||
-    "Something went wrong.";
-
-    if(
-      msg.toLowerCase()
-      .includes("invalid login credentials")
-    ){
-
-      msg="Incorrect email or password.";
-
-    }
-
-    showMessage(msg);
-
-  }
-
-};
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-async function ensureProfile(user){
-
-  let {data,error}=
-  await db
-    .from("profiles")
-    .select("*")
-    .eq("id",user.id)
-    .maybeSingle();
-
-  if(error) throw error;
-
-  if(!data){
-
-    const meta=user.user_metadata||{};
-
-    const profile={
-
-      id:user.id,
-
-      email:user.email,
-
-      batch:
-      meta.batch||
-      "HSC 27",
-
-      college:
-      meta.college||
-      "",
-
-      zilla:
-      meta.zilla||
-      "",
-
-      progress:{},
-
-      history:[]
-
-    };
-
-    const result=
-    await db
-      .from("profiles")
-      .insert(profile)
-      .select()
-      .single();
-
-    if(result.error)
-      throw result.error;
-
-    data=result.data;
-
-  }
-
-  return data;
-
+if(!email||!password||!batch||!college||!zilla){
+showMessage("সবগুলো তথ্য পূরণ করো।");
+return;
 }
 
-
-async function loadUser(user){
-
-  currentUser=user;
-
-  userData=
-  await ensureProfile(user);
-
-  document
-    .getElementById("authPage")
-    .classList.add("hidden");
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-  renderProfile();
-  renderSyllabus();
-  renderSubjectCards();
-  updateDashboard();
-
+if(password.length<6){
+showMessage("Password কমপক্ষে 6 characters হতে হবে।");
+return;
 }
 
+const {data,error}=await db.auth.signUp({
 
-/* =====================================================
-   AUTH STATE
-===================================================== */
+email,
+password,
 
-db.auth.onAuthStateChange(
-  async(event,session)=>{
+options:{
+data:{
+batch,
+college,
+zilla
+}
+}
 
-    if(session && !currentUser){
+});
 
-      try{
+if(error){
+showMessage(error.message);
+return;
+}
 
-        await loadUser(session.user);
+if(data.session){
 
-      }catch(error){
+await loadUser();
 
-        console.error(error);
+}else{
 
-      }
-
-    }
-
-    if(!session){
-
-      currentUser=null;
-      userData=null;
-
-      document
-        .getElementById("authPage")
-        .classList.remove("hidden");
-
-      document
-        .getElementById("app")
-        .classList.add("hidden");
-
-    }
-
-  }
+showMessage(
+"Account created. Email confirmation লাগলে email confirm করে Login করো.",
+"success"
 );
 
+showLogin();
 
-/* =====================================================
-   LOGOUT
-===================================================== */
+}
 
-window.logout=async function(){
+}
 
-  await db.auth.signOut();
 
+/* ================= LOGIN ================= */
+
+async function login(){
+
+clearMessage();
+
+const email=document.getElementById("loginEmail").value.trim();
+const password=document.getElementById("loginPassword").value;
+
+if(!email||!password){
+showMessage("Email এবং password দাও।");
+return;
+}
+
+const {data,error}=await db.auth.signInWithPassword({
+email,
+password
+});
+
+if(error){
+showMessage(error.message);
+return;
+}
+
+currentUser=data.user;
+
+await loadUser();
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+async function logout(){
+
+await db.auth.signOut();
+
+currentUser=null;
+
+document.getElementById("app").classList.add("hidden");
+document.getElementById("authPage").classList.remove("hidden");
+
+showLogin();
+
+}
+
+
+/* ================= LOAD USER ================= */
+
+async function loadUser(){
+
+const {data:{user},error}=await db.auth.getUser();
+
+if(error||!user)return;
+
+currentUser=user;
+
+await loadProfile();
+
+document.getElementById("authPage").classList.add("hidden");
+document.getElementById("app").classList.remove("hidden");
+
+document.getElementById("userEmail").textContent=user.email;
+
+renderSyllabus();
+updateDashboard();
+loadQuestions();
+
+}
+
+
+/* ================= PROFILE ================= */
+
+async function loadProfile(){
+
+const {data,error}=await db
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.maybeSingle();
+
+if(error){
+console.error(error);
+return;
+}
+
+if(data){
+
+profileData=data;
+progressData=data.progress||{};
+
+}else{
+
+const m=currentUser.user_metadata||{};
+
+profileData={
+id:currentUser.id,
+email:currentUser.email,
+batch:m.batch||"",
+college:m.college||"",
+zilla:m.zilla||"",
+progress:{},
+history:[]
 };
 
+await db.from("profiles").insert(profileData);
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+progressData={};
 
-window.showSection=function(section,btn){
+}
 
-  document
-    .querySelectorAll(".section")
-    .forEach(el=>{
-      el.classList.remove("active");
-    });
+document.getElementById("profileEmail").textContent=currentUser.email;
+document.getElementById("profileBatch").textContent=profileData.batch||"-";
+document.getElementById("profileCollege").textContent=profileData.college||"-";
+document.getElementById("profileZilla").textContent=profileData.zilla||"-";
 
-  document
-    .getElementById(section+"Section")
-    .classList.add("active");
+}
 
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(el=>{
-      el.classList.remove("active");
-    });
 
-  if(btn)
-    btn.classList.add("active");
+/* ================= NAVIGATION ================= */
 
+function showPage(page,btn){
+
+const pages=[
+"dashboard",
+"syllabus",
+"questions",
+"gpa",
+"profile"
+];
+
+pages.forEach(p=>{
+document.getElementById(p+"Page").classList.add("hidden");
+});
+
+document.getElementById(page+"Page").classList.remove("hidden");
+
+const titles={
+dashboard:"Dashboard",
+syllabus:"Syllabus",
+questions:"Question Bank",
+gpa:"GPA Calculator",
+profile:"Profile"
 };
 
+document.getElementById("pageTitle").textContent=titles[page];
 
-window.mobileNav=function(section,btn){
+document.querySelectorAll(".nav-item")
+.forEach(x=>x.classList.remove("active"));
 
-  showSection(section,null);
+if(btn)btn.classList.add("active");
 
-  document
-    .querySelectorAll(".mobile-nav button")
-    .forEach(el=>{
-      el.classList.remove("active");
-    });
+}
 
-  btn.classList.add("active");
+function mobilePage(page,btn){
 
-};
+showPage(page);
 
+document.querySelectorAll(".mobile-nav button")
+.forEach(x=>x.classList.remove("active"));
 
-/* =====================================================
-   PROFILE UI
-===================================================== */
-
-function renderProfile(){
-
-  document
-    .getElementById("userEmail")
-    .textContent=currentUser.email;
-
-  document
-    .getElementById("profileEmail")
-    .textContent=currentUser.email||"—";
-
-  document
-    .getElementById("profileBatch")
-    .textContent=userData.batch||"—";
-
-  document
-    .getElementById("profileCollege")
-    .textContent=userData.college||"—";
-
-  document
-    .getElementById("profileZilla")
-    .textContent=userData.zilla||"—";
+btn.classList.add("active");
 
 }
 
 
-/* =====================================================
-   CHAPTER KEY
-===================================================== */
-
-function chapterKey(subject,paper,index){
-
-  return subject+"|"+paper+"|"+index;
-
-}
-
-
-/* =====================================================
-   SUBJECT STATS
-===================================================== */
-
-function getSubjectStats(subject){
-
-  let total=0;
-  let done=0;
-
-  Object.entries(syllabus[subject])
-  .forEach(([paper,chapters])=>{
-
-    chapters.forEach((_,index)=>{
-
-      total++;
-
-      const key=
-      chapterKey(subject,paper,index);
-
-      if(
-        userData.progress?.[key]==="done"
-      ){
-        done++;
-      }
-
-    });
-
-  });
-
-  return{
-    total,
-    done,
-    percent:
-      total
-      ? Math.round(done/total*100)
-      : 0
-  };
-
-}
-
-
-/* =====================================================
-   SUBJECT CARDS
-===================================================== */
-
-function renderSubjectCards(){
-
-  const box=
-  document.getElementById("subjectCards");
-
-  box.innerHTML="";
-
-  Object.keys(syllabus)
-  .forEach(subject=>{
-
-    const stats=
-    getSubjectStats(subject);
-
-    const card=
-    document.createElement("div");
-
-    card.className="subject-card";
-
-    card.innerHTML=`
-
-      <div class="subject-top">
-
-        <div class="subject-name">
-          ${subject}
-        </div>
-
-        <div class="subject-percent">
-          ${stats.percent}%
-        </div>
-
-      </div>
-
-      <div class="bar">
-
-        <div
-          class="bar-fill"
-          style="width:${stats.percent}%"
-        ></div>
-
-      </div>
-
-      <div class="subject-meta">
-        ${stats.done} of ${stats.total} chapters completed
-      </div>
-
-    `;
-
-    box.appendChild(card);
-
-  });
-
-}
-
-
-/* =====================================================
-   SYLLABUS
-===================================================== */
+/* ================= SYLLABUS ================= */
 
 function renderSyllabus(){
 
-  const box=
-  document.getElementById("syllabus");
+const container=document.getElementById("syllabusContainer");
 
-  box.innerHTML="";
+container.innerHTML="";
 
-  Object.entries(syllabus)
-  .forEach(([subject,papers])=>{
+Object.entries(syllabus).forEach(([subject,papers])=>{
 
-    const subjectStats=
-    getSubjectStats(subject);
+const block=document.createElement("div");
 
-    const subjectBlock=
-    document.createElement("div");
+block.className="subject-block";
 
-    subjectBlock.className="subject-block";
+let html=`
 
-    subjectBlock.innerHTML=`
+<div class="subject-header">
+<span>${subject}</span>
+<span>${getSubjectProgress(subject)}%</span>
+</div>
+`;
 
-      <div class="subject-heading">
+Object.entries(papers).forEach(([paper,chapters])=>{
 
-        <h2>${subject}</h2>
+html+=`
 
-        <div class="count">
-          ${subjectStats.done}/${subjectStats.total} completed
-        </div>
+<div style="
+padding:10px 15px;
+font-size:12px;
+font-weight:800;
+color:#64748b;
+background:#fff;
+">
+${paper}
+</div>
+`;
 
-      </div>
+chapters.forEach((chapter,i)=>{
 
-    `;
+const key=`${subject}|${paper}|${chapter}`;
+const status=progressData[key]||"Not Started";
 
-    Object.entries(papers)
-    .forEach(([paper,chapters])=>{
+html+=`
 
-      let paperDone=0;
+<div class="chapter-row">
 
-      chapters.forEach((_,index)=>{
+<div class="chapter-name">
+${i+1}. ${chapter}
+</div>
 
-        const key=
-        chapterKey(subject,paper,index);
+<select
+class="status-select"
+onchange="changeStatus('${encodeURIComponent(key)}',this.value)"
+>
 
-        if(
-          userData.progress?.[key]==="done"
-        ){
-          paperDone++;
-        }
+<option ${status==="Not Started"?"selected":""}>
+Not Started
+</option>
 
-      });
+<option ${status==="Running"?"selected":""}>
+Running
+</option>
 
-      const paperBox=
-      document.createElement("div");
+<option ${status==="Done"?"selected":""}>
+Done
+</option>
 
-      paperBox.className="paper";
+</select>
 
-      paperBox.innerHTML=`
+</div>
+`;
 
-        <div class="paper-head">
+});
 
-          <div class="paper-title">
-            ${paper}
-          </div>
+});
 
-          <div class="paper-progress">
-            ${paperDone}/${chapters.length}
-          </div>
+block.innerHTML=html;
+container.appendChild(block);
 
-        </div>
-
-      `;
-
-      chapters.forEach((chapter,index)=>{
-
-        const key=
-        chapterKey(subject,paper,index);
-
-        const status=
-        userData.progress?.[key]||
-        "not_started";
-
-        const row=
-        document.createElement("div");
-
-        row.className="chapter";
-
-        row.innerHTML=`
-
-          <div class="chapter-number">
-            ${String(index+1).padStart(2,"0")}
-          </div>
-
-          <div class="chapter-info">
-
-            <div class="chapter-name">
-              ${chapter}
-            </div>
-
-            <div class="chapter-status">
-              ${statusText(status)}
-            </div>
-
-          </div>
-
-          <select class="status-select">
-
-            <option value="not_started">
-              Not Started
-            </option>
-
-            <option value="running">
-              Running
-            </option>
-
-            <option value="done">
-              Done
-            </option>
-
-          </select>
-
-        `;
-
-        const select=
-        row.querySelector("select");
-
-        select.value=status;
-
-        select.addEventListener(
-          "change",
-          ()=>{
-            changeProgress(
-              key,
-              select.value
-            );
-          }
-        );
-
-        paperBox.appendChild(row);
-
-      });
-
-      subjectBlock.appendChild(paperBox);
-
-    });
-
-    box.appendChild(subjectBlock);
-
-  });
+});
 
 }
 
 
-function statusText(status){
+/* ================= STATUS ================= */
 
-  if(status==="done")
-    return"Completed";
+async function changeStatus(encodedKey,status){
 
-  if(status==="running")
-    return"In progress";
+const key=decodeURIComponent(encodedKey);
 
-  return"Not started";
+progressData[key]=status;
+
+await saveProgress();
+
+renderSyllabus();
+updateDashboard();
+
+}
+
+async function saveProgress(){
+
+if(!currentUser)return;
+
+await db
+.from("profiles")
+.update({
+progress:progressData,
+updated_at:new Date().toISOString()
+})
+.eq("id",currentUser.id);
 
 }
 
 
-/* =====================================================
-   SAVE PROGRESS
-===================================================== */
+/* ================= PROGRESS ================= */
 
-async function changeProgress(key,status){
+function getSubjectProgress(subject){
 
-  if(!userData) return;
+let total=0;
+let done=0;
 
-  userData.progress=
-  userData.progress||{};
+Object.entries(syllabus[subject]).forEach(([paper,chapters])=>{
 
-  userData.history=
-  userData.history||[];
+chapters.forEach(chapter=>{
 
-  const old=
-  userData.progress[key]||
-  "not_started";
+total++;
 
-  if(
-    old!=="done" &&
-    status==="done"
-  ){
+const key=`${subject}|${paper}|${chapter}`;
 
-    userData.history.push({
-      time:Date.now(),
-      key:key
-    });
+if(progressData[key]==="Done")done++;
 
-  }
+});
 
-  userData.progress[key]=status;
+});
 
-  const {error}=
-  await db
-    .from("profiles")
-    .update({
-
-      progress:userData.progress,
-
-      history:userData.history,
-
-      updated_at:new Date().toISOString()
-
-    })
-    .eq("id",currentUser.id);
-
-  if(error){
-
-    alert(
-      "Could not save progress:\n"+
-      error.message
-    );
-
-    return;
-
-  }
-
-  renderSyllabus();
-  renderSubjectCards();
-  updateDashboard();
+return total?Math.round(done/total*100):0;
 
 }
 
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
 
 function updateDashboard(){
 
-  let total=0;
-  let done=0;
+let total=0;
+let done=0;
 
-  Object.values(syllabus)
-  .forEach(papers=>{
+Object.entries(syllabus).forEach(([subject,papers])=>{
 
-    Object.values(papers)
-    .forEach(chapters=>{
+Object.entries(papers).forEach(([paper,chapters])=>{
 
-      total+=chapters.length;
+chapters.forEach(chapter=>{
 
-    });
+total++;
 
-  });
+const key=`${subject}|${paper}|${chapter}`;
 
-  Object.values(
-    userData.progress||{}
-  )
-  .forEach(status=>{
+if(progressData[key]==="Done")done++;
 
-    if(status==="done")
-      done++;
+});
 
-  });
+});
 
-  const percent=
-  total
-  ? Math.round(done/total*100)
-  : 0;
+});
 
-  document
-    .getElementById("overallPercent")
-    .textContent=percent+"%";
+const percent=total?Math.round(done/total*100):0;
 
-  document
-    .getElementById("overallText")
-    .textContent=
-    done+" / "+total;
+document.getElementById("overallProgressText").textContent=percent+"%";
+document.getElementById("overallProgressBar").style.width=percent+"%";
+document.getElementById("completedChapters").textContent=`${done}/${total}`;
 
-  document
-    .getElementById("completedCount")
-    .textContent=done;
+document.getElementById("subjectProgress").innerHTML=
+Object.keys(syllabus).map(subject=>{
 
-  const circle=
-  document.getElementById("progressCircle");
+const p=getSubjectProgress(subject);
 
-  circle.style.background=
-  `conic-gradient(
-    var(--blue)
-    ${percent*3.6}deg,
-    #e5e7eb
-    ${percent*3.6}deg
-  )`;
+return `
 
-  const now=Date.now();
+<div style="margin-bottom:15px">
 
-  const history=
-  userData.history||[];
+<div style="
+display:flex;
+justify-content:space-between;
+font-size:13px;
+font-weight:700;
+margin-bottom:7px;
+">
 
-  const seven=
-  history.filter(
-    item=>
-      now-item.time<=
-      7*24*60*60*1000
-  ).length;
+<span>${subject}</span>
+<span>${p}%</span>
 
-  const thirty=
-  history.filter(
-    item=>
-      now-item.time<=
-      30*24*60*60*1000
-  ).length;
+</div>
 
-  document
-    .getElementById("sevenDays")
-    .textContent=seven;
+<div class="progress-wrap">
+<div class="progress-bar" style="width:${p}%"></div>
+</div>
 
-  document
-    .getElementById("thirtyDays")
-    .textContent=thirty;
+</div>
+
+`;
+
+}).join("");
+
+document.getElementById("weekProgress").textContent="0%";
+document.getElementById("monthProgress").textContent="0%";
 
 }
 
 
-/* =====================================================
-   GPA
-===================================================== */
+/* ================= GPA ================= */
 
-window.calculateGPA=function(){
+function calculateGPA(){
 
-  const ids=[
-    "gBangla",
-    "gEnglish",
-    "gICT",
-    "gPhysics",
-    "gChemistry",
-    "gMath"
-  ];
+const ids=[
+"gBangla",
+"gEnglish",
+"gICT",
+"gPhysics",
+"gChemistry",
+"gMath"
+];
 
-  const values=
-  ids.map(
-    id=>
-      Number(
-        document
-          .getElementById(id)
-          .value
-      )
-  );
+const values=ids.map(id=>
+parseFloat(document.getElementById(id).value)
+);
 
-  if(
-    values.some(
-      value=>
-        isNaN(value)||
-        value<0||
-        value>5
-    )
-  ){
+if(values.some(v=>isNaN(v)||v<0||v>5)){
+alert("সব main subject-এর GPA 0 থেকে 5 এর মধ্যে দাও।");
+return;
+}
 
-    alert(
-      "Please enter all 6 main subject GPAs."
-    );
+let total=values.reduce((a,b)=>a+b,0);
 
-    return;
+const biology=parseFloat(
+document.getElementById("gBiology").value
+);
 
-  }
+if(!isNaN(biology)&&biology>2){
+total+=biology-2;
+}
 
-  let total=
-  values.reduce(
-    (a,b)=>a+b,
-    0
-  );
+const gpa=Math.min(5,total/6);
 
-  const biology=
-  Number(
-    document
-      .getElementById("gBiology")
-      .value
-  );
-
-  if(
-    !isNaN(biology)&&
-    biology>2
-  ){
-
-    total+=biology-2;
-
-  }
-
-  let gpa=total/6;
-
-  gpa=Math.min(5,gpa);
-
-  gpa=Math.round(gpa*100)/100;
-
-  document
-    .getElementById("gpaResult")
-    .classList
-    .remove("hidden");
-
-  document
-    .getElementById("gpaValue")
-    .textContent=
-    gpa.toFixed(2);
-
-};
-
-
-/* =====================================================
-   SCIENTIFIC CALCULATOR
-===================================================== */
-
-let calcExpression="";
-let calcAnswer=0;
-let angleMode="DEG";
-
-
-function updateCalculator(){
-
-  document
-    .getElementById("calcExpression")
-    .textContent=calcExpression;
-
-  document
-    .getElementById("calcResult")
-    .textContent=
-    calcExpression
-    ? calcExpression
-    : "0";
+document.getElementById("gpaValue").textContent=gpa.toFixed(2);
+document.getElementById("gpaResult").classList.remove("hidden");
 
 }
 
 
-window.calcInput=function(value){
+/* ================= QUESTIONS ================= */
 
-  calcExpression+=value;
+async function loadQuestions(){
 
-  updateCalculator();
+const container=document.getElementById("questionContainer");
 
-};
+if(!container||!currentUser)return;
 
+const {data,error}=await db
+.from("questions")
+.select("*")
+.eq("question_type","MCQ")
+.order("created_at",{ascending:false});
 
-window.calcClear=function(){
+if(error){
 
-  calcExpression="";
-  calcAnswer=0;
+console.error(error);
 
-  document
-    .getElementById("calcExpression")
-    .textContent="";
+container.innerHTML=
+`<div class="error">
+Question load হয়নি: ${error.message}
+</div>`;
 
-  document
-    .getElementById("calcResult")
-    .textContent="0";
+return;
 
-};
+}
 
+allQuestions=data||[];
 
-window.calcDelete=function(){
+const {data:progress}=await db
+.from("question_progress")
+.select("*")
+.eq("user_id",currentUser.id);
 
-  calcExpression=
-  calcExpression.slice(0,-1);
+questionProgress={};
 
-  updateCalculator();
+(progress||[]).forEach(p=>{
+questionProgress[p.question_id]=p;
+});
 
-};
-
-
-window.calcAns=function(){
-
-  calcExpression+=String(calcAnswer);
-
-  updateCalculator();
-
-};
-
-
-window.setAngleMode=function(mode){
-
-  angleMode=mode;
-
-  document
-    .getElementById("degreeBtn")
-    .classList
-    .toggle(
-      "mode-active",
-      mode==="DEG"
-    );
-
-  document
-    .getElementById("radianBtn")
-    .classList
-    .toggle(
-      "mode-active",
-      mode==="RAD"
-    );
-
-};
-
-
-function factorial(n){
-
-  if(
-    !Number.isFinite(n)||
-    n<0||
-    !Number.isInteger(n)||
-    n>170
-  ){
-
-    throw new Error(
-      "Invalid factorial"
-    );
-
-  }
-
-  let result=1;
-
-  for(let i=2;i<=n;i++){
-    result*=i;
-  }
-
-  return result;
+populateChapterFilter();
+renderQuestions(allQuestions);
 
 }
 
 
-function toRadians(x){
+function populateChapterFilter(){
 
-  return angleMode==="DEG"
-    ? x*Math.PI/180
-    : x;
+const select=document.getElementById("questionChapter");
 
-}
+const chapters=new Set();
 
+allQuestions.forEach(q=>{
+if(q.chapter)chapters.add(q.chapter);
+});
 
-function fromRadians(x){
+select.innerHTML='<option value="">All Chapters</option>';
 
-  return angleMode==="DEG"
-    ? x*180/Math.PI
-    : x;
+[...chapters].sort().forEach(chapter=>{
 
-}
+const option=document.createElement("option");
 
+option.value=chapter;
+option.textContent=chapter;
 
-function safeEvaluate(expression){
+select.appendChild(option);
 
-  let exp=expression;
-
-  exp=exp.replaceAll("π","Math.PI");
-  exp=exp.replaceAll("√","Math.sqrt");
-  exp=exp.replaceAll("×","*");
-  exp=exp.replaceAll("÷","/");
-  exp=exp.replaceAll("^","**");
-
-  /*
-    e is handled only when it appears
-    as a standalone constant.
-  */
-
-  exp=exp.replace(
-    /\be\b/g,
-    "Math.E"
-  );
-
-  exp=exp.replaceAll("sin(","SIN(");
-  exp=exp.replaceAll("cos(","COS(");
-  exp=exp.replaceAll("tan(","TAN(");
-
-  exp=exp.replaceAll("asin(","ASIN(");
-  exp=exp.replaceAll("acos(","ACOS(");
-  exp=exp.replaceAll("atan(","ATAN(");
-
-  exp=exp.replaceAll(
-    "log(",
-    "Math.log10("
-  );
-
-  exp=exp.replaceAll(
-    "ln(",
-    "Math.log("
-  );
-
-  exp=exp.replace(
-    /(\d+(?:\.\d+)?)!/g,
-    "FACT($1)"
-  );
-
-  exp=exp.replace(
-    /(\d+(?:\.\d+)?)%/g,
-    "($1/100)"
-  );
-
-  const SIN=
-    x=>Math.sin(toRadians(x));
-
-  const COS=
-    x=>Math.cos(toRadians(x));
-
-  const TAN=
-    x=>Math.tan(toRadians(x));
-
-  const ASIN=
-    x=>fromRadians(Math.asin(x));
-
-  const ACOS=
-    x=>fromRadians(Math.acos(x));
-
-  const ATAN=
-    x=>fromRadians(Math.atan(x));
-
-  const FACT=
-    x=>factorial(x);
-
-  /*
-    Allow only calculator-generated
-    mathematical characters/functions.
-  */
-
-  if(
-    !/^[0-9+\-*/().,\sA-Z_]+$/.test(exp)
-  ){
-
-    throw new Error(
-      "Invalid expression"
-    );
-
-  }
-
-  return Function(
-    "SIN",
-    "COS",
-    "TAN",
-    "ASIN",
-    "ACOS",
-    "ATAN",
-    "FACT",
-    `"use strict"; return (${exp})`
-  )(
-    SIN,
-    COS,
-    TAN,
-    ASIN,
-    ACOS,
-    ATAN,
-    FACT
-  );
+});
 
 }
 
 
-window.calculateScientific=function(){
+/* ================= FILTER ================= */
 
-  if(!calcExpression)
-    return;
+function filterQuestions(){
 
-  try{
+const search=document
+.getElementById("questionSearch")
+.value
+.toLowerCase();
 
-    const result=
-    safeEvaluate(calcExpression);
+const subject=document.getElementById("questionSubject").value;
+const chapter=document.getElementById("questionChapter").value;
+const difficulty=document.getElementById("questionDifficulty").value;
+const view=document.getElementById("questionView").value;
 
-    if(!Number.isFinite(result)){
-      throw new Error("Invalid result");
-    }
+const filtered=allQuestions.filter(q=>{
 
-    calcAnswer=result;
+const p=questionProgress[q.id]||{};
 
-    const rounded=
-      Math.abs(result)<1e-12
-      ? 0
-      : Number(
-          result.toPrecision(12)
-        );
+if(search&&!q.question.toLowerCase().includes(search))
+return false;
 
-    document
-      .getElementById("calcResult")
-      .textContent=
-      String(rounded);
+if(subject&&q.subject!==subject)
+return false;
 
-    addCalcHistory(
-      calcExpression,
-      rounded
-    );
+if(chapter&&q.chapter!==chapter)
+return false;
 
-    calcExpression=
-      String(rounded);
+if(difficulty&&q.difficulty!==difficulty)
+return false;
 
-  }catch(error){
+if(view==="bookmarked"&&!p.bookmarked)
+return false;
 
-    console.error(error);
+if(view==="solved"&&!p.solved)
+return false;
 
-    document
-      .getElementById("calcResult")
-      .textContent="Error";
+if(view==="unsolved"&&p.solved)
+return false;
 
-  }
+return true;
+
+});
+
+renderQuestions(filtered);
+
+}
+
+
+/* ================= RENDER QUESTIONS ================= */
+
+function renderQuestions(questions){
+
+const container=document.getElementById("questionContainer");
+
+if(!questions.length){
+
+container.innerHTML=`
+
+<div style="
+text-align:center;
+padding:40px;
+color:#64748b;
+">
+
+No MCQ found.
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML=questions.map(q=>{
+
+const p=questionProgress[q.id]||{};
+
+return `
+
+<div class="question-card" id="question-${q.id}">
+
+<div class="question-top">
+
+<div class="question-meta">
+
+<span class="badge">${q.subject}</span>
+<span class="badge">${q.paper||""}</span>
+<span class="badge">${q.difficulty}</span>
+
+</div>
+
+<button
+class="bookmark-btn"
+onclick="toggleBookmark('${q.id}')"
+>
+${p.bookmarked?"🔖":"🔗"}
+</button>
+
+</div>
+
+<div class="question-text">
+${q.question}
+</div>
+
+<div class="options">
+
+${optionHTML(q,"A",q.option_a)}
+${optionHTML(q,"B",q.option_b)}
+${optionHTML(q,"C",q.option_c)}
+${optionHTML(q,"D",q.option_d)}
+
+</div>
+
+<div id="feedback-${q.id}" class="hidden"></div>
+
+${p.solved?`
+
+<div class="explanation">
+
+<strong>✓ Solved</strong>
+
+${q.explanation?
+`<br><br><strong>Explanation:</strong> ${q.explanation}`
+:""}
+
+</div>
+
+`:""}
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+function optionHTML(q,letter,text){
+
+if(!text)return"";
+
+return `
+
+<button
+class="option"
+onclick="answerQuestion('${q.id}','${letter}')"
+>
+
+<strong>${letter}.</strong> ${text}
+
+</button>
+
+`;
+
+}
+
+
+/* ================= ANSWER ================= */
+
+async function answerQuestion(id,selected){
+
+const q=allQuestions.find(x=>x.id===id);
+
+if(!q)return;
+
+const correct=
+String(q.answer||"")
+.trim()
+.toUpperCase()===selected;
+
+const old=questionProgress[id]||{};
+
+const payload={
+
+user_id:currentUser.id,
+question_id:id,
+solved:true,
+bookmarked:old.bookmarked||false,
+selected_answer:selected,
+is_correct:correct,
+attempts:(old.attempts||0)+1,
+updated_at:new Date().toISOString()
 
 };
 
+const {data,error}=await db
+.from("question_progress")
+.upsert(
+payload,
+{onConflict:"user_id,question_id"}
+)
+.select()
+.single();
 
-function addCalcHistory(
-  expression,
-  result
-){
+if(error){
 
-  const box=
-  document.getElementById("calcHistory");
+console.error(error);
+return;
 
-  if(
-    box.textContent===
-    "No calculations yet."
-  ){
+}
 
-    box.innerHTML="";
+questionProgress[id]=data;
 
-  }
+const card=document.getElementById("question-"+id);
 
-  const item=
-  document.createElement("div");
+if(!card)return;
 
-  item.className="history-item";
+const buttons=card.querySelectorAll(".option");
 
-  const expressionNode=
-  document.createTextNode(
-    expression+" = "
-  );
+buttons.forEach(btn=>{
 
-  const resultNode=
-  document.createElement("strong");
+const letter=btn.textContent.trim().charAt(0);
 
-  resultNode.textContent=String(result);
+if(letter===selected){
+btn.classList.add(correct?"correct":"wrong");
+}
 
-  item.appendChild(expressionNode);
-  item.appendChild(resultNode);
+if(letter===
+String(q.answer||"").trim().toUpperCase()){
+btn.classList.add("correct");
+}
 
-  box.prepend(item);
+btn.disabled=true;
+
+});
+
+const feedback=document.getElementById("feedback-"+id);
+
+feedback.classList.remove("hidden");
+
+feedback.className=correct?"success":"error";
+feedback.style.marginTop="12px";
+
+feedback.innerHTML=
+correct
+?"✓ Correct!"
+:`✗ Wrong. Correct answer: ${q.answer}`;
+
+if(q.explanation){
+
+feedback.innerHTML+=
+`<br><br><strong>Explanation:</strong> ${q.explanation}`;
+
+}
 
 }
 
 
-/* =====================================================
-   INITIAL SESSION
-===================================================== */
+/* ================= BOOKMARK ================= */
+
+async function toggleBookmark(id){
+
+const old=questionProgress[id]||{};
+
+const payload={
+
+user_id:currentUser.id,
+question_id:id,
+solved:old.solved||false,
+bookmarked:!old.bookmarked,
+selected_answer:old.selected_answer||null,
+is_correct:
+old.is_correct===undefined?null:old.is_correct,
+attempts:old.attempts||0,
+updated_at:new Date().toISOString()
+
+};
+
+const {data,error}=await db
+.from("question_progress")
+.upsert(
+payload,
+{onConflict:"user_id,question_id"}
+)
+.select()
+.single();
+
+if(error){
+
+console.error(error);
+return;
+
+}
+
+questionProgress[id]=data;
+
+filterQuestions();
+
+}
+
+
+/* ================= PRACTICE ================= */
+
+async function startPractice(){
+
+if(!allQuestions.length){
+await loadQuestions();
+}
+
+if(!allQuestions.length){
+
+alert("Practice করার মতো কোনো MCQ নেই।");
+return;
+
+}
+
+practiceQuestions=
+[...allQuestions]
+.sort(()=>Math.random()-.5)
+.slice(0,Math.min(10,allQuestions.length));
+
+practiceIndex=0;
+practiceScore=0;
+
+showPracticeQuestion();
+
+}
+
+
+function showPracticeQuestion(){
+
+if(practiceIndex>=practiceQuestions.length){
+
+document.getElementById("questionContainer").innerHTML=`
+
+<div class="question-card" style="text-align:center">
+
+<h2 style="margin-bottom:10px">
+Practice Complete 🎯
+</h2>
+
+<div style="
+font-size:40px;
+font-weight:800;
+color:#2563eb;
+margin:15px;
+">
+
+${practiceScore}/${practiceQuestions.length}
+
+</div>
+
+<button
+class="practice-btn"
+onclick="loadQuestions()"
+>
+Back to Question Bank
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+const q=practiceQuestions[practiceIndex];
+
+const container=document.getElementById("questionContainer");
+
+container.innerHTML=`
+
+<div class="question-card">
+
+<div class="question-top">
+
+<div class="question-meta">
+
+<span class="badge">
+Question ${practiceIndex+1}/${practiceQuestions.length}
+</span>
+
+<span class="badge">${q.subject}</span>
+
+<span class="badge">${q.difficulty}</span>
+
+</div>
+
+</div>
+
+<div class="question-text">
+${q.question}
+</div>
+
+<div class="options">
+
+${optionHTML(q,"A",q.option_a)}
+${optionHTML(q,"B",q.option_b)}
+${optionHTML(q,"C",q.option_c)}
+${optionHTML(q,"D",q.option_d)}
+
+</div>
+
+<div id="practiceFeedback" style="margin-top:15px"></div>
+
+</div>
+
+`;
+
+container.querySelectorAll(".option").forEach(btn=>{
+
+btn.onclick=()=>{
+
+const selected=btn.textContent.trim().charAt(0);
+
+const correct=
+String(q.answer||"").trim().toUpperCase()===selected;
+
+if(correct)practiceScore++;
+
+container.querySelectorAll(".option").forEach(b=>{
+b.disabled=true;
+});
+
+container.querySelectorAll(".option").forEach(b=>{
+
+const letter=b.textContent.trim().charAt(0);
+
+if(letter===
+String(q.answer||"").trim().toUpperCase()){
+b.classList.add("correct");
+}
+
+});
+
+document.getElementById("practiceFeedback").innerHTML=
+
+correct
+?`<div class="success">✓ Correct!</div>`
+:`<div class="error">✗ Wrong. Correct answer: ${q.answer}</div>`;
+
+setTimeout(()=>{
+
+practiceIndex++;
+showPracticeQuestion();
+
+},1000);
+
+};
+
+});
+
+}
+
+
+/* ================= SESSION ================= */
 
 (async function(){
 
-  try{
+const {data:{session}}=
+await db.auth.getSession();
 
-    const {data}=
-    await db.auth.getSession();
+if(session){
 
-    if(data.session){
+currentUser=session.user;
+await loadUser();
 
-      await loadUser(
-        data.session.user
-      );
-
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-  }
+}
 
 })();
 
 </script>
 
 </body>
-          </html>
+  </html>
